@@ -4,11 +4,23 @@ import { Button, Block } from 'components';
 import { UserOutlined, LockOutlined, MailOutlined, InfoCircleTwoTone } from '@ant-design/icons';
 import { Link } from "react-router-dom";
 
-const RegisterForm = () =>{
+const success = false;
+
+const RegisterForm = props => {
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
     };
-    const success = false;
+    const {
+        values,
+        touched,
+        errors,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        isValid,
+        isSubmitting
+      } = props;
+
     return (
         <div>
                 <div className="auth__top">
@@ -16,22 +28,23 @@ const RegisterForm = () =>{
                     <p>To enter the chat, you need to register</p>
                 </div>
         <Block>
-                {!success ? (
-                    <Form name="normal_login" className="login-form" initialValues={{ remember: true, }} onFinish={onFinish}>
-                    <Form.Item hasFeedback validateStatus="success">
-                        <Input prefix={<MailOutlined className="site-form-item-icon" />} placeholder="E-Mail" size="large" />
+            {!success ? (
+                <Form onSubmit={handleSubmit} name="normal_login" className="login-form" initialValues={{ remember: true, }} onFinish={onFinish}>
+                        <Form.Item validateStatus={!touched.email ? '' : errors.email ? "error" : 'success'} help={ !touched.email ? '' : errors.email } hasFeedback>
+                        <Input prefix={<MailOutlined className="site-form-item-icon" />} type="email" placeholder="E-Mail" size="large" onChange={handleChange} onBlur={handleBlur} value={values.email} name="email" />
                     </Form.Item>
                     <Form.Item>
                         <Input prefix={<UserOutlined className="site-form-item-icon" />} type="user" placeholder="Name" size="large" />
                     </Form.Item>
-                    <Form.Item>
-                        <Input prefix={<LockOutlined className="site-form-item-icon" />} type="password" placeholder="Password" size="large" />
+                    <Form.Item validateStatus={!touched.password ? '' : errors.password  ? "error" : 'success'} help={ !touched.password ? '' : errors.password } hasFeedback>
+                        <Input prefix={<LockOutlined className="site-form-item-icon" />} type="password" placeholder="Password" size="large" onChange={handleChange} onBlur={handleBlur} value={values.password} name="password" />
                     </Form.Item>
                     <Form.Item>
                         <Input prefix={<LockOutlined className="site-form-item-icon" />} type="password" placeholder="Password repeat" size="large" />
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" htmlType="submit" className="login-form-button">
+                        {isSubmitting && !isValid && <span>err</span> }
+                        <Button onClick={ handleSubmit } type="primary" htmlType="submit" className="login-form-button">
                             Register
                         </Button>
                     </Form.Item>
