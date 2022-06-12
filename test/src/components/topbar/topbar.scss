@@ -1,0 +1,57 @@
+@import "../../global.scss";
+
+.topbar{
+  width: 100%;
+  height: 80px;
+  background-color: white;
+  color: black;
+  position: fixed;  
+  top: 0;
+  z-index: 2;
+
+  .wrapper{
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .logo__img{
+    width: 135px
+  }
+
+  .menu-list{
+    display: flex;
+    margin-top: 20px;
+  }
+
+  .menu-list__item + .menu-list__item { 
+    margin-left: 3vw;
+  }
+
+  .right{
+    display: flex;
+  }
+
+  .right-elem + .right-elem{
+    margin-left: 20px;
+  }
+
+  .favorite-img{
+    margin-top: 15px;
+  }
+
+  .language-button{
+    margin-top: 20px;
+  }
+
+  .language-img{
+    width: 12px;
+    height: 12px;
+  }
+
+  .account-button{
+    margin-top: 5px;
+  }
+}

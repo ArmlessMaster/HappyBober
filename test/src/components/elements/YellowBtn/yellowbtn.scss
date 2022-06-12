@@ -1,0 +1,17 @@
+.yellowbtn{
+	align-items: center;
+	margin: auto auto;
+	border: .3vw solid #D7AE5C;
+	padding: 1.2vw 1.5vw;
+	font-weight: bold;
+
+	background: linear-gradient(to right, #00000000 50%, #D7AE5C 50%) left;
+	background-size: 220%;
+	transition: .2s ease-in-out;
+	font-size: 1vw;
+}
+
+
+.yellowbtn:hover{
+	background-position: right;
+}

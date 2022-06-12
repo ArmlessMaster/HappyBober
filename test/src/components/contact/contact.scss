@@ -1,0 +1,126 @@
+@import "../../global.scss";
+.contact{
+  position: relative;
+  .contact__main-screen{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 36vw;
+    background: #DDDDDD;
+    p{
+      font-size: 15.625vw;
+      font-weight: bolder;
+      color: #EFEFEF;
+    }
+  }
+  .contact__main-screen-img{
+    position: absolute;
+    top: 0;
+  }
+  .contact__main-screen-img1{
+    margin-left: 22%;
+    margin-top: 5%;
+    width: 12vw;
+
+  }
+  .contact__main-screen-img2{
+    margin-left: 33%;
+    width: 35vw;
+  }
+  .contact__main-screen-img3{
+    margin-left: 70%;
+    margin-top: 25%;
+    width: 3vw;
+  }
+  .contact__main-screen-img4{
+    margin-left: 45%;
+    margin-top: 30%;
+    width: 15vw;
+  }
+}
+
+.marquee {
+  position: relative;
+  width: 100vw;
+  max-width: 100%;
+  height: 206px;
+  overflow-x: hidden;
+}
+
+.track {
+  position: absolute;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.track > h1 {
+  margin: 20px 0;
+  font-size: 5rem;
+  font-family: AllianceNo1-ExtraBold;
+  text-transform: uppercase;
+}
+
+.contact__input-container{
+  max-width: 100%;
+}
+
+.description-text{
+  line-height: 24px;
+}
+
+.contact__input + div{
+  display: flex;
+  justify-content: space-between;
+  max-width: 1000px;
+  align-items: center;
+  margin: 30px auto 16px auto;
+}
+
+.contact__input-flex + .contact__input-flex{
+  max-width: 1000px;
+  margin-left: 25px;
+}
+
+.contact__input{
+  font-family: 'Poppins', sans-serif;
+  display: block;
+  width: 1000px;
+  background: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid gray;
+  color: rgb(59, 59, 59);
+  font-size: 21px;
+  font-weight: bold;
+  align-items: center;
+  margin: 15px auto 15px auto;
+  resize: none;
+}
+
+.contact__input-btn{
+  display: block;
+  align-items: center;
+	margin: auto auto;
+	border: .3vw solid #D7AE5C;
+	padding: 1vw 1.5vw;
+	font-weight: bold;
+
+	background: linear-gradient(to right, #00000000 50%, #D7AE5C 50%) left;
+	background-size: 210%;
+	transition: .2s ease-in-out;
+	font-size: 1vw;
+}
+
+.contact__main-screen-text{
+  margin-top: 1.5vw;
+  text-align: center;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+}
+
+.contact__input-btn:hover{
+	background-position: right;
+}
