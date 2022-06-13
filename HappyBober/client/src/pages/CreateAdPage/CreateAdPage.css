@@ -1,0 +1,209 @@
+/*
+.container-createAd {
+    display: flex;
+    flex-direction: column;
+ 
+}
+.container-createAd-4 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/*fields-styles
+.form-fields {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: "montserrat", sans-serif;
+    font-weight: 500;
+    color: #C7C7C7;
+
+  }
+h1 {
+    padding-bottom: 30px;
+    font-weight: 900;
+    font-size: 35px;
+  }
+.field {
+    width: 45%;
+    position: relative;
+    height: 60px;
+    overflow: hidden;
+    margin-top: 1vh;  
+  }
+  
+  .field input {
+    width: 100%;
+    height: 100%;
+    color: #C7C7C7;
+    padding-top: 20px;
+    border: none;
+    font-size: 25px;
+ 
+  }
+
+  
+  .field label {
+    position: absolute;
+    bottom: -1px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border-bottom: 3px solid #C7C7C7;
+    font-weight: bold;
+  }
+  .field label::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-100%);
+    transition: all 0.3s ease;
+  }
+  
+  .content-name {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    padding-bottom: 5px;
+    transition: all 0.3s ease;
+  }
+  .field input:focus {
+    outline: none;
+  }
+  .field input:focus + .label-name .content-name,
+  .field input:valid + .label-name .content-name {
+    transform: translateY(-120%);
+    font-size: 14px;
+    left: 0px;
+  }
+  .field input:focus + .label-name::after,
+  .field input:valid + .label-name::after {
+    transform: translateX(0%);
+  }
+  
+
+
+
+/* CSS 
+.button-59 {
+    align-items: center;
+    background-color: #fff;
+    border: 2px solid #E5CC8B;
+    box-sizing: border-box;
+    color: #000;
+    cursor: pointer;
+    display: inline-flex;
+    fill: #000;
+    font-family: Inter,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    height: 48px;
+    justify-content: center;
+    letter-spacing: -.8px;
+    line-height: 24px;
+    min-width: 140px;
+    outline: 0;
+    padding: 0 17px;
+    text-align: center;
+    text-decoration: none;
+    transition: all .3s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin-top: 5vh;
+    width: 20%;
+  }
+  
+  .button-59:focus {
+    color: #171e29;
+  }
+  
+  .button-59:hover {
+    background-color: #f8f8f8;
+
+  }
+  
+  .button-59:active {
+    background-color: #f8f8f8;
+  }
+  
+  @media (min-width: 768px) {
+    .button-59 {
+      min-width: 170px;
+    }
+  }
+
+
+  .option-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    position: relative;
+    top: 13.33333px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    width: 40px;
+    transition: all 0.15s ease-out 0s;
+    background: #cbd1d8;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 0.5rem;
+    outline: none;
+    position: relative;
+    z-index: 1000;
+  }
+  .option-input:hover {
+    background: #9faab7;
+  }
+  .option-input:checked {
+    background: #40e0d0;
+  }
+  .option-input:checked::before {
+    width: 40px;
+    height: 40px;
+    display:flex;
+    content: '\f00c';
+    font-size: 25px;
+    font-weight:bold;
+    position: absolute;
+    align-items:center;
+    justify-content:center;
+    font-family:'Font Awesome 5 Free';
+  }
+  .option-input:checked::after {
+    -webkit-animation: click-wave 0.65s;
+    -moz-animation: click-wave 0.65s;
+    animation: click-wave 0.65s;
+    background: #40e0d0;
+    content: '';
+    display: block;
+    position: relative;
+    z-index: 100;
+  }
+  .option-input.radio {
+    border-radius: 50%;
+  }
+  .option-input.radio::after {
+    border-radius: 50%;
+  }
+  
+
+  
+  
+  
+  input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}*/
