@@ -4,11 +4,30 @@ import buttonIOS from "../../img/button-appstore.svg";
 import mobile from "../../img/mobile.png";
 import "../../fonts/AllianceNo1-ExtraBold.ttf";
 import { motion } from "framer-motion";
+import { useViewportScroll } from "framer-motion";
+import { useTransform } from "framer-motion";
+import React from "react";
 
 export default function Mobile() {
+
+  const { scrollYProgress } = useViewportScroll();
+  let top = 0;
+  const x = useTransform(scrollYProgress, [0, 1], [top, window.innerWidth - 200]);;
+
   const marqueeVariants = {
     animate: {
-      x: [0, -1920],
+      x: ["0vw", "-60.3vw"],
+      transition: {
+        x: {
+          repeat: Infinity,
+          repeatType: "loop",
+          duration: 3,
+          ease: "linear",
+        },
+      },
+    },
+    animateVer2: {
+      x: ["0vw", "-83.2vw"],
       transition: {
         x: {
           repeat: Infinity,
@@ -19,7 +38,7 @@ export default function Mobile() {
       },
     },
   };
-  
+
   return (
     <div className='mobile' id='mobile'>
       <div className="main">
@@ -38,21 +57,33 @@ export default function Mobile() {
             <a href="1"><img src={buttonIOS} alt="" /></a>
           </div>
         </div>
-        <div className="right">
+        <motion.div className="right"
+        style={{ x: x }}>
           <img src={mobile} alt="" />
-        </div>
-        <div>
-          <div className="marquee-mobile">
-            <div>
+        </motion.div>
+        <div className="marquee">
+            <motion.div
+              className="track"
+              variants={marqueeVariants}
+              animate="animate">
               <h1>
-                Let's Work Together. Let's Work Together. Let's Work Together. Let's
-                Work Together. Let's Work Together. Let's Work Together. Let's Work
-                Together
+                Happy Bober Mobile. Happy Bober Mobile. Happy Bober Mobile. 
               </h1>
-            </div>
-          </div>
+            </motion.div>
+        </div>
+        <div className="marquee marquee-2">
+            <motion.div
+              className="track"
+              variants={marqueeVariants}
+              animate="animateVer2"
+              >
+              <h1>
+                CONVENIENT AND QUALITY APP. CONVENIENT AND QUALITY APP. CONVENIENT AND QUALITY APP. 
+              </h1>
+            </motion.div>
         </div>
       </div>
     </div>
   )
 }
+

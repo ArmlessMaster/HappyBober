@@ -16,11 +16,11 @@ export default function Topbar() {
           </a>
         </div>
         <ul className="menu-list">
-          <li className="menu-list__item">Contact</li>
-          <li className="menu-list__item">Support</li>
-          <li className="menu-list__item">About</li>
-          <li className="menu-list__item">Shop</li>
-          <li className="menu-list__item">Bilibober+</li>
+          <li className="menu-list__item"><div className="menu-list__item-text">Contact</div></li>
+          <li className="menu-list__item"><div className="menu-list__item-text">Support</div></li>
+          <li className="menu-list__item"><div className="menu-list__item-text">About</div></li>
+          <li className="menu-list__item"><div className="menu-list__item-text">Shop</div></li>
+          <li className="menu-list__item"><div className="menu-list__item-text">Bilibober+</div></li>
         </ul>
         <div className="right">
           <div className="language-button right-elem">

@@ -75,13 +75,47 @@
   }
 }
 
-.marquee-mobile{
+.marquee {
+
+  transform: rotate(-3.99deg);
+  position: relative;
+  width: 105vw;
+  max-width: 105%;
+  height: 8vw;
+  overflow-x: hidden;
+  margin-top: 10%;
+  left: -5px;
+  line-height: normal;
+  overflow-block: hidden;
   z-index: -1;
-  transform: rotate(-4deg);
-  height: 200px;
-  margin-top: 30px;
-  font-size: 3vw;
+  
+  .track {
+    position: absolute;
+    white-space: nowrap;
+  }
+  .track > h1 {
+    background-color: black;
+    font-size: 5vw;
+    font-family: AllianceNo1-ExtraBold;
+    color: #FFE800;
+    text-transform: uppercase;
+  }
 }
+
+.marquee-2{
+  transform: rotate(2.59deg);
+  margin-top: 8%;
+  left: -5px;
+  line-height: normal;
+  overflow-block: hidden;
+  z-index: -1;
+  .track > h1{
+    color: black;
+    background-color: #98D8DD;
+  }
+}
+
+
 
 
 @keyframes updown {

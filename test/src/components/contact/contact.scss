@@ -40,26 +40,7 @@
   }
 }
 
-.marquee {
-  position: relative;
-  width: 100vw;
-  max-width: 100%;
-  height: 206px;
-  overflow-x: hidden;
-}
 
-.track {
-  position: absolute;
-  white-space: nowrap;
-  will-change: transform;
-}
-
-.track > h1 {
-  margin: 20px 0;
-  font-size: 5rem;
-  font-family: AllianceNo1-ExtraBold;
-  text-transform: uppercase;
-}
 
 .contact__input-container{
   max-width: 100%;

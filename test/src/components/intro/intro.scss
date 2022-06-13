@@ -38,32 +38,30 @@ $bg-img: url('../../img/Background.jpg');
         overflow: hidden;
       }
 
-      .marquee {
-        position: absolute;
-        display: block;
-        margin: auto auto;
-        overflow: hidden;
-        min-width: 100%;
-        height: 100%;
-      }
+      .marquee-index {
+        position: relative;
+        width: 100vw;
+        max-width: 100%;
+        height: 17vw;
+        overflow-x: hidden;
+        line-height: normal;
+        overflow-block: hidden;
+        z-index: -1;
 
-      .marquee span {
-        display: inline-block;
-        padding-left: 100%;
-        font-family: 'Bebas Neue';
-        color: transparent;
-        text-align: center;
-        -webkit-text-stroke: .2vw white;
-        white-space: nowrap;
-        min-width: 100%;
-        height: 100%;
-        line-height: 15vw;
-        font-size: 15vw;
-        animation: marquee 30s linear infinite;
-      }
-      .marquee2 span {
+        .track {
+          position: absolute;
+          white-space: nowrap;
+        }
 
-        animation-delay: 15s;
+        .track > p {
+          font-size: 13vw;
+          font-family: 'Bebas Neue';
+          color: transparent;
+          -webkit-text-stroke-width: 0.2vw;
+          -webkit-text-stroke-color: white;
+          white-space: nowrap;
+          text-transform: uppercase;
+        }
       }
   }
 }
