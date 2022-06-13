@@ -4,8 +4,9 @@ import { BrowserRouter } from "react-router-dom";
 import { useAuth } from "./hooks/auth.hook";
 import { AuthContext } from "./context/AuthContext";
 import { Loader } from "./components/Loader/Loader";
-import { Navbar } from "./components/Navbar/Navbar";
-
+import { Topbar } from "./components/topbar/Topbar";
+import { Footer } from "./components/footer/Footer";
+import "./App.scss"
 
 function App() {
   const { token, login, logout, accountId, ready } = useAuth();
@@ -15,14 +16,18 @@ function App() {
     return <Loader />
   }
   return (
-    <AuthContext.Provider value={{
-      token, login, logout, accountId, isAuthenticated
-    }}>
-      <BrowserRouter>
-        {isAuthenticated && <Navbar />}
-        <div>{routes}</div>
-      </BrowserRouter>
-    </AuthContext.Provider>
+    <>
+      <AuthContext.Provider value={{
+        token, login, logout, accountId, isAuthenticated
+      }}>
+        <BrowserRouter>
+          {isAuthenticated && <Topbar />}
+          <div>{routes}</div>
+        </BrowserRouter>
+      </AuthContext.Provider>
+      <Footer></Footer>
+    </>
+    
   );
 }
 

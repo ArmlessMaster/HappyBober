@@ -41,7 +41,7 @@ export const AdsList = ({ ads }) => {
                             <td>{ad.price}</td>
                             <td>{ad.animalName}</td>
                             <td>{ad.picture.map((link, index) => {
-                                return <img width={100} src={link} />
+                                return <img width={100} alt="img" src={link} />
                             })}</td>
                             <td>{ad.isTop}</td>
                             <td>{ad.account}</td>

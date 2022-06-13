@@ -1,0 +1,82 @@
+@import "../../global.scss";
+
+.topbar{
+  width: 100%;
+  height: 4vw;
+  background-color: white;
+  color: black;
+  position: fixed;  
+  top: 0;
+  z-index: 2;
+
+  .wrapper{
+    padding: 0.521vw 1.563vw;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 0.938vw;
+  }
+
+  .logo__img{
+    width: 7.031vw;
+  }
+
+  .menu-list{
+    cursor: pointer;
+    display: flex;
+    margin-top: 1.042vw;
+    position: relative;
+    .menu-list__item{
+      position: relative;
+    }
+    .menu-list__item::after{
+      content: "";
+      position: absolute;
+      background-color: #ff3c78;
+      height: 0.1vw;
+      width: 0;
+      left: 0;
+      bottom: 0vw;
+      transition: 0.5s;
+    }
+  
+    .menu-list__item:hover::after{
+      width: 100%;
+    }
+
+    .menu-list__item + .menu-list__item { 
+      margin-left: 3vw;
+      
+    }
+  }
+
+  .right{
+    cursor: pointer;
+    display: flex;
+  }
+
+  .right-elem + .right-elem{
+    margin-left: 1vw;
+  }
+
+  .favorite-img{
+    margin-top: 0.781vw;
+    width: 1.8vw;
+  }
+
+  .language-button{
+    margin-top: 1vw;
+  }
+
+  .language-img{
+    width: 0.625vw;
+    height: 0.625vw;
+  }
+
+  .account-button{
+    margin-top: 0.5vw;
+  }
+  .account-img{
+    width: 2.2vw;
+  }
+}

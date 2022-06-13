@@ -15,12 +15,11 @@ export const AdCard = ({ ad }) => {
             <p>Price <strong>{ad.price}</strong></p>
             <p>animalName <strong>{ad.animalName}</strong></p>
             <p>picture <strong>{ad.picture.map((link, index) => {
-                return <img width={100} src={link} />
+                return <img width={100} alt="1" src={link} />
             })}</strong></p>
             <p>isTop <strong>{ad.isTop}</strong></p>
             <p>account <strong>{ad.account}</strong></p>
             <p>date <strong>{ad.date}</strong></p>
         </>
     )
-
 }
