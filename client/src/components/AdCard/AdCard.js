@@ -1,7 +1,7 @@
 import React from "react";
 import './AdCard.css';
 
-export const AdCard = ({ ad }) => {
+export const AdCard = ({ ad, handleFavourite }) => {
 
     return (
         <>
@@ -20,6 +20,7 @@ export const AdCard = ({ ad }) => {
             <p>isTop <strong>{ad.isTop}</strong></p>
             <p>account <strong>{ad.account}</strong></p>
             <p>date <strong>{ad.date}</strong></p>
+            <button onClick={handleFavourite}>❤</button>
         </>
     )
 }

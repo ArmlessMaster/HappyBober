@@ -15,7 +15,7 @@ export const AdPage = () => {
 
     const { request, loading } = useHttp();
 
-    const { token } = useContext(AuthContext);
+    const { token, accountId } = useContext(AuthContext);
 
     const getAd = useCallback(async () => {
         try {
@@ -32,13 +32,27 @@ export const AdPage = () => {
         getAd()
     }, [getAd]);
 
+
+    const handleFavourite = async () => {
+        try {
+            const data = await request('/api/favourites/addfavourite', 'POST', { accountId, adId }, {
+                Authorization: `Bearer ${token}`
+            });
+            console.log(data);
+        } catch (e) {
+
+        }
+    }
+
     if (loading) {
         return <Loader />
     }
 
+
+
     return (
         <>
-            {!loading && ad && <AdCard ad={ad} />}
+            {!loading && ad && <AdCard ad={ad} handleFavourite={handleFavourite} />}
         </>
     );
 };

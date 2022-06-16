@@ -37,7 +37,7 @@ export const CreateAdPage = () => {
     const createAdHandler = async () => {
         try {
             form.picture = urls;
-            const data = await request('/api/create/createad', 'POST', { ...form }, { Authorization: `Bearer ${auth.token}` });
+            const data = await request('/api/ads/createad', 'POST', { ...form }, { Authorization: `Bearer ${auth.token}` });
             console.log(data);
         } catch (e) {
 

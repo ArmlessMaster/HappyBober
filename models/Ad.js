@@ -13,6 +13,7 @@ const schema = new Schema({
     picture: [{ type: String, required: false }],
     isTop: { type: Boolean, default: false, required: false },
     topEnd: { type: Date, required: false },
+    location: { type: String, required: false },
     account: { type: Types.ObjectId, ref: 'Account' }
 });
 

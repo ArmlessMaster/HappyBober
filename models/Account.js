@@ -15,7 +15,8 @@ const schema = new Schema({
     photo: [{ type: String, required: false }],
     region: { type: String, required: false },
     description: { type: String, required: false },
-    website: { type: String, required: false }
+    website: { type: String, required: false },
+    favourites: [{ type: Types.ObjectId }]
 });
 
 

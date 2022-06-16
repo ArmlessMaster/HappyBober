@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import './AdsList.css';
+import { AuthContext } from "../../context/AuthContext";
+import { useHttp } from "../../hooks/http.hook";
 
 export const AdsList = ({ ads }) => {
+
+
+    const { request, loading } = useHttp();
+
+    const { token } = useContext(AuthContext);
 
     if (!ads.length) {
         return <p className="center">Ads = 0</p>
@@ -49,12 +56,24 @@ export const AdsList = ({ ads }) => {
                             <td>
                                 <Link to={`/ad/${ad._id}`}>Open</Link>
                             </td>
+                            <td>
+                                <button disabled={loading} onClick={async () => {
+                                    const adId = ad._id;
+                                    try {
+                                        await request('/api/favourites/addfavourite', 'POST', { adId }, {
+                                            Authorization: `Bearer ${token}`
+                                        });
+                                    } catch (e) {
+
+                                    }
+                                }}>❤</button>
+                            </td>
                         </tr>
                     )
                 })}
 
             </tbody>
-        </div>
+        </div >
     )
 
 }
