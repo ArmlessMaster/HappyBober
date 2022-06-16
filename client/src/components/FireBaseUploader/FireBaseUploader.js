@@ -1,11 +1,10 @@
 import React from "react";
 import './FireBaseUploader.css';
 
-export const FireBaseUploader = ({ handleChange, handleUpload }) => {
+export const FireBaseUploader = ({ handleChange }) => {
     return (
         <div>
             <input type="file" multiple onChange={handleChange} />
-            <button onClick={handleUpload}>Upload</button>
         </div>
     )
 

@@ -34,16 +34,6 @@ export const CreateAdPage = () => {
         setGender('female');
     };
 
-    const createAdHandler = async () => {
-        try {
-            form.picture = urls;
-            const data = await request('/api/ads/createad', 'POST', { ...form }, { Authorization: `Bearer ${auth.token}` });
-            console.log(data);
-        } catch (e) {
-
-        }
-    };
-
 
     const handleChange = (e) => {
         for (let i = 0; i < e.target.files.length; i++) {
@@ -54,8 +44,9 @@ export const CreateAdPage = () => {
     };
 
 
-    const handleUpload = () => {
+    const createAdHandler = () => {
         const promises = [];
+        console.log(images.length);
         images.forEach((image) => {
             const uploadTask = storage.ref(`images/${image.name}`).put(image);
             promises.push(uploadTask);
@@ -72,21 +63,26 @@ export const CreateAdPage = () => {
                         .getDownloadURL()
                         .then((urls) => {
                             setUrls((prevState) => [...prevState, urls]);
+                            //setForm((prevState) => ({ picture: [...prevState.picture, urls] }));
+
                         });
+                    if (form.picture.length === images.length)
+                        await request('/api/ads/createad', 'POST', { ...form }, { Authorization: `Bearer ${auth.token}` })
                 }
             );
         });
-
+        console.log(form.picture);
         Promise.all(promises)
             .then(() => console.log("All images uploaded"))
             .catch((err) => console.log(err));
+
     };
 
 
     return (
-        <div >
+        <div style={{ marginTop: '100px' }} >
             <div>
-                <FireBaseUploader handleChange={handleChange} handleUpload={handleUpload} />
+                <FireBaseUploader handleChange={handleChange} />
             </div>
             <div >
                 <input type="text" name="animalName" autoComplete="off" required
