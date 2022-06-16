@@ -3,10 +3,11 @@ import Logo from "../../img/Logo.png";
 import OpenLanguage from "../../img/Open language.svg";
 import Account from "../../img/Account.svg";
 import Favorite from "../../img/Favorite.svg";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-
+import { Modal } from "../modal/Modal";
+import { Authentication } from "../../components/authentication/Authentication";
 
 export const Topbar = () => {
 
@@ -20,6 +21,7 @@ export const Topbar = () => {
       history('/');
   }
 
+  const [modalActive, setModalActive] = useState(false);
 
   return (
     <div className='topbar'>
@@ -42,15 +44,24 @@ export const Topbar = () => {
             <img className="language-img" src={OpenLanguage} alt="" />
           </div>
           <div className="favorite-button right-elem">
+          <NavLink to="/myfavourites">
             <img className="favorite-img" src={Favorite} alt="" />
+            </NavLink>
           </div>
           <div className="account-button right-elem">
-            <NavLink to="/" onClick={logoutHandler}>            
+            {/* <NavLink to="/" onClick={logoutHandler}>            
               <img className="account-img" src={Account} alt="" />
-            </NavLink>
+            </NavLink> */}         
+            {!auth.isAuthenticated && <label style={{cursor: 'pointer'}} onClick={() => setModalActive(true)}>
+              <img className="account-img" src={Account} alt="" />
+            </label>}
+            {auth.isAuthenticated && <label style={{cursor: 'pointer'}} onClick={logoutHandler}>
+              <img className="account-img" src={Account} alt="" />
+            </label>}
           </div>
         </div>
       </div>
+      <Modal active={ modalActive} setActive={setModalActive} children={<Authentication></Authentication>}></Modal>
     </div>
   )
 }

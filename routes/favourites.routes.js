@@ -18,7 +18,6 @@ router.get('/getmyfavourites', auth, async (req, res) => {
                 }
             }
         }
-        console.log(myFavourites);
         res.json(myFavourites);
     } catch (e) {
         res.status(500).json({ message: 'Something went wrong, please try again' });

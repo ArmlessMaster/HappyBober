@@ -12,6 +12,7 @@ function App() {
   const { token, login, logout, accountId, ready } = useAuth();
   const isAuthenticated = !!token;
   const routes = useRoutes(isAuthenticated);
+
   if (!ready) {
     return <Loader />
   }
@@ -21,13 +22,13 @@ function App() {
         token, login, logout, accountId, isAuthenticated
       }}>
         <BrowserRouter>
-          {isAuthenticated && <Topbar />}
+          <Topbar />
           <div>{routes}</div>
         </BrowserRouter>
       </AuthContext.Provider>
       <Footer></Footer>
     </>
-    
+
   );
 }
 

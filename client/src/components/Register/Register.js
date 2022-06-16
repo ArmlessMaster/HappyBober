@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useHttp } from "../../hooks/http.hook";
 import { NavLink } from "react-router-dom";
-import './AuthenticationPages.css';
 
 export const RegisterPage = () => {
 
@@ -17,6 +16,15 @@ export const RegisterPage = () => {
     }
 
 
+
+    const registerHandler = async () => {
+        try {
+            const data = await request('/api/auth/register', 'POST', { ...form });
+            console.log(data);
+        } catch (e) {
+
+        }
+    }
 
     const registerHandler = async () => {
         try {
