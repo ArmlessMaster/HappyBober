@@ -16,7 +16,7 @@ export const CreateAdPage = () => {
     const [gender, setGender] = React.useState('');
 
     const [form, setForm] = useState({
-        type: '', gender: '', color: '', information: '', age: 0, breed: '', price: 0, animalName: '', picture: []
+        type: '', gender: '', color: '', information: '', age: 0, breed: '', price: 0, animalName: '', picture: [], location: ''
     });
 
     const { loading, request } = useHttp();
@@ -78,9 +78,6 @@ export const CreateAdPage = () => {
         })
 
     }
-
-
-
 
 
 
@@ -147,6 +144,16 @@ export const CreateAdPage = () => {
                 <label forhtml="color">
                     <span >
                         COLOR
+                    </span>
+                </label>
+            </div>
+            <div >
+                <input type="text" name="location" autoComplete="off" required
+                    value={form.location}
+                    onChange={changeHandler} />
+                <label forhtml="location">
+                    <span >
+                        LOCATION
                     </span>
                 </label>
             </div>

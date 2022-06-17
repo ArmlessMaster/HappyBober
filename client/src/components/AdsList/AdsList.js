@@ -31,6 +31,7 @@ export const AdsList = ({ ads }) => {
                     <th>isTop</th>
                     <th>account</th>
                     <th>date</th>
+                    <th>location</th>
                 </tr>
             </thead>
 
@@ -53,6 +54,7 @@ export const AdsList = ({ ads }) => {
                             <td>{ad.isTop}</td>
                             <td>{ad.account}</td>
                             <td>{ad.date}</td>
+                            <td>{ad.location}</td>
                             <td>
                                 <Link to={`/ad/${ad._id}`}>Open</Link>
                             </td>

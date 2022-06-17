@@ -36,10 +36,10 @@ router.get('/:id', async (req, res) => {
 
 router.post('/createad', auth, async (req, res) => {
     try {
-        const { type, gender, color, information, age, breed, price, animalName, picture } = req.body;
+        const { type, gender, color, information, age, breed, price, animalName, picture, location } = req.body;
         const ad = new Ad({
             type, gender, color, information, age, breed, price, animalName, isTop: false,
-            account: req.account.accountId, picture
+            account: req.account.accountId, picture, location
         });
 
 
