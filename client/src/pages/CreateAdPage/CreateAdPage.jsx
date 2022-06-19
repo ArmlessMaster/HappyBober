@@ -50,7 +50,10 @@ export const CreateAdPage = () => {
         })
         Promise.all(promises).then(async () => {
             await request('/api/ads/createad', 'POST', { ...form }, { Authorization: `Bearer ${auth.token}` });
-        })
+        }).then(() => {setForm({
+            type: '', gender: '', color: '', information: '', age: 0, breed: '', price: 0, animalName: '', picture: [], location: ''
+        }); 
+    setGender(''); setUrls([]); setImages([]);})
     }
 
     async function uploadImageAsPromise(image) {
@@ -110,7 +113,7 @@ export const CreateAdPage = () => {
                     </div>
                     <div >
                         <input type="number" min={0} name="age" placeholder='Age'  autoComplete="off" required
-                            value={form.number}
+                            value={form.age}
                             onChange={changeHandler} />
                     </div>
                     <div >
