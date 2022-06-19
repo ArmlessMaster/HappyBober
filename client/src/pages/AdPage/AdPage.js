@@ -29,16 +29,16 @@ export const AdPage = () => {
     }, [token, adId, request]);
 
     useEffect(() => {
-        getAd()
+        getAd();
     }, [getAd]);
 
 
     const handleFavourite = async () => {
         try {
-            const data = await request('/api/favourites/addfavourite', 'POST', { accountId, adId }, {
+            await request('/api/favourites/addfavourite', 'POST', { accountId, adId }, {
                 Authorization: `Bearer ${token}`
             });
-            console.log(data);
+
         } catch (e) {
 
         }

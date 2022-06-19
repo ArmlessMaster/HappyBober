@@ -26,6 +26,7 @@ router.get('/getmyads', auth, async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
+
         const ads = await Ad.findById(req.params.id);
         res.json(ads);
     } catch (e) {

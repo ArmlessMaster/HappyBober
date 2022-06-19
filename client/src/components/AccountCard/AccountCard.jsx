@@ -1,9 +1,16 @@
-import React from "react";
+import React, {useState, useContext} from "react";
+import { Modal } from "../modal/Modal";
+import { Report } from "../report/Report";
+import { AuthContext } from "../../context/AuthContext";
 
 
 
-export const AccountCard = (account) => {
-    account = account.account;
+export const AccountCard = ({account}) => {
+    const [modalActive, setModalActive] = useState(false);
+
+    const { accountId } = useContext(AuthContext);
+
+
     return (
         <div style={{marginTop: '100px'}}>
             <div>{account.firstName}</div>
@@ -22,6 +29,8 @@ export const AccountCard = (account) => {
             <p>{account.description}</p>
             <p>{account.website}</p>
             <p>{account.favourites}</p>
+            {!(accountId ===  account._id) && <button onClick={() => setModalActive(true)}>Report</button>}
+            <Modal active={ modalActive} setActive={setModalActive} children={<Report reportType={'user'} account={account}></Report>}></Modal>
         </div>
     )
 }

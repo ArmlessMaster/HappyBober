@@ -5,10 +5,20 @@ const auth = require('../middleware/auth.middleware');
 
 
 
-router.get('/getmyaccount', auth, async (req, res) => {
+router.get('/getaccount', auth, async (req, res) => {
     try {
 
         const account = await Account.findById(req.account.accountId);
+        res.json(account);
+    } catch (e) {
+
+        res.status(500).json({ message: 'Something went wrong, please try again' });
+    }
+});
+
+router.get('/:id', async (req, res) => {
+    try {
+        const account = await Account.findById(req.params.id);
         res.json(account);
     } catch (e) {
 

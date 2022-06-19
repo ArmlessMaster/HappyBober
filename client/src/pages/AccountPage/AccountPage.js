@@ -1,33 +1,37 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { AccountCard } from "../../components/AccountCard/AccountCard";
+import { useParams } from 'react-router-dom';
+import { AccountCard } from "../../components/AccountCard/AccountCard"
 import { Loader } from "../../components/Loader/Loader";
 import { AuthContext } from "../../context/AuthContext";
 import { useHttp } from "../../hooks/http.hook";
 
 
-export const MyAccountPage = () => {
+export const AccountPage = () => {
 
     const [account, setAccount] = useState(null);
 
+    const userId = useParams().id;
+
     const { request, loading } = useHttp();
 
-    const { token } = useContext(AuthContext);
+    const { token, accountId } = useContext(AuthContext);
 
     const getAccount = useCallback(async () => {
         try {
-
-            const fetched = await request(`/api/account/getaccount`, 'GET', null, {
+            const fetched = await request(`/api/account/${userId}`, 'GET', null, {
                 Authorization: `Bearer ${token}`
             });
             setAccount(fetched);
         } catch (e) {
 
         }
-    }, [token, request]);
+    }, [token, userId, request]);
 
     useEffect(() => {
         getAccount()
     }, [getAccount]);
+
+
 
 
     if (loading) {
