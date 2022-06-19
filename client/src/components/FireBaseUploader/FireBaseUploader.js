@@ -1,11 +1,14 @@
 import React from "react";
-import './FireBaseUploader.css';
+import './FireBaseUploader.scss';
 
 export const FireBaseUploader = ({ handleChange }) => {
     return (
-        <div>
+        <form className="form-fireBaseUploader" method="POST">
+            <p>Drag your files here or click in this area.</p>
             <input type="file" multiple onChange={handleChange} />
-        </div>
+        </form>
     )
+
+    
 
 }

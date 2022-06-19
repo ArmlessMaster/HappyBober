@@ -4,7 +4,8 @@ import { useHttp } from "../../hooks/http.hook";
 import { RadioButton } from '../../components/RadioButton/RadioButton';
 import { FireBaseUploader } from '../../components/FireBaseUploader/FireBaseUploader';
 import { storage } from '../../firebase/firebase';
-import './CreateAdPage.css';
+import './CreateAdPage.scss';
+import YellowBtn from '../../components/elements/YellowBtn/Yellowbtn';
 
 export const CreateAdPage = () => {
 
@@ -83,102 +84,70 @@ export const CreateAdPage = () => {
 
 
     return (
-        <div style={{ marginTop: '100px' }}>
-            <div>
-                <FireBaseUploader handleChange={handleChange} />
+        <div style={{ marginTop: '4vw' }}>
+            <p className='ManeLabel-CreateAd'>CREATE AD</p>
+            <div className="create-flex">
+                <div className="left">
+                    <FireBaseUploader handleChange={handleChange}>
+                    </FireBaseUploader>
+                </div>
+                <div className="right">
+                    <div >
+                        <input className='create-input' placeholder='Name'  type="text" name="animalName" autoComplete="off" required
+                            value={form.animalName}
+                            onChange={changeHandler} />
+
+                    </div>
+                    <div >
+                        <input type="text" name="type" placeholder='Type'  autoComplete="off" required
+                            value={form.type}
+                            onChange={changeHandler} />
+                    </div>
+                    <div >
+                        <input type="text" name="breed" placeholder='Breed'  autoComplete="off" required
+                            value={form.breed}
+                            onChange={changeHandler} />
+                    </div>
+                    <div >
+                        <input type="number" min={0} name="age" placeholder='Age'  autoComplete="off" required
+                            value={form.number}
+                            onChange={changeHandler} />
+                    </div>
+                    <div >
+                        <input type="number" min={0} name="price" placeholder='Price' autoComplete="off" required
+                            value={form.price}
+                            onChange={changeHandler} />
+                    </div>
+                    <div >
+                        <input type="text" name="color" placeholder='Color' autoComplete="off" required
+                            value={form.color}
+                            onChange={changeHandler} />
+                    </div>
+                    <div >
+                        <input type="text" placeholder='Location' name="location" autoComplete="off" required
+                            value={form.location}
+                            onChange={changeHandler} />
+                    </div>
+                    <div className='Radio'>
+                        <RadioButton
+                            label="Male"
+                            value={gender === 'male'}
+                            onChange={handleMaleChange}
+                        ></RadioButton>
+                        <RadioButton
+                            label="Female"
+                            value={gender === 'female'}
+                            onChange={handleFemaleChange}
+                        ></RadioButton>
+                    </div>
+                </div>
+                
             </div>
             <div >
-                <input type="text" name="animalName" autoComplete="off" required
-                    value={form.animalName}
-                    onChange={changeHandler} />
-                <label forhtml="animalName" >
-                    <span >
-                        NAME
-                    </span>
-                </label>
+                <textarea className='createAdPage-textarea' type="text" placeholder='Information' name="information" autoComplete="off" required value={form.information} onChange={changeHandler} />
+                <button className='createAdPage-button' disabled={loading} onClick={createAdHandler}>Create</button>
             </div>
-            <div >
-                <input type="text" name="type" autoComplete="off" required
-                    value={form.type}
-                    onChange={changeHandler} />
-                <label forhtml="type" >
-                    <span >
-                        TYPE OF ANIMAL
-                    </span>
-                </label>
-            </div>
-            <div >
-                <input type="text" name="breed" autoComplete="off" required
-                    value={form.breed}
-                    onChange={changeHandler} />
-                <label forhtml="breed" >
-                    <span >
-                        BREED
-                    </span>
-                </label>
-            </div>
-            <div >
-                <input type="number" min={0} name="age" autoComplete="off" required
-                    value={form.number}
-                    onChange={changeHandler} />
-                <label forhtml="age" >
-                    <span >
-                        AGE
-                    </span>
-                </label>
-            </div>
-            <div >
-                <input type="number" min={0} name="price" autoComplete="off" required
-                    value={form.price}
-                    onChange={changeHandler} />
-                <label forhtml="price" >
-                    <span >
-                        PRICE
-                    </span>
-                </label>
-            </div>
-            <div >
-                <input type="text" name="color" autoComplete="off" required
-                    value={form.color}
-                    onChange={changeHandler} />
-                <label forhtml="color">
-                    <span >
-                        COLOR
-                    </span>
-                </label>
-            </div>
-            <div >
-                <input type="text" name="location" autoComplete="off" required
-                    value={form.location}
-                    onChange={changeHandler} />
-                <label forhtml="location">
-                    <span >
-                        LOCATION
-                    </span>
-                </label>
-            </div>
-            <div >
-                <RadioButton
-                    label="Male"
-                    value={gender === 'male'}
-                    onChange={handleMaleChange}
-                ></RadioButton>
-                <RadioButton
-                    label="Female"
-                    value={gender === 'female'}
-                    onChange={handleFemaleChange}
-                ></RadioButton>
-            </div>
-            <div >
-                <textarea type="text" name="information" autoComplete="off" required value={form.information}
-                    onChange={changeHandler} />
-                <label forhtml="color">
-                    <span >
-                        INFORMATION
-                    </span>
-                </label>
-            </div>
-            <button disabled={loading} onClick={createAdHandler}>Create</button>
+
         </div >
     );
 };
