@@ -33,7 +33,7 @@ export const Topbar = () => {
         </div>
         <ul className="menu-list">
           <li className="menu-list__item"><div className="menu-list__item-text">Contact</div></li>
-          <li className="menu-list__item"><div className="menu-list__item-text"><NavLink to="/myfavourites">My Favourites</NavLink></div></li>
+          <li className="menu-list__item"><div className="menu-list__item-text"><NavLink to="/myaccount">My Account</NavLink></div></li>
           <li className="menu-list__item"><div className="menu-list__item-text"><NavLink to="/myads">My Ads</NavLink></div></li>
           <li className="menu-list__item"><div className="menu-list__item-text"><NavLink to="/ads">Shop</NavLink></div></li>
           <li className="menu-list__item"><div className="menu-list__item-text"><NavLink to="/createad">Create Ad</NavLink></div></li>
