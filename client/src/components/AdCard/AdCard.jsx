@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 
 
-export const AdCard = ({ ad, handleFavourite  }) => {
+export const AdCard = ({ ad, handleFavourite, creator  }) => {
 
   const [modalActive, setModalActive] = useState(false);
 
@@ -63,16 +63,17 @@ export const AdCard = ({ ad, handleFavourite  }) => {
                   <div className="user-card">
                     <div className="user-label">User:</div>
                     <div className="user-info">
-                    <Link to={`/account/${ad.account}`}>123<img className="user-photo" src=""/>
+                    <Link to={`/account/${ad.account}`}>{creator.photo[0]}ПЕРЕЙТИ ПО ФОТО<img className="user-photo" src=""/>
                     </Link>
                       
                       <div className="user-info-labels">
-                        <div className="user-name">Vitalii Lob</div>
-                        <div className="user-time">online on 16:31</div>
-                        <div className="user-since">on happy beaver since 2022</div>
+                        <div className="user-name">{creator.firstName}</div>
+                        <div className="user-time">{creator.lastLogin}</div>
+                        <div className="user-since">on happy beaver since {creator.registeredAt}</div>
                       </div>
                     </div>
-                    <div className="allAds">All autor ads</div>
+                    <Link to={`/ads/${creator.firstName}/${ad.account}`}><div className="allAds">All autor ads</div></Link>
+
                     <div className="bottons">
                       <div className="botton-buy"></div>
                       <div className="Show-phone-buy"></div>

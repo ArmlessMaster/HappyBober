@@ -17,12 +17,18 @@ export const AdPage = () => {
 
     const { token, accountId } = useContext(AuthContext);
 
+    const [creator, setCreator] = useState(null);
+
     const getAd = useCallback(async () => {
         try {
-            const fetched = await request(`/api/ads/${adId}`, 'GET', null, {
+            const fetchedAd = await request(`/api/ads/${adId}`, 'GET', null, {
                 Authorization: `Bearer ${token}`
             });
-            setAd(fetched);
+            const fetchedCreator = await request(`/api/account/${fetchedAd.account}`, 'GET', null, {
+                Authorization: `Bearer ${token}`
+            });
+            setAd(fetchedAd);
+            setCreator(fetchedCreator);
         } catch (e) {
 
         }
@@ -52,7 +58,7 @@ export const AdPage = () => {
 
     return (
         <>
-            {!loading && ad && <AdCard ad={ad} handleFavourite={handleFavourite} />}
+            {!loading && ad && <AdCard ad={ad} creator={creator} handleFavourite={handleFavourite} />}
         </>
     );
 };

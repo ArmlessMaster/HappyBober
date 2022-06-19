@@ -26,7 +26,6 @@ router.get('/getmyads', auth, async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-
         const ads = await Ad.findById(req.params.id);
         res.json(ads);
     } catch (e) {
@@ -59,6 +58,15 @@ router.post('/createad', auth, async (req, res) => {
     }
 });
 
+router.get('/getads/:id', auth, async (req, res) => {
+    try {
+        const ads = await Ad.find({ account: req.params.id });
 
+        res.json(ads);
+    } catch (e) {
+
+        res.status(500).json({ message: 'Something went wrong, please try again' });
+    }
+});
 
 module.exports = router;
