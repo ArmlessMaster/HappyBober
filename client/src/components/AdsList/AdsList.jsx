@@ -4,12 +4,13 @@ import './AdsList.scss';
 import { AuthContext } from "../../context/AuthContext";
 import { useHttp } from "../../hooks/http.hook";
 
-export const AdsList = ({ ads }) => {
+export const AdsList = ({ ads, setAds, location }) => {
 
 
     const { request, loading } = useHttp();
 
     const { token } = useContext(AuthContext);
+
 
     if (!ads.length) {
         return <p className="center">Ads = 0</p>
@@ -51,8 +52,28 @@ export const AdsList = ({ ads }) => {
                                                 } catch (e) {
 
                                                 }
-                                            }}>❤</button>
+                                            }}>❤</button>                                         
                                         </div>
+                                        {(location === 'myadspage') && <button disabled={loading} onClick={async () => {
+                                                try {
+                                                    await request(`/api/ads/adremove/${ad._id}`, 'DELETE', null, {
+                                                        Authorization: `Bearer ${token}`
+                                                    });
+                                                    setAds(ads.filter(item => item._id !== ad._id))
+                                                } catch (e) {
+
+                                                }
+                                            }}>remove</button>}
+                                            {(location === 'myfavouritespage') && <button disabled={loading} onClick={async () => {
+                                                try {
+                                                    await request(`/api/favourites/favouritesremove/${ad._id}`, 'POST', null, {
+                                                        Authorization: `Bearer ${token}`
+                                                    });
+                                                    setAds(ads.filter(item => item._id !== ad._id))
+                                                } catch (e) {
+
+                                                }
+                                            }}>remove</button>}
                                     </div>
                                 </div>
                             )

@@ -48,5 +48,17 @@ router.post('/addfavourite', auth, async (req, res) => {
     }
 });
 
+router.post('/favouritesremove/:id', auth, async (req, res) => {
+    try {
+        const id = req.params.id;
+        const account = await Account.findById(req.account.accountId);
+        account.favourites.pull({ _id: req.params.id });
+        await account.save();
+        res.json({ message: 'Ad removed' });
+    } catch (e) {
+        res.status(500).json({ message: 'Something went wrong, please try again' });
+    }
+});
+
 
 module.exports = router;

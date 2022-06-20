@@ -69,4 +69,17 @@ router.get('/getads/:id', async (req, res) => {
     }
 });
 
+
+router.delete('/adremove/:id', auth, async (req, res) => {
+    try {
+        const id = req.params.id;
+
+        await Ad.deleteOne({ _id: id });
+        res.json({ message: 'Favourites removed' });
+    } catch (e) {
+        res.status(500).json({ message: 'Something went wrong, please try again' });
+    }
+});
+
+
 module.exports = router;

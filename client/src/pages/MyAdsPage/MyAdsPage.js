@@ -29,7 +29,7 @@ export const MyAdsPage = () => {
     }
     return (
         <div>
-            {!loading && <AdsList ads={ads} />}
+            {!loading && <AdsList ads={ads} setAds={setAds} location={'myadspage'} />}
         </div>
     );
 };
