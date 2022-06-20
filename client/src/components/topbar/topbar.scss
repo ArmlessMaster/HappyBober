@@ -2,13 +2,17 @@
 
 .topbar{
   width: 100%;
-  height: 4vw;
-  background-color: white;
   color: black;
   position: fixed;  
   top: 0;
   z-index: 2;
-
+  .background{
+    position: absolute;
+    width: 100%;
+    height: 4vw;
+    background-color: white;
+    z-index: -3;
+  }
   .wrapper{
     padding: 0.521vw 1.563vw;
     display: flex;
@@ -36,7 +40,7 @@
       height: 0.1vw;
       width: 0;
       left: 0;
-      bottom: 0vw;
+      bottom: 10.3vw;
       transition: 0.5s;
     }
   
@@ -78,5 +82,88 @@
   }
   .account-img{
     width: 2.2vw;
+  }
+
+ .DropDownContainer{
+  width: 10.5vw;
+  margin: 0 auto;
+ }
+
+.DropDownHeader{
+  //margin-top: 0.5vw;
+  padding: 0.4vw 2vw 0.4vw 1vw;
+  font-weight: 700;
+  font-size: 1vw;
+  color: rgb(26, 26, 26);
+  //background: #ffda8f;
+  //box-shadow: 0px 0.2vw 0.2vw rgba(0, 0, 0, 0.15);
+  border-radius: 1vw;
+  margin-bottom: 0.3vw;
+  margin-left: 1vw;
+}
+
+.DropDownHeader-Enter{
+  margin-top: 0.5vw;
+  padding: 0.4vw 2vw 0.4vw 1vw;
+  font-weight: 700;
+  font-size: 1vw;
+  color: rgb(26, 26, 26);
+  background: #ffda8f;
+  box-shadow: 0px 0.2vw 0.2vw rgba(0, 0, 0, 0.15);
+  border-radius: 1vw;
+  margin-bottom: 0.3vw;
+  margin-left: 1vw;
+  border: none;
+}
+  .DropDownList {
+    margin-left: 1vw;
+    padding: 0;
+    margin-bottom: 0.3vw;
+    padding-left: 1vw;
+    background: #ffffff;
+
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 1vw;
+    border: 0.2vw solid #ffda8f;
+    box-sizing: border-box;
+    color: rgb(26, 26, 26);
+    font-size: 1vw;
+    font-weight: 500;
+    &:first-child {
+      padding-top: 0.8vw;
+    }
+    animation: fadeInFromNone 0.2s ease-out;
+    li{
+      position: relative;
+    }
+    li::after{
+      content: "";
+      position: absolute;
+      background-color: #ff3c78;
+      height: 0.1vw;
+      width: 0;
+      left: 0;
+      bottom: 10.3vw;
+      transition: 0.5s;
+      z-index: 5;
+    }
+  }
+
+  .ListItem{
+
+    margin-bottom: 0.8vw;
+  }
+}
+
+
+@keyframes fadeInFromNone {
+  0% {
+      display: none;
+      opacity: 0;
+  }
+
+  100% {
+      display: block;
+      opacity: 1;
   }
 }
