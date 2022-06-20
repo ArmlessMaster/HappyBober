@@ -43,7 +43,7 @@ export const AdsList = ({ ads, setAds, location }) => {
                                     <div className="adsList-element__flex-bottom">
                                         <div>{ad.location}</div>
                                         <div>
-                                            <button disabled={loading} onClick={async () => {
+                                            {token && <button disabled={loading} onClick={async () => {
                                                 const adId = ad._id;
                                                 try {
                                                     await request('/api/favourites/addfavourite', 'POST', { adId }, {
@@ -52,7 +52,7 @@ export const AdsList = ({ ads, setAds, location }) => {
                                                 } catch (e) {
 
                                                 }
-                                            }}>❤</button>                                         
+                                            }}>❤</button>  }                                        
                                         </div>
                                         {(location === 'myadspage') && <button disabled={loading} onClick={async () => {
                                                 try {

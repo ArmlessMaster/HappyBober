@@ -44,9 +44,9 @@ export const Topbar = () => {
             <img className="language-img" src={OpenLanguage} alt="" />
           </div>
           <div className="favorite-button right-elem">
-          <NavLink to="/myfavourites">
+          {!auth && <NavLink to="/myfavourites">
             <img className="favorite-img" src={Favorite} alt="" />
-            </NavLink>
+            </NavLink>}
           </div>
           <div className="account-button right-elem">
             {/* <NavLink to="/" onClick={logoutHandler}>            
