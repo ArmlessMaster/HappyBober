@@ -58,7 +58,7 @@ router.post('/createad', auth, async (req, res) => {
     }
 });
 
-router.get('/getads/:id', auth, async (req, res) => {
+router.get('/getads/:id', async (req, res) => {
     try {
         const ads = await Ad.find({ account: req.params.id });
 

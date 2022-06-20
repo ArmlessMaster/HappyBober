@@ -10,7 +10,6 @@ export const AccountCard = ({account}) => {
 
     const { accountId } = useContext(AuthContext);
 
-
     return (
         <div style={{marginTop: '100px'}}>
             <div>{account.firstName}</div>
@@ -29,7 +28,7 @@ export const AccountCard = ({account}) => {
             <p>{account.description}</p>
             <p>{account.website}</p>
             <p>{account.favourites}</p>
-            {!(accountId ===  account._id) && <button onClick={() => setModalActive(true)}>Report</button>}
+            {!(accountId === null || accountId ===  account._id) && <button onClick={() => setModalActive(true)}>Report</button>}
             <Modal active={ modalActive} setActive={setModalActive} children={<Report reportType={'user'} account={account}></Report>}></Modal>
         </div>
     )

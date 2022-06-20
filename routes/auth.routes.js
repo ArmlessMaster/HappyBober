@@ -86,6 +86,7 @@ router.post(
                 //{ expiresIn: '10s' }
             );
 
+
             res.json({ token, accountId: account.id });
 
         } catch (e) {
