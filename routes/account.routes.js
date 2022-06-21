@@ -38,7 +38,7 @@ router.post('/updatemyacc',
 
             const candidate = await Account.findOne({ email });
 
-            if (candidate) {
+            if (candidate && candidate.email !== email) {
                 return res.status(400).json({ message: "This user already exists" });
             }
 
