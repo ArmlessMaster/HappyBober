@@ -40,6 +40,7 @@ export const CreateAdPage = () => {
             const newImage = e.target.files[i];
             newImage["id"] = Math.random();
             setImages((prevState) => [...prevState, newImage]);
+
         }
     };
 
@@ -91,7 +92,7 @@ export const CreateAdPage = () => {
             <p className='ManeLabel-CreateAd'>CREATE AD</p>
             <div className="create-flex">
                 <div className="left">
-                    <FireBaseUploader handleChange={handleChange}>
+                    <FireBaseUploader handleChange={handleChange} isMultiple={true}>
                     </FireBaseUploader>
                 </div>
                 <div className="right">

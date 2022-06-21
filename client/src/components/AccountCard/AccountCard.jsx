@@ -27,7 +27,7 @@ export const AccountCard = ({account}) => {
             <p>{account.region}</p>
             <p>{account.description}</p>
             <p>{account.website}</p>
-            <p>{account.favourites}</p>
+            {/*<p>{account.favourites}</p>*/}
             {!(accountId === null || accountId ===  account._id) && <button onClick={() => setModalActive(true)}>Report</button>}
             <Modal active={ modalActive} setActive={setModalActive} children={<Report reportType={'user'} account={account}></Report>}></Modal>
         </div>

@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { AccountCard } from "../../components/AccountCard/AccountCard";
+import { MyAccountCard } from "../../components/MyAccountCard/MyAccountCard";
 import { Loader } from "../../components/Loader/Loader";
 import { AuthContext } from "../../context/AuthContext";
 import { useHttp } from "../../hooks/http.hook";
@@ -38,7 +38,7 @@ export const MyAccountPage = () => {
 
     return (
         <>
-            {!loading && account && <AccountCard account={account} />}
+            {!loading && account && <MyAccountCard account={account} />}
         </>
     );
 };
