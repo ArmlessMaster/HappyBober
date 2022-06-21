@@ -88,6 +88,7 @@ export const AdCard = ({ ad, handleFavourite, creator  }) => {
                 </div>
             </div>
             <Modal active={ modalActive} setActive={setModalActive} children={<Report reportType={'ad'} ad={ad}></Report>}></Modal>
+            {accountId ===  creator._id && <Link to={`/editad/${ad._id}`}><button>Edit</button></Link>}
         </div>
     )
 }

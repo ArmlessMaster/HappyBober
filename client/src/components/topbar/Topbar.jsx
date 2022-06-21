@@ -64,6 +64,7 @@ export const Topbar = () => {
               {isOpen && (
                 <div className ="DropDownListContainer">
                   <ul className = "DropDownList">
+                  <li className = "ListItem"><NavLink to={`/account/${auth.accountId}`}>My account</NavLink></li>
                     <li className = "ListItem"><NavLink to="/myaccount">Options</NavLink></li>
                     <li className = "ListItem"><NavLink to="/myads">My Ads</NavLink></li>
                     <li className = "ListItem"><NavLink to="/createad">Create Ad</NavLink></li>

@@ -137,7 +137,9 @@ export const MyAccountCard = ({ account }) => {
                 type="text"
                 name="website"
                 onChange={changeHandler} />
-            <div><img src={accountData.photo}></img></div>
+            <div><img src={accountData.photo}></img><button style={accountData.photo === '' ? { display: 'none' } : { display: 'all' }} onClick={() => {
+                setAccountData({ ...accountData, photo: '' })
+            }}>Delete</button></div>
             <FireBaseUploader handleChange={handleChangePhoto} isMultiple={false}>
             </FireBaseUploader>
             <button disabled={loading} onClick={createAdHandler}>Save</button>

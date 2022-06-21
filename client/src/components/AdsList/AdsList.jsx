@@ -74,6 +74,7 @@ export const AdsList = ({ ads, setAds, location }) => {
 
                                                 }
                                             }}>remove</button>}
+                                            {(location === 'myadspage') && <Link to={`/editad/${ad._id}`}><button>edit</button></Link>}
                                     </div>
                                 </div>
                             )

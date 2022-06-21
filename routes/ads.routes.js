@@ -81,5 +81,28 @@ router.delete('/adremove/:id', auth, async (req, res) => {
     }
 });
 
+router.post('/updatemyad',
+    auth, async (req, res) => {
+        try {
+
+
+            const { id, type, gender, color, information, age, breed, price, animalName, picture, location } = req.body;
+
+            /*console.log(`id: ${id}\ntype: ${type}\ngender: ${gender}\ncolor: ${color}\ninformation: ${information}\nage: ${age}\nbreed: ${breed}\nprice: ${price}\nanimalName: ${animalName}\npicture: ${picture}\nlocation: ${location}`);
+*/
+            await Ad.findByIdAndUpdate(id, {
+                $set: {
+                    type: type, gender: gender, color: color, information: information,
+                    age: age, breed: breed, price: price, animalName: animalName, picture: picture, location: location
+                }
+            })
+            res.status(201).json({ message: 'Ad updated' });
+
+        } catch (e) {
+
+            res.status(500).json({ message: 'Something went wrong, please try again' });
+        }
+    });
+
 
 module.exports = router;

@@ -9,6 +9,7 @@ import { MyFavouritesPage } from './pages/MyFavouritesPage/MyFavouritesPage';
 import { MyAccountPage } from './pages/MyAccountPage/MyAccountPage';
 import { AccountPage } from './pages/AccountPage/AccountPage';
 import { OtherUserAdsPage } from './pages/OtherUserAdsPage/OtherUserAdsPage';
+import { MyAdPage } from './pages/MyAdPage/MyAdPage';
 
 export const useRoutes = isAuthenticated => {
     return (
@@ -22,6 +23,7 @@ export const useRoutes = isAuthenticated => {
             <Route path='/ad/:id' exact element={<AdPage />} />
             <Route path='/ads/:accountname/:id' exact element={<OtherUserAdsPage />} />
             <Route path='/account/:id' exact element={<AccountPage />} />
+            {isAuthenticated && <Route path='/editad/:id' exact element={<MyAdPage />} />}
             <Route path="/*" element={<Navigate replace to="/mainpage" />} />
         </Routes>
     )
