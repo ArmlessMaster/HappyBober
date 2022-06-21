@@ -2,7 +2,7 @@ import React, {useState, useContext} from "react";
 import { Modal } from "../modal/Modal";
 import { Report } from "../report/Report";
 import { AuthContext } from "../../context/AuthContext";
-
+import { Link } from "react-router-dom";
 
 
 export const AccountCard = ({account}) => {
@@ -30,6 +30,7 @@ export const AccountCard = ({account}) => {
             {/*<p>{account.favourites}</p>*/}
             {!(accountId === null || accountId ===  account._id) && <button onClick={() => setModalActive(true)}>Report</button>}
             <Modal active={ modalActive} setActive={setModalActive} children={<Report reportType={'user'} account={account}></Report>}></Modal>
+            {accountId ===  account._id && <Link to='/myaccount'><button>Edit my profile</button></Link>}
         </div>
     )
 }

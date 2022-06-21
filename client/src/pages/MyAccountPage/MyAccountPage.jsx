@@ -4,7 +4,6 @@ import { Loader } from "../../components/Loader/Loader";
 import { AuthContext } from "../../context/AuthContext";
 import { useHttp } from "../../hooks/http.hook";
 
-
 export const MyAccountPage = () => {
 
     const [account, setAccount] = useState(null);
