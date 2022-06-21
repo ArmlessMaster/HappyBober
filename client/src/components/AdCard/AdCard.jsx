@@ -12,7 +12,7 @@ import { AuthContext } from "../../context/AuthContext";
 export const AdCard = ({ ad, handleFavourite, creator  }) => {
 
   const [modalActive, setModalActive] = useState(false);
-  const { accountId } = useContext(AuthContext);
+  const { accountId, token } = useContext(AuthContext);
 
   const images = [];
 
@@ -66,7 +66,7 @@ export const AdCard = ({ ad, handleFavourite, creator  }) => {
                   <div className="user-card">
                     <div className="user-label">User:</div>
                     <div className="user-info">
-                    <Link to={`/account/${ad.account}`}>{creator.photo[0]}ПЕРЕЙТИ ПО ФОТО<img className="user-photo" src=""/>
+                    <Link to={`/account/${ad.account}`}><img className="user-photo" width={'25px'} height={'25px'} src={creator.photo}/>
                     </Link>
                       
                       <div className="user-info-labels">

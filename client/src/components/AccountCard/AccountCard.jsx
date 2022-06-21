@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useState, useContext, useEffect, useCallback} from "react";
 import { Modal } from "../modal/Modal";
 import { Report } from "../report/Report";
 import { AuthContext } from "../../context/AuthContext";
@@ -6,11 +6,33 @@ import "./AccountCard.scss";
 import RegionSvg from "../../img/RegionSvg.svg";
 import YellowBtn from '../elements/YellowBtn/Yellowbtn';
 import { Link } from "react-router-dom";
+import { AdsList } from "../AdsList/AdsList";
+import { useHttp } from "../../hooks/http.hook";
+import { Loader } from "../Loader/Loader";
 
 export const AccountCard = ({account}) => {
     const [modalActive, setModalActive] = useState(false);
 
-    const { accountId } = useContext(AuthContext);
+    const { accountId , token} = useContext(AuthContext);
+    
+    const [ads, setAds] = useState([]);
+
+    const { loading, request } = useHttp();
+
+    const fetchAds = useCallback(async () => {
+        try {
+            const fetched = await request(`/api/ads/getads/${account._id}`, 'GET', null, {
+                Authorization: `Bearer ${token}`
+            });
+            setAds(fetched);
+        } catch (e) {
+
+        }
+    }, [token, request]);
+
+    useEffect(() => {
+        fetchAds();
+    }, [fetchAds]);
 
     return (
         <div className = "AccountCard" style={{marginTop: '4vw'}}>
@@ -41,7 +63,10 @@ export const AccountCard = ({account}) => {
                 <p  className="AccountCard-Info-Elem"><span className="AccountCard-Info-high">{account.description}</span></p>
             </div>
             <div className="AccountCard-Info">
-                <div className="AccountCard-Ads"><p className="AccountCard-Info-Elem__Main">Ads:</p></div>
+                <div className="AccountCard-Ads"><p className="AccountCard-Info-Elem__Main">Ads:</p>
+                {loading && <Loader></Loader>}
+                {!loading && <AdsList ads={ads} setAds={setAds}  />}
+                </div>
             </div>
            
 
