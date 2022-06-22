@@ -25,59 +25,59 @@ export const Topbar = () => {
   
   return (
     <div className='topbar'>
-      <div className="background"></div>
-      <div className="wrapper">
-        <div className="logo">
-          <NavLink to="/mainpage">
-            <img className="logo__img" src={Logo} alt="" />
-          </NavLink>
-        </div>
-        <ul className="menu-list">
-          <li className="menu-list__item"><div className="menu-list__item-text">Contact</div></li>
-          <li className="menu-list__item"><div className="menu-list__item-text">Support</div></li>
-          <li className="menu-list__item"><div className="menu-list__item-text">About</div></li>
-          <li className="menu-list__item"><div className="menu-list__item-text"><NavLink to="/ads">Shop</NavLink></div></li>
-          <li className="menu-list__item"><div className="menu-list__item-text">Bilibober+</div></li>
-        </ul>
-        <div className="right">
-                   <div className="favorite-button right-elem">
-           {auth.accountId && <NavLink to="/myfavourites">
-             <img className="favorite-img" src={Favorite} alt="" />
-             </NavLink>}
-           </div>
-          
-          <div className="account-button right-elem">
-            {/* <NavLink to="/" onClick={logoutHandler}>            
-             
-            </NavLink> */}         
-
-
-
-          </div>
-          
-            {!auth.isAuthenticated && <div>          
-              <button style={{cursor: 'pointer'}} onClick={() => setModalActive(true)} className="DropDownHeader-Enter">Sign In</button>
-            </div>}
-            {auth.isAuthenticated && <div className ="DropDownContainer">
-              
-              <div className ="DropDownHeader" onClick={toggling}> <img className="account-img" src={Account} alt="" /></div>
-              {isOpen && (
-                <div className ="DropDownListContainer">
-                  <ul className = "DropDownList">
-                  <li className = "ListItem"><NavLink to={`/account/${auth.accountId}`}>My account</NavLink></li>
-                    <li className = "ListItem"><NavLink to="/myaccount">Options</NavLink></li>
-                    <li className = "ListItem"><NavLink to="/myads">My Ads</NavLink></li>
-                    <li className = "ListItem"><NavLink to="/createad">Create Ad</NavLink></li>
-                    <li className = "ListItem" style={{cursor: 'pointer'}} onClick={logoutHandler}>Exit</li>
-                  </ul>
-                </div>
-              )}
-            </div>}
-        </div>
+    <div className="background"></div>
+    <div className="wrapper">
+      <div className="logo">
+        <NavLink to="/mainpage">
+          <img className="logo__img" src={Logo} alt="" />
+        </NavLink>
       </div>
-      
-      <Modal active={ modalActive} setActive={setModalActive} children={<Authentication></Authentication>}></Modal>
+      <ul className="menu-list">
+        <li className="menu-list__item"><div className="menu-list__item-text">Contact</div></li>
+        <li className="menu-list__item"><div className="menu-list__item-text">Support</div></li>
+        <li className="menu-list__item"><div className="menu-list__item-text">About</div></li>
+        <li className="menu-list__item"><div className="menu-list__item-text"><NavLink to="/ads">Shop</NavLink></div></li>
+        <li className="menu-list__item"><div className="menu-list__item-text">Bilibober+</div></li>
+      </ul>
+      <div className="right">
+          <div className="favorite-button right-elem">
+         {auth.accountId && <NavLink to="/myfavourites">
+            <img className="favorite-img" src={Favorite} alt="" />
+           </NavLink>}
+         </div>
+        
+        <div className="account-button right-elem">
+          {/* <NavLink to="/" onClick={logoutHandler}>            
+           
+          </NavLink> */}         
+
+
+
+        </div>
+        {auth.isAuthenticated &&<div className ="DropDownHeader" onClick={toggling}> <img className="account-img" src={Account} alt="" /></div>}
+
+          {!auth.isAuthenticated && <div>          
+            <button style={{cursor: 'pointer'}} onClick={() => setModalActive(true)} className="DropDownHeader-Enter">Sign In</button>
+          </div>}
+          {auth.isAuthenticated && <div className ="DropDownContainer">
+
+            {isOpen && (
+              <div className ="DropDownListContainer">
+                <ul className = "DropDownList">
+                <li className = "ListItem"><NavLink to={`/account/${auth.accountId}`}>My account</NavLink></li>
+                  <li className = "ListItem"><NavLink to="/myaccount">Options</NavLink></li>
+                  <li className = "ListItem"><NavLink to="/myads">My Ads</NavLink></li>
+                  <li className = "ListItem"><NavLink to="/createad">Create Ad</NavLink></li>
+                  <li className = "ListItem" style={{cursor: 'pointer'}} onClick={logoutHandler}>Exit</li>
+                </ul>
+              </div>
+            )}
+          </div>}
+      </div>
     </div>
+    
+    <Modal active={ modalActive} setActive={setModalActive} children={<Authentication></Authentication>}></Modal>
+  </div>
   )
 }
 
