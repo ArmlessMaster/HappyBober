@@ -2,6 +2,9 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from '../../context/AuthContext';
 import { useHttp } from "../../hooks/http.hook";
 import { RadioButton } from '../../components/RadioButton/RadioButton';
+import './report.scss';
+import ReportIcon from '../../img/ReportIcon.svg'
+import Logo from '../../img/logo1.svg'
 
 export const Report = ({ reportType, ad, account }) => {
 
@@ -39,7 +42,8 @@ export const Report = ({ reportType, ad, account }) => {
     }
 
     return (
-        <div>
+        <div className="Report-Wrapper">
+            <p>Report <img src={ReportIcon} alt="" /></p>
             <RadioButton
                 label="Spam"
                 value={cause === 'Spam'}
@@ -83,7 +87,11 @@ export const Report = ({ reportType, ad, account }) => {
                 onChange={changeHandler}
             ></RadioButton>
             <textarea disabled={!(cause === 'Other...' || inputText !== '')} style={!(cause === 'Other...' || inputText !== '') ? { display: 'none' } : { display: 'inline' }} onChange={inputChangeHandler} value={inputText}></textarea>
-            <button onClick={createReport}>Complain</button>
+            <div className="report-flex">
+                <button onClick={createReport}>Complain</button>
+                <img className="login-logo" src={Logo} alt="1"/>
+            </div>
+            
         </div>
     );
 

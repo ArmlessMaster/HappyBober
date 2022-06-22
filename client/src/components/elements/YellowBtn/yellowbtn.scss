@@ -1,17 +1,37 @@
 .yellowbtn{
-	align-items: center;
-	margin: auto auto;
-	border: .3vw solid #D7AE5C;
-	padding: 1.2vw 1.5vw;
-	font-weight: bold;
-
-	background: linear-gradient(to right, #00000000 50%, #D7AE5C 50%) left;
-	background-size: 220%;
-	transition: .2s ease-in-out;
-	font-size: 1vw;
+	background: linear-gradient(-45deg, #ffe032, #fea569, #50cbfc, #c1ff5c);
+	background-size: 800% 400%;
+	padding: 1vw 2vw;
+	display: inline-block;
+	border: none;
+	border-radius: 0.4vw;
+	font-size: 0.9vw;
+	font-weight: 700;
+	color: white;
+	transition: all .5s ease-in-out;
+	animation: gradient 10s infinite cubic-bezier(.62, .28, .23, .99) both;
 }
 
-
-.yellowbtn:hover{
-	background-position: right;
-}
+.yellowbtn:hover {
+	animation: gradient 3s infinite;
+	transform: scale(1.05);
+ }
+ 
+ .yellowbtn:active {
+	animation: gradient 3s infinite;
+	transform: scale(0.8);
+ }
+ 
+ @keyframes gradient {
+	0% {
+	 background-position: 0% 50%;
+	}
+ 
+	50% {
+	 background-position: 100% 50%;
+	}
+ 
+	100% {
+	 background-position: 0% 50%;
+	}
+ }
