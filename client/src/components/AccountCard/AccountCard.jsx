@@ -9,9 +9,15 @@ import { Link } from "react-router-dom";
 import { AdsList } from "../AdsList/AdsList";
 import { useHttp } from "../../hooks/http.hook";
 import { Loader } from "../Loader/Loader";
+import { RewievForm } from "../RewievForm/RewievForm";
+
 
 export const AccountCard = ({account}) => {
     const [modalActive, setModalActive] = useState(false);
+
+    const [rewiewActive, setRewiewActive] = useState(false);
+
+    const [complain, setComplain] = useState(false);
 
     const { accountId , token} = useContext(AuthContext);
     
@@ -19,12 +25,26 @@ export const AccountCard = ({account}) => {
 
     const { loading, request } = useHttp();
 
+    const [rewievs, setRewievs] = useState([]);
+
+    const [rating, setRating] = useState(0);
+
     const fetchAds = useCallback(async () => {
         try {
             const fetched = await request(`/api/ads/getads/${account._id}`, 'GET', null, {
                 Authorization: `Bearer ${token}`
             });
+            const fetched1 = await request(`/api/rewiev/getrewievs/${account._id}`, 'GET', null, {
+                Authorization: `Bearer ${token}`
+            });
+
+            setRewievs(fetched1);
             setAds(fetched);
+            let rat =0;
+            for(let i = 0; i< fetched1.length; i++) {
+                rat += fetched1[i].rating;
+            }
+            setRating(rat / fetched1.length);
         } catch (e) {
 
         }
@@ -33,6 +53,13 @@ export const AccountCard = ({account}) => {
     useEffect(() => {
         fetchAds();
     }, [fetchAds]);
+
+    // async function getAccounts(sender) {
+    //     const sender1 =  await request(`/api/account/${sender}`, 'GET', null, {
+    //         Authorization: `Bearer ${token}`
+    //     });
+    //     return {sender1};
+    // }
 
     return (
         <div className = "AccountCard" style={{marginTop: '4vw'}}>
@@ -56,6 +83,7 @@ export const AccountCard = ({account}) => {
             
             <div className="AccountCard-Info">
                 <p className="AccountCard-Info-Elem__Main">Account Info</p>
+                <p className="AccountCard-Info-Elem"><span className="AccountCard-Info-low">Rating:</span> <span className="AccountCard-Info-high">{rating}</span></p>
                 <p className="AccountCard-Info-Elem"><span className="AccountCard-Info-low">Phone:</span> <span className="AccountCard-Info-high">{account.phone}</span></p>
                 <p  className="AccountCard-Info-Elem"><span className="AccountCard-Info-low">Email:</span> <span className="AccountCard-Info-high">{account.email}</span></p>
                 <p  className="AccountCard-Info-Elem"><span className="AccountCard-Info-low">Website:</span> <span className="AccountCard-Info-high">{account.website}</span></p>
@@ -73,9 +101,51 @@ export const AccountCard = ({account}) => {
             <div className="AccountCard-Info">
                 <p className="AccountCard-Info-Elem__Main">Rewiws:</p>
                 <div className="flex-accountCard-btns">                
-                    <YellowBtn info="Add Rewiew"/>
+                    {!(accountId === account._id ) && <button onClick={()=>{setComplain(false); setRewiewActive(true); }} >Add Rewiew</button>}
                 </div>
-                <div className="rewiew-list">
+                {rewievs.map((rewiev, index) => {
+               
+                    return (
+                        <div className="rewiew-list">
+                        <div className="rewiew-element">
+                            <div className="big-flex-accountCard">
+                                <div className="flex-accountCard">
+                                    <div className="left">
+                                        <div className="circle-photo">
+                                            <img src={rewiev.sender.photo}/>
+                                        </div>
+                                    </div>
+                                    <div className="right">
+                                        <p className="left-big">{rewiev.sender.firstName} {rewiev.sender.lastName}</p>
+                                        <p className="left-medium">On HappyBober since  {rewiev.sender.registeredAt.substring(0, account.registeredAt.length - 14)}</p>
+                                        <p className="left-medium">Rating  {rewiev.rating}</p>
+                                    </div>   
+                                </div>
+                            </div>
+                            <p className="Rewiws-Element-text">{rewiev.text}</p>
+                        </div>
+                    </div>
+                    )
+                })}
+                {/* <div className="rewiew-list">
+                    <div className="rewiew-element">
+                        <div className="big-flex-accountCard">
+                            <div className="flex-accountCard">
+                                <div className="left">
+                                    <div className="circle-photo">
+                                        <img src={account.photo}/>
+                                    </div>
+                                </div>
+                                <div className="right">
+                                    <p className="left-big">{account.firstName} {account.lastName}</p>
+                                    <p className="left-medium">On HappyBober since  {account.registeredAt.substring(0, account.registeredAt.length - 14)}</p>
+                                </div>   
+                            </div>
+                        </div>
+                        <p className="Rewiws-Element-text">Rewiew description. Rewiew description. Rewiew description. Rewiew description. Rewiew description. Rewiew description.</p>
+                    </div>
+                </div> */}
+                {/* <div className="rewiew-list">
                     <div className="rewiew-element">
                         <div className="big-flex-accountCard">
                             <div className="flex-accountCard">
@@ -110,25 +180,7 @@ export const AccountCard = ({account}) => {
                         </div>
                         <p className="Rewiws-Element-text">Rewiew description. Rewiew description. Rewiew description. Rewiew description. Rewiew description. Rewiew description.</p>
                     </div>
-                </div>
-                <div className="rewiew-list">
-                    <div className="rewiew-element">
-                        <div className="big-flex-accountCard">
-                            <div className="flex-accountCard">
-                                <div className="left">
-                                    <div className="circle-photo">
-                                        <img src={account.photo}/>
-                                    </div>
-                                </div>
-                                <div className="right">
-                                    <p className="left-big">{account.firstName} {account.lastName}</p>
-                                    <p className="left-medium">On HappyBober since  {account.registeredAt.substring(0, account.registeredAt.length - 14)}</p>
-                                </div>   
-                            </div>
-                        </div>
-                        <p className="Rewiws-Element-text">Rewiew description. Rewiew description. Rewiew description. Rewiew description. Rewiew description. Rewiew description.</p>
-                    </div>
-                </div>
+                </div> */}
                 <div className="flex-accountCard-btns">                
                     <YellowBtn info="More"/>
 
@@ -137,6 +189,7 @@ export const AccountCard = ({account}) => {
             {!(accountId === null || accountId ===  account._id) && <button onClick={() => setModalActive(true)}>Report</button>}
             {accountId ===  account._id && <Link to='/myaccount'><button>Edit my profile</button></Link>}
             <Modal active={ modalActive} setActive={setModalActive} children={<Report reportType={'user'} account={account}></Report>}></Modal>
+            <Modal active={rewiewActive} setActive={setRewiewActive} children={<RewievForm complain={complain} setComplain={setComplain} receiver={account._id} sender={accountId}  ></RewievForm>}></Modal>
         </div>
     )
 }
