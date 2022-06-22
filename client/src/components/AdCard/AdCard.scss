@@ -65,3 +65,14 @@
 .list-elem{
   margin-top: .5vw;
 }
+
+.modal__content{ 
+  z-index: 10; 
+} 
+.image-gallery-icon{ 
+  z-index: 0; 
+}
+
+.image-gallery-svg{ 
+  z-index: 0; 
+}
