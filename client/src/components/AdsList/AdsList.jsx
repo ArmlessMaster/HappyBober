@@ -20,8 +20,6 @@ export const AdsList = ({ ads, setAds, location }) => {
             <div className="ads-List_Wrapper">
                 <div className="ads-List">
                 <div className="header"></div>
-
-
                     <div className="adsList-flex">
                         {ads.map((ad, index) => {
                             return (
@@ -74,8 +72,7 @@ export const AdsList = ({ ads, setAds, location }) => {
 
                                                 }
                                             }}>remove</button>}
-                                            {(location === 'myadspage') && <Link to={`/editad/${ad._id}`}><button>edit</button></Link>}
-                                           
+                                            {(location === 'myadspage') && <Link to={`/editad/${ad._id}`}><button>edit</button></Link>}                                         
                                     </div>
                                 </div>
                             )

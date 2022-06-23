@@ -113,12 +113,12 @@ export const CreateAdPage = () => {
                             onChange={changeHandler} />
                     </div>
                     <div >
-                        <input type="number" min={0} name="age" placeholder='Age'  autoComplete="off" required
+                        <input type="number" min={0} max={1000000} name="age" placeholder='Age'  autoComplete="off" required
                             value={form.age}
                             onChange={changeHandler} />
                     </div>
                     <div >
-                        <input type="number" min={0} name="price" placeholder='Price' autoComplete="off" required
+                        <input type="number" min={0} max={1000000} name="price" placeholder='Price' autoComplete="off" required
                             value={form.price}
                             onChange={changeHandler} />
                     </div>
