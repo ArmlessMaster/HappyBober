@@ -85,7 +85,6 @@
   }
 
  .DropDownContainer{
-  height: 16vw;
   margin: 0 auto;
  }
 
@@ -123,7 +122,10 @@
 	transform: scale(0.7);
  }
  
-
+ .DropDownListContainer{
+  height: 16vw;
+  width: 1vw;
+ }
   .DropDownList {
     position: absolute;
     width: 12vw;
