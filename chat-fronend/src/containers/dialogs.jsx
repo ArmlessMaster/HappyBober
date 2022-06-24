@@ -1,0 +1,47 @@
+import React, { useState, useEffect  } from 'react';
+import { connect } from 'react-redux';
+
+import { Dialogs as BaseDialogs } from 'components';
+import { dialogsActions } from 'redux/actions';
+import socket from 'core/socket'
+
+const Dialogs = ({ fetchDialogs, currentDialogId, items, userId }) => {
+  const [inputValue, setValue] = useState('');
+  const [filtered, setFiltredItems] = useState(Array.from(items));
+
+  const onChangeInput = (value = "") => {
+    console.log(items);
+    setFiltredItems(items.filter(dialog => (dialog.author.firstName + " " + dialog.author.lastName).toLowerCase().indexOf(value.toLowerCase()) >= 0 || (dialog.partnet.firstName + " " + dialog.partnet.lastName).toLowerCase().indexOf(value.toLowerCase()) >= 0));
+    setValue(value);
+  };
+
+  window.fetchDialogs = fetchDialogs;
+
+  useEffect(() => {
+    if (items.length) {
+      onChangeInput();
+    }
+  }, [items]);
+
+  useEffect(() => {
+    fetchDialogs();
+    socket.on('SERVER:DIALOG_CREATED', fetchDialogs)
+    socket.on('SERVER:NEW_MESSAGE', fetchDialogs)
+    return () => {
+      socket.removeListener('SERVER:DIALOG_CREATED', fetchDialogs);
+      socket.removeListener('SERVER:NEW_MESSAGE', fetchDialogs);
+    }
+  }, []);
+
+  return (
+    <BaseDialogs
+      userId={userId}
+      items={filtered}
+      onSearch={onChangeInput}
+      inputValue={inputValue}
+      currentDialogId={currentDialogId}
+    />
+  );
+};
+
+export default connect(({ dialogs }) => dialogs, dialogsActions)(Dialogs);

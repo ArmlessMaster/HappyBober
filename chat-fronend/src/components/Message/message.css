@@ -1,0 +1,190 @@
+.message__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 440px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.message__avatar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+}
+
+.message__avatar .avatar {
+  border-radius: 50px;
+  width: 33px;
+  height: 33px;
+  margin-right: 13px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  line-height: 31px;
+}
+
+.message__bubble {
+  background: #CDCCFF;
+  -webkit-box-shadow: 0px 5px 5px rgba(251, 217, 250, 0.615);
+          box-shadow: 0px 5px 5px rgba(251, 217, 250, 0.615);
+  border-radius: 12px 12px 12px 0px;
+  padding: 15px;
+  margin-bottom: 8px;
+}
+
+.message__text {
+  color: #000;
+  line-height: 20px;
+}
+
+.message__date {
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+.message__icon-readed {
+  position: absolute;
+  bottom: 22px;
+  left: -25px;
+}
+
+.message__icon-readed--no {
+  left: -20px;
+}
+
+.message__attachments {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.message__attachments-item {
+  margin-right: 5px;
+  cursor: pointer;
+  position: relative;
+}
+
+.message__attachments-item img {
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+}
+
+.message--isme {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+}
+
+.message--isme .message__content {
+  margin-bottom: 15px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+}
+
+.message--isme .message__avatar img {
+  margin-right: 0;
+  margin-left: 13px;
+}
+
+.message--isme .message__info {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: right;
+}
+
+.message--isme .message__bubble {
+  background: #ffffff;
+  border: 1px solid #ececec;
+  -webkit-box-shadow: 0px 4px 4px rgba(251, 217, 250, 0.615);
+          box-shadow: 0px 4px 4px rgba(251, 217, 250, 0.615);
+  border-radius: 12px 12px 0px 12px;
+}
+
+.message--isme .message__bubble .message__text {
+  color: #202020;
+}
+
+.message--is-typing .message__bubble {
+  background-color: #CDCCFF;
+  -webkit-box-shadow: 0px 5px 5px rgba(54, 116, 255, 0.04);
+          box-shadow: 0px 5px 5px rgba(54, 116, 255, 0.04);
+  padding: 15px 18px;
+  margin-bottom: 0;
+}
+
+.message--image .message__attachments-item img {
+  width: 150px;
+  height: 150px;
+}
+
+.message__typing span {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background: #000;
+  display: inline-block;
+  margin-right: 6px;
+  -webkit-animation: 0.8s typingAnimation infinite ease-out 0.1s;
+          animation: 0.8s typingAnimation infinite ease-out 0.1s;
+}
+
+.message__typing span:nth-of-type(2) {
+  -webkit-animation: 0.8s typingAnimation infinite ease-out 0.2s;
+          animation: 0.8s typingAnimation infinite ease-out 0.2s;
+}
+
+.message__typing span:nth-of-type(3) {
+  -webkit-animation: 0.8s typingAnimation infinite ease-out 0.3s;
+          animation: 0.8s typingAnimation infinite ease-out 0.3s;
+  margin-right: 0;
+}
+
+@-webkit-keyframes typingAnimation {
+  from {
+    opacity: 0.2;
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  50% {
+    opacity: 0.5;
+    -webkit-transform: translateY(-1.5px);
+            transform: translateY(-1.5px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(-1px);
+            transform: translateY(-1px);
+  }
+}
+
+@keyframes typingAnimation {
+  from {
+    opacity: 0.2;
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  50% {
+    opacity: 0.5;
+    -webkit-transform: translateY(-1.5px);
+            transform: translateY(-1.5px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(-1px);
+            transform: translateY(-1px);
+  }
+}
+/*# sourceMappingURL=message.css.map */
