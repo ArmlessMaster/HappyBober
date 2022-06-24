@@ -19,7 +19,7 @@ export interface IMessage extends Document{
 const MessageSchema = new Schema({
     text: { type: String, require: Boolean },
     dialog: { type: Schema.Types.ObjectId, ref: 'Dialog', require: true },
-    user: { type: Schema.Types.ObjectId, ref: 'Account', require: true },
+    user: { type: Schema.Types.ObjectId, ref: 'User', require: true },
     readed: {
         type: Boolean,
         default: false
