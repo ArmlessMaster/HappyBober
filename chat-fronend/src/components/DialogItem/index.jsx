@@ -33,18 +33,18 @@ const DialogItem = ({ _id, userId, author, partner, isMe, currentDialogId, lastM
   <Link to={`/dialog/${_id}`}>
     <div className={classNames('dialogs__item', { 'dialogs__item--online': partner.isOnline,'dialogs__item--selected': currentDialogId === _id })} >
       <div className="dialogs__item-avatar">
-        {/* <Avatar user= { isMe ? partner : author }/> */}
+        <Avatar user= { isMe ? partner : author }/>
       </div>
       <div className="dialogs__item-info">
         <div className="dialogs__item-info-top">
-          <b>{ isMe ? partner.lastName : author.lastName }</b>
+          <b>{ isMe ? partner.fullname : author.fullname }</b>
           <span>{ getMessageTime(lastMessage.createdAt) }</span>
         </div>
         <div className="dialogs__item-info-bottom">
           <p>
-            {/* { renderLastMessage(lastMessage, userId) } */}
+            { renderLastMessage(lastMessage, userId) }
           </p>
-          {/* {isMe && <IconReaded isMe={isMe} isReaded={lastMessage.readed} />} */}
+          {isMe && <IconReaded isMe={isMe} isReaded={lastMessage.readed} />}
         </div>
       </div>
     </div>

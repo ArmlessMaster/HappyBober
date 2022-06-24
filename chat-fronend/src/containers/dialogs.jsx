@@ -9,9 +9,8 @@ const Dialogs = ({ fetchDialogs, currentDialogId, items, userId }) => {
   const [inputValue, setValue] = useState('');
   const [filtered, setFiltredItems] = useState(Array.from(items));
 
-  const onChangeInput = (value = "") => {
-    console.log(items);
-    setFiltredItems(items.filter(dialog => (dialog.author.firstName + " " + dialog.author.lastName).toLowerCase().indexOf(value.toLowerCase()) >= 0 || (dialog.partnet.firstName + " " + dialog.partnet.lastName).toLowerCase().indexOf(value.toLowerCase()) >= 0));
+  const onChangeInput = (value="") => {
+    setFiltredItems(items.filter(dialog => dialog.author.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0 || dialog.partner.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0));
     setValue(value);
   };
 
