@@ -1,3 +1,5 @@
+
+
 .yellowbtn{
 	background: linear-gradient(-45deg, #ffe032, #fea569, #50cbfc, #c1ff5c);
 	background-size: 800% 400%;
@@ -16,6 +18,7 @@
 .yellowbtn:hover {
 	animation: gradient 3s infinite;
 	transform: scale(1.0);
+	color: white;
  }
  
  .yellowbtn:active {

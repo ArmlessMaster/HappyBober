@@ -3,6 +3,8 @@
     padding: 0px 8px 20px 10px;
 
     .ant-input-group-addon{
+      border-top-left-radius: 0.5vw;
+      border-bottom-left-radius: 0.5vw ;
       background-color: #f7f8f9;
       border-top: 1px solid #b2b2b2;
       border-left: 1px solid #b2b2b2;
@@ -26,8 +28,9 @@
       $item: &;
       display: flex;
       border: 1px solid #E5CC8B;
+      border-radius: 0.5vw;
       padding: 10px;
-      margin-bottom: 3px;
+      margin-bottom: 0.5vw;
       color: #202020;
       &--selected {
         background-color: #E5CC8B;
