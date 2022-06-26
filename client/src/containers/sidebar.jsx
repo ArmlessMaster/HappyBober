@@ -1,23 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { userApi, dialogsApi } from "../utils/api";
+import {useParams} from "react-router-dom";
 
 import { Sidebar } from "../components";
 
 const SidebarContainer = ({ user }) => {
+    const fullname = useParams().fullname;
+    const userid = useParams().userid;
+    const adid = useParams().adid;
     const [visible, setVisible] = useState(false);
-    const [inputValue, setInputValue] = useState("");
+    const [inputValue, setInputValue] = useState(fullname);
     const [messageText, setMessagaText] = useState("");
     const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [selectedUserId, setSelectedUserId] = useState(false);
+    const [selectedUserId, setSelectedUserId] = useState(userid);
+    const [closeActive, setCloseActive] = useState(true);
+    
+    useEffect(() => {
+        if (closeActive) {
+            if (performance.navigation.type === 0) {
+                setVisible(true);
+              }
+        }
+    });
 
     const onClose = () => {
+        setCloseActive(false);
         setVisible(false);
     };
 
     const onShow = () => {
-        setVisible(true);
+        setVisible(false);
     };
 
     const onSearch = value => {
@@ -31,7 +45,7 @@ const SidebarContainer = ({ user }) => {
     };
 
     const onAddDialog = () => {
-        dialogsApi.create({partner: selectedUserId,text: messageText}).then(onClose).catch(() => {
+        dialogsApi.create({partner: selectedUserId,text: messageText, ad: adid}).then(onClose).catch(() => {
             setIsLoading(false);
         });
     };
@@ -64,7 +78,7 @@ const SidebarContainer = ({ user }) => {
           messageText={messageText}
           onChangeInput={handleChangeInput}
           selectedUserId={selectedUserId}
-          users={ users}
+          users={users}
         />
   );
 };

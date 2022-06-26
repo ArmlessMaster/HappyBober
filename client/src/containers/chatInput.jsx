@@ -54,7 +54,7 @@ const ChatInput = (props) => {
         setAttachments(uploaded);
     }
 
-    if (!currentDialogId) {
+    if (!currentDialogId || currentDialogId.includes('/chat')) {
         return null;
     }
 

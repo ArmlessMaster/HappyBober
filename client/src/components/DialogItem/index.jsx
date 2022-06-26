@@ -30,7 +30,7 @@ const renderLastMessage = (message, userId) => {
 };
 
 const DialogItem = ({ _id, userId, author, partner, isMe, currentDialogId, lastMessage }) => (
-
+  
   <Link to={`/dialog/${_id}`}>
     <div className={classNames('dialogs__item', { 'dialogs__item--online': partner.isOnline,'dialogs__item--selected': currentDialogId === _id })} >
       <div className="dialogs__item-avatar">

@@ -15,12 +15,17 @@ export interface IDialog extends Document{
         type: Schema.Types.ObjectId;
         ref: string;
     }];
+    ad: [{
+        type: Schema.Types.ObjectId;
+        ref: string;
+    }]
 }
 
 const DialogSchema = new Schema({
     partner: {type: Schema.Types.ObjectId, ref:'Account'},
     author: {type: Schema.Types.ObjectId, ref:'Account'},
-    lastMessage: {type: Schema.Types.ObjectId, ref:'Message'},
+    lastMessage: { type: Schema.Types.ObjectId, ref: 'Message' },
+    ad: {type: Schema.Types.ObjectId, ref:'Ad'},
 }, {
     timestamps: true
 });

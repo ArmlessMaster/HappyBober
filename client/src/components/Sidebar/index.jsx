@@ -18,12 +18,11 @@ const Sidebar = ({ user,visible, messageText, selectedUserId, inputValue, isLoad
         <TeamOutlined className="site-form-item-icon" />
         <span>Messages</span>
       </div>
-      <Button onClick={onShow} type="link" shape="circle" icon={<EllipsisOutlined />} />
     </div>
         <div className="chat__sidebar-dialogs">
         <Dialogs userId={user && user._id} />
     </div>
-        <Modal title="Create dialog" visible={visible}
+      <Modal title="Create dialog" visible={visible}
         footer={[
           <Button key="back" onClick={onClose}>
             Close

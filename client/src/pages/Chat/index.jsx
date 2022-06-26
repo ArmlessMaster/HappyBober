@@ -23,7 +23,8 @@ const Chat = props => {
      const dialogId = props.router.location.pathname.split('/dialog/').pop();
      setCurrentDialogId(dialogId);
   }, [props.router.location.pathname]);
-
+  
+  
   return (
     <section className="chat__wrapper">
       <div className="chat">
@@ -31,7 +32,7 @@ const Chat = props => {
         {user && (
         <div className="chat__dialog">
           <Status/>
-          <Ad/>
+            <Ad/>
           <Messages/>
           <div className="chat__dialog-input">
             <ChatInput/>

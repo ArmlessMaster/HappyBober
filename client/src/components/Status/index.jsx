@@ -1,8 +1,6 @@
 import React from "react";
 import classNames from "classnames";
 import PropTypes from 'prop-types';
-import { EllipsisOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
 import "./status.scss";
 
 const Status = ({ online, fullname }) => (
@@ -15,7 +13,7 @@ const Status = ({ online, fullname }) => (
         <span className={classNames("status", { "status status--online": online })}>{ online ? 'online' : 'offline'}</span>
       </div>
     </div>
-    <Button type="link" shape="circle" icon={<EllipsisOutlined />} />  
+    <div />
   </div>
 
 );

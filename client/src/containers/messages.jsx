@@ -7,7 +7,7 @@ import socket from '../core/socket'
 import { Messages as BaseMessages } from '../components';
 import { messagesActions } from '../redux/actions';
 
-const Messages = ({ currentDialogId, fetchMessages, addMessage, items, user, isLoading, removeMessageById, attachments }) => {
+const Messages = ({ currentDialogId, fetchMessages, addMessage, items, user, isLoading, attachments }) => {
     
     const [previewImage, setPreviewImage] = useState(null);
     const [blockHeight, setBlockHeight] = useState(220);
@@ -52,7 +52,7 @@ const Messages = ({ currentDialogId, fetchMessages, addMessage, items, user, isL
         if (currentDialogId) {messagesRef.current.scrollTo(0, 99999999);}    
     }, [items]);
 
-    if (!currentDialogId) {
+    if (!currentDialogId ) {
         return <Empty description="Open a dialog" />;
     }
 

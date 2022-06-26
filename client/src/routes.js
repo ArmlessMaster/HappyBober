@@ -28,6 +28,7 @@ export const useRoutes = isAuthenticated => {
             <Route path='/account/:id' exact element={<AccountPage />} />
             {isAuthenticated && <Route path='/editad/:id' exact element={<MyAdPage />} />}
             {isAuthenticated && <Route path='/chat' exact element={<Chat />} />}
+            <Route path="/chat/:userid/:fullname/:adid" element={<Chat />} />
             <Route path="/dialog/:id" element={<Chat />} />
             <Route path='/ads/:accountname/:id' exact element={<OtherUserAdsPage />} />
             {/* <Route path='/signin' exact element={<LoginForm />} />

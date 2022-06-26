@@ -40,7 +40,7 @@ const Message = ({ user, text, date, isMe, readed, attachments, isTyping, setPre
                 </span>}
             </div>
         </div>
-    </div>
+        </div>
 );
 
 Message.defaultProps = {

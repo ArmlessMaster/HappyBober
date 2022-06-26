@@ -31,7 +31,7 @@ const Dialogs = ({ fetchDialogs, currentDialogId, items, userId }) => {
       socket.removeListener('SERVER:NEW_MESSAGE', fetchDialogs);
     }
   }, []);
-
+  
   return (
     <BaseDialogs
       userId={userId}

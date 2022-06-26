@@ -13,7 +13,7 @@ class DialogController{
     index = (req: any, res: express.Response) => {
         const userId = req.user._id;
 
-        DialogModel.find().or([{ author: userId }, {partner: userId}]).populate(["author", "partner"]).populate({path: "lastMessage", populate: {path: "user"}}).exec(function (err, dialogs) {
+        DialogModel.find().or([{ author: userId }, {partner: userId}]).populate(["author", "partner", "ad"]).populate({path: "lastMessage", populate: {path: "user"}}).exec(function (err, dialogs) {
             if (err) {
                 return res.status(404).json({ message: 'Dialogs not found' });
             }
@@ -25,6 +25,7 @@ class DialogController{
         const postData = {
             author: req.user._id,
             partner: req.body.partner,
+            ad: req.body.ad
         }
         const dialog = new DialogModel(postData);
         dialog.save().then((dialogObj: any) => {
