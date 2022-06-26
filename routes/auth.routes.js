@@ -5,6 +5,8 @@ const { check, validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 const router = Router();
 const config = require('config');
+const { countDocuments } = require('../models/Account');
+const { reduce } = require("lodash");
 
 
 // /api/auth/register
@@ -36,7 +38,7 @@ router.post(
 
             const hashedPassword = await bcrypt.hash(password, 12);
 
-            const account = new Account({ firstName, lastName, email, phone, password: hashedPassword });
+            const account = new Account({ firstName, lastName, email, phone, password: hashedPassword, fullname: (lastName + " " + firstName) });
 
             await account.save();
 
@@ -80,10 +82,27 @@ router.post(
                 return res.status(400).json({ message: 'Incorrect password' });
             }
 
+            // const token = jwt.sign(
+            //     { accountId: account.id },
+            //     config.get('jwtSecret')//,
+            //     //{ expiresIn: '10s' }
+            // );
+
             const token = jwt.sign(
-                { accountId: account.id },
-                config.get('jwtSecret')//,
-                //{ expiresIn: '10s' }
+                {
+                    accountId: account.id,
+                    data: reduce(account, (result, value, key) => {
+                        if (key !== "password") {
+                            result[key] = value;
+                        }
+                        return result;
+                    }, {})
+                },
+                config.get('jwtSecret') || "",
+                {
+                    // expiresIn: config.get('jwtSecret'),
+                    algorithm: "HS256",
+                }
             );
 
 

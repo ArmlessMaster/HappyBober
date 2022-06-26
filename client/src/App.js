@@ -6,13 +6,15 @@ import { AuthContext } from "./context/AuthContext";
 import { Loader } from "./components/Loader/Loader";
 import { Topbar } from "./components/topbar/Topbar";
 import { Footer } from "./components/footer/Footer";
+import { connect } from "react-redux";
 import "./App.scss"
+import "./styles/index.scss"
 
-function App() {
+const App = props => {
   const { token, login, logout, accountId, ready } = useAuth();
   const isAuthenticated = !!token;
   const routes = useRoutes(isAuthenticated);
-
+  const { isAuth } = props;
   if (!ready) {
     return <Loader />
   }
@@ -32,4 +34,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect(({ user }) => ({ isAuth: user.isAuth }))(App);

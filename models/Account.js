@@ -16,8 +16,19 @@ const schema = new Schema({
     region: { type: String, required: false },
     description: { type: String, required: false },
     website: { type: String, required: false },
-    favourites: [{ type: Types.ObjectId }]
-});
+    favourites: [{ type: Types.ObjectId }],
+    confirmed: {
+        type: Boolean,
+        default: false
+    },
+    confirm_hash: String,
+    fullname: { type: String, required: false },
+    last_seen: {
+        type: Date,
+        default: new Date()
+    },
+    Avatar: { type: String }
+}, { timestamps: true });
 
 
 module.exports = model('Account', schema);

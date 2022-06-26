@@ -76,7 +76,7 @@ export const AdCard = ({ ad, handleFavourite, creator  }) => {
                       </div>
                     </div>
                     <Link to={`/ads/${creator.firstName}/${ad.account}`}><div className="allAds">All autor ads</div></Link>
-
+                    <Link to={`/chat`}><div className="allAds">go TO chat</div></Link>
                     <div className="bottons">
                       <div className="botton-buy"></div>
                       <div className="Show-phone-buy"></div>
@@ -92,3 +92,9 @@ export const AdCard = ({ ad, handleFavourite, creator  }) => {
         </div>
     )
 }
+
+
+
+
+
+

@@ -14,6 +14,9 @@ export const useAuth = () => {
         localStorage.setItem(storageName, JSON.stringify({
             accountId: id, token: jwtToken
         }));
+        localStorage.setItem('token',
+            jwtToken
+        );
     }, []);
 
 
@@ -21,6 +24,7 @@ export const useAuth = () => {
         setToken(null);
         setAccountId(null);
         localStorage.removeItem(storageName);
+        localStorage.removeItem('token');
     }, []);
 
 

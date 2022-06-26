@@ -6,7 +6,6 @@ const auth = require('../middleware/auth.middleware');
 
 router.get('/getmyfavourites', auth, async (req, res) => {
     try {
-
         const user = await Account.findById(req.account.accountId);
         const myFavouritesId = user.favourites;
         const myFavourites = [];

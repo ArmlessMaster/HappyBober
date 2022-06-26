@@ -6,8 +6,6 @@ export const FilterBar = ({ ads, setAds, tempAds, setTempAds, type, setType }) =
 
     const [options, setOptions] = useState([]);
 
-
-
     const [gender, setGender] = useState('all');
 
     const [text, setText] = useState('');

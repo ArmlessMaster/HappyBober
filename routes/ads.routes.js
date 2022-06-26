@@ -16,7 +16,6 @@ router.get('/getads', async (req, res) => {
 router.get('/getmyads', auth, async (req, res) => {
     try {
         const ads = await Ad.find({ account: req.account.accountId });
-
         res.json(ads);
     } catch (e) {
 
