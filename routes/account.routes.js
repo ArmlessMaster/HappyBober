@@ -49,7 +49,7 @@ router.post('/updatemyacc',
             await Account.findByIdAndUpdate(id, {
                 $set: {
                     firstName: firstName, lastName: lastName, email: email, phone: phone,
-                    password: hashedPassword, region: region, description: description, website: website, photo: photo
+                    password: hashedPassword, region: region, description: description, website: website, photo: photo, fullname: (lastName + " " + firstName)
                 }
             })
             res.status(201).json({ message: 'Account updated' });
