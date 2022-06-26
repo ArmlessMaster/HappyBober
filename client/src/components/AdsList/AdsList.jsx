@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import './AdsList.scss';
 import { AuthContext } from "../../context/AuthContext";
 import { useHttp } from "../../hooks/http.hook";
+import Select from 'react-select';
 
 export const AdsList = ({ ads, setAds, location }) => {
 
@@ -19,7 +20,6 @@ export const AdsList = ({ ads, setAds, location }) => {
         <div className="adsList">
             <div className="ads-List_Wrapper">
                 <div className="ads-List">
-                <div className="header"></div>
                     <div className="adsList-flex">
                         {ads.map((ad, index) => {
                             return (
@@ -50,7 +50,7 @@ export const AdsList = ({ ads, setAds, location }) => {
                                                 } catch (e) {
 
                                                 }
-                                            }}>❤</button>  }                                        
+                                            }}>❤</button>}                                        
                                         </div>
                                         {(location === 'myadspage') && <button disabled={loading} onClick={async () => {
                                                 try {
@@ -72,7 +72,7 @@ export const AdsList = ({ ads, setAds, location }) => {
 
                                                 }
                                             }}>remove</button>}
-                                            {(location === 'myadspage') && <Link to={`/editad/${ad._id}`}><button>edit</button></Link>}                                         
+                                            {(location === 'myadspage') && <Link to={`/editad/${ad._id}`}><button>Edit</button></Link>}                                         
                                     </div>
                                 </div>
                             )
@@ -81,6 +81,7 @@ export const AdsList = ({ ads, setAds, location }) => {
                     </div>
                 </div >
             </div>
+            
         </div>
         
         

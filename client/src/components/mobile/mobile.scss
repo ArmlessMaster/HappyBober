@@ -10,11 +10,11 @@
 }
 
 .mobile{
+  overflow-x: hidden;
   .main{
     position: relative;
     height: 60vw;
     .left{
-      margin-top: 2vw;
       margin-left: 20%;
       margin-right: 50%;
       position: absolute;
@@ -67,7 +67,6 @@
       margin-right: 50%;
       width: 40%;
       z-index: 0;
-      margin-top: 1vw;
       img{
         width: 75%;
       }
@@ -76,17 +75,16 @@
 }
 
 .marquee {
-
+  position: relative; 
   transform: rotate(-3.99deg);
-  position: relative;
   width: 105vw;
   max-width: 105%;
   height: 8vw;
   overflow-x: hidden;
-  margin-top: 10%;
+  margin-top: 3%;
+  top: 100px;
   left: -5px;
   line-height: normal;
-  overflow-block: hidden;
   z-index: -1;
   
   .track {
@@ -103,11 +101,11 @@
 }
 
 .marquee-2{
+  position: relative; 
   transform: rotate(2.59deg);
-  margin-top: 8%;
+  margin-top: 15%;
   left: -5px;
   line-height: normal;
-  overflow-block: hidden;
   z-index: -1;
   .track > h1{
     color: black;

@@ -66,20 +66,24 @@ export const AdCard = ({ ad, handleFavourite, creator  }) => {
                   <div className="user-card">
                     <div className="user-label">User:</div>
                     <div className="user-info">
-                    <Link to={`/account/${ad.account}`}><img className="user-photo" width={'25px'} height={'25px'} src={creator.photo}/>
-                    </Link>
+                      <div className="user-flex">
+                        <div className="user-flex__left">
+                          <Link to={`/account/${ad.account}`}><img className="user-photo"  src={creator.photo}/>
+                          </Link>
+                          <div className="user-name"><p>{creator.firstName} {creator.lastName}</p>
+                          <p className="user-name-low">On HappyBober since {creator.lastLogin.substring(0, creator.lastLogin.length - 14)}</p></div>
+                        </div>
+                      </div>
+
                       
                       <div className="user-info-labels">
-                        <div className="user-name">{creator.firstName}</div>
-                        <div className="user-time">{creator.lastLogin}</div>
-                        <div className="user-since">on happy beaver since {creator.registeredAt}</div>
                       </div>
                     </div>
                     <Link to={`/ads/${creator.firstName}/${ad.account}`}><div className="allAds">All autor ads</div></Link>
-                    <Link to={`/chat`}><div className="allAds">go TO chat</div></Link>
-                    <div className="bottons">
-                      <div className="botton-buy"></div>
-                      <div className="Show-phone-buy"></div>
+                    <Link to={`/chat`}><div className="allAds">Napisat</div></Link>
+                    <div className="adCard-info-bottons">
+                      <button className="botton-buy">Buy</button>
+                      <button className="Show-phone-buy">Show Phone</button>
                     </div>
                   </div>
                   <div className="location-card">
@@ -92,9 +96,3 @@ export const AdCard = ({ ad, handleFavourite, creator  }) => {
         </div>
     )
 }
-
-
-
-
-
-

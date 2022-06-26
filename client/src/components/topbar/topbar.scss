@@ -1,6 +1,9 @@
 @import "../../global.scss";
 
 .topbar{
+  ul{
+    list-style-type: none;
+  }
   width: 100%;
   color: black;
   position: fixed;  

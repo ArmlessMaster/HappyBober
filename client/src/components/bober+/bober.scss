@@ -1,8 +1,8 @@
 .bober{
   display: flex;
   justify-content: space-between;
-  z-index: 0;
   height: 55vw;
+  overflow-x: hidden;
   .right{
     
     color: black;

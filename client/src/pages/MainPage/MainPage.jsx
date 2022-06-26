@@ -5,6 +5,7 @@ import Intro from "../../components/intro/Intro"
 import About from "../../components/about/About"
 import Bober from "../../components/bober+/bober"
 import Contact from "../../components/contact/Contact";
+import "./MainPage.scss";
 import "../../App.scss"
 
 export const MainPage = () => {

@@ -18,6 +18,37 @@ a{
     font-weight: bold;
 }
 
+@font-face {
+    font-family: "AllianceNo1-Bold";
+    src: local("AllianceNo1-Bold"),
+     url("../src/fonts/AllianceNo1-Bold.ttf") format("truetype");
+    font-weight: bold;
+}
+
+
+@font-face {
+    font-family: "AllianceNo1-Light";
+    src: local("AllianceNo1-Light"),
+     url("../src/fonts/AllianceNo1-Light.ttf") format("truetype");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "AllianceNo1-Medium";
+    src: local("AllianceNo1-Medium"),
+     url("../src/fonts/AllianceNo1-Medium.ttf") format("truetype");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "AllianceNo1-SemiBold";
+    src: local("AllianceNo1-SemiBold"),
+     url("../src/fonts/AllianceNo1-SemiBold.ttf") format("truetype");
+    font-weight: bold;
+}
+
+
+
 .pink{
     color: #FF3C82;
     font-weight: 700;

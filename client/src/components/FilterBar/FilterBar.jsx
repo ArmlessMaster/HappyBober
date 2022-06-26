@@ -1,20 +1,19 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { RadioButton } from "../../components/RadioButton/RadioButton";
 import Select from 'react-select';
+import './FilterBar.scss';
 
 export const FilterBar = ({ ads, setAds, tempAds, setTempAds, type, setType }) => {
 
     const [options, setOptions] = useState([]);
-
     const [gender, setGender] = useState('all');
-
     const [text, setText] = useState('');
-
     const [price, setPrice] = useState({ minPrice: 0, maxPrice: 1000000 });
-
     const [age, setAge] = useState({ minAge: 0, maxAge: 1000000 })
-
     const [selectedOption, setSelectedOption] = useState(null);
+
+    const [isOpen, setIsOpen] = useState(false);
+    const toggling = () => setIsOpen(!isOpen);
 
 
     const getOptions = useCallback(() => {
@@ -46,7 +45,6 @@ export const FilterBar = ({ ads, setAds, tempAds, setTempAds, type, setType }) =
     }
 
 
-
     const filterAds = () => {
         setAds(tempAds);
         let temp = tempAds
@@ -64,88 +62,115 @@ export const FilterBar = ({ ads, setAds, tempAds, setTempAds, type, setType }) =
     }
 
     return (
-        <div style={{ height: '200px', marginTop: '110px' }}>
-        <input
-
-            className=""
-            placeholder="Search"
-            id="search"
-            type="text"
-            name="search"
-            value={text}
-            onChange={handleTextChange} />
-        <div>
-            <RadioButton
-                label="Male"
-                name='male'
-                value={gender === 'male'}
-                onChange={handleGenderChange}
-            ></RadioButton>
-            <RadioButton
-                label="Female"
-                name='female'
-                value={gender === 'female'}
-                onChange={handleGenderChange}
-            ></RadioButton>
-            <RadioButton
-                label="All"
-                name='all'
-                value={gender === 'all'}
-                onChange={handleGenderChange}
-            ></RadioButton>
+    <div className="Filter-Bar" style={{ marginTop: '4vw' }}>
+        <div className="Search-Line__flex">
+                <button className="Search-Line-border-button" onClick={toggling}>Filter</button>
+                <input 
+                className="Search-Line"
+                placeholder="Search"
+                id="search"
+                type="text"
+                name="search"
+                value={text}
+                onChange={handleTextChange} />
+                <button className="Search-Line-full-button" onClick={filterAds}>Search</button>
+            </div>
+        {isOpen && 
+        <div className="filter-container">
+            <div className="filter-div">
+                <div  className="filter-div-radio">
+                    <p className="filter-div-text">Pet gender</p>
+                    <div className="flex-filter">
+                        <RadioButton
+                            label="Male"
+                            name='male'
+                            value={gender === 'male'}
+                            onChange={handleGenderChange}
+                        ></RadioButton>
+                        <RadioButton
+                            label="Female"
+                            name='female'
+                            value={gender === 'female'}
+                            onChange={handleGenderChange}
+                        ></RadioButton>
+                        <RadioButton
+                            label="All"
+                            name='all'
+                            value={gender === 'all'}
+                            onChange={handleGenderChange}
+                        ></RadioButton>
+                    </div>  
+                </div>
+                    <div className="input-filter__container">
+                        <p className="filter-div-text">Price</p>
+                        <input
+                            className="input-filter"
+                            placeholder="Minimal Price"
+                            id="minPrice"
+                            type="number"
+                            name="minPrice"
+                            value={price.minPrice}
+                            min={0}
+                            max={1000000}
+                            onChange={handlePriceChange} />
+                        <input
+                            className="input-filter"
+                            placeholder="Maximal Price"
+                            id="maxPrice"
+                            type="number"
+                            name="maxPrice"
+                            min={0}
+                            max={1000000}
+                            value={price.maxPrice}
+                            onChange={handlePriceChange} />
+                    </div>
+                    <div className="input-filter__container">
+                        <p className="filter-div-text">Age</p>
+                        <input
+                            className="input-filter"
+                            placeholder="Minimal Age"
+                            id="minAge"
+                            type="number"
+                            name="minAge"
+                            value={age.minAge}
+                            min={0}
+                            max={1000000}
+                            onChange={handleAgeChange} />
+                        <input 
+                            className="input-filter"
+                            placeholder="Maximal Age"
+                            id="maxAge"
+                            type="number"
+                            name="maxAge"
+                            min={0}
+                            max={1000000}
+                            value={age.maxAge}
+                            onChange={handleAgeChange} />
+                    </div>
+                    <div className="FilterBar-Select">
+                        <p className="filter-div-text">Type</p>
+                        <Select
+                        className="select-menu"
+                            isMulti
+                            options={options}
+                            defaultValue={selectedOption} onChange={setSelectedOption}
+                            theme={(theme) => ({
+                            ...theme,
+                            borderRadius: 0,
+                            colors: {
+                                ...theme.colors,
+                                primary25: '#ffe032',
+                                primary: 'black',
+                            },
+                            })}
+                        />
+                    </div>
+                </div>
+                <div className="Search-Line__flex">
+                    <button className="Search-Line-border-button button-center" onClick={() => {setAds(tempAds); setGender('all'); }}>Restart</button>
+                </div>
+            </div>}
         </div>
-        <div>
-            <input
-                className=""
-                placeholder="Minimal Price"
-                id="minPrice"
-                type="number"
-                name="minPrice"
-                value={price.minPrice}
-                min={0}
-                max={1000000}
-                onChange={handlePriceChange} />
-            <input
-                className=""
-                placeholder="Maximal Price"
-                id="maxPrice"
-                type="number"
-                name="maxPrice"
-                min={0}
-                max={1000000}
-                value={price.maxPrice}
-                onChange={handlePriceChange} />
-        </div>
-        <div>
-            <input
-                className=""
-                placeholder="Minimal Age"
-                id="minAge"
-                type="number"
-                name="minAge"
-                value={age.minAge}
-                min={0}
-                max={1000000}
-                onChange={handleAgeChange} />
-            <input
-                className=""
-                placeholder="Maximal Age"
-                id="maxAge"
-                type="number"
-                name="maxAge"
-                min={0}
-                max={1000000}
-                value={age.maxAge}
-                onChange={handleAgeChange} />
-        </div>
-        <Select isMulti={true} options={options} defaultValue={selectedOption} onChange={setSelectedOption}></Select>
-
-        <button onClick={filterAds}>Search</button>
-        <button onClick={() => {
-            setAds(tempAds);
-            setGender('all');
-        }}>Restart</button>
-    </div>
     )
 
 
