@@ -8,7 +8,6 @@ import socket from '../core/socket'
 const Dialogs = ({ fetchDialogs, updateReadedStatus, currentDialogId, items, userId }) => {
   const [inputValue, setValue] = useState('');
   const [filtered, setFiltredItems] = useState(Array.from(items));
-
   const onChangeInput = (value="") => {
     setFiltredItems(items.filter(dialog => dialog.author.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0 || dialog.partner.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0));
     setValue(value);
@@ -33,6 +32,7 @@ const Dialogs = ({ fetchDialogs, updateReadedStatus, currentDialogId, items, use
       socket.on('SERVER:MESSAGES_READED', updateReadedStatus);
     }
   }, []);
+  
   
   return (
     <BaseDialogs

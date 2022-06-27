@@ -3,15 +3,16 @@ import Logo from "../../img/Logo.png";
 import OpenLanguage from "../../img/Open language.svg";
 import Account from "../../img/Account.svg";
 import Favorite from "../../img/Favorite.svg";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect, useCallback } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { Modal } from "../modal/Modal";
 import { Authentication } from "../../components/authentication/Authentication";
+import { useHttp } from '../../hooks/http.hook';
 
 export const Topbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const toggling = () => setIsOpen(!isOpen);
+  const toggling = () => { setIsOpen(!isOpen);}
   const history = useNavigate();
   const auth = useContext(AuthContext);
   const logoutHandler = event => {
@@ -19,9 +20,28 @@ export const Topbar = () => {
       auth.logout();
       history('/');
   }
-
+  const { loading, request } = useHttp();
+  const { token, accountId } = useContext(AuthContext);
   const [modalActive, setModalActive] = useState(false);
+  const [filtered, setFiltredItems] = useState(null);
 
+  const fetchDialogs = useCallback(async () => {
+    try {
+        const fetched = await request('/api/dialogs/dialogs', 'GET', null, {
+            Authorization: `Bearer ${token}`
+        });
+      setFiltredItems(fetched.filter(dialog => dialog.lastMessage.readed === true && dialog.lastMessage.user._id !== accountId));
+      console.log(filtered)
+        } catch (e) {
+
+        }
+    }, [token, request]);
+
+    useEffect(() => {
+      fetchDialogs();
+    }, [fetchDialogs]);
+  
+  
   
   return (
     <div className='topbar'>
@@ -34,7 +54,7 @@ export const Topbar = () => {
       </div>
       <ul className="menu-list">
         <li className="menu-list__item"><div className="menu-list__item-text">Contact</div></li>
-        <li className="menu-list__item"><div className="menu-list__item-text">Support</div></li>
+        <li className="menu-list__item"><div className="menu-list__item-text"><NavLink to="/rules">Rules</NavLink></div></li> 
         <li className="menu-list__item"><div className="menu-list__item-text">About</div></li>
         <li className="menu-list__item"><div className="menu-list__item-text"><NavLink to="/ads">Shop</NavLink></div></li>
         <li className="menu-list__item"><div className="menu-list__item-text">Bilibober+</div></li>
@@ -68,7 +88,7 @@ export const Topbar = () => {
                   <li className = "ListItem"><NavLink to="/myaccount">Options</NavLink></li>
                   <li className = "ListItem"><NavLink to="/myads">My Ads</NavLink></li>
                   <li className="ListItem"><NavLink to="/createad">Create Ad</NavLink></li>
-                  <li className = "ListItem"><NavLink to="/chat">My chat (new)</NavLink></li>
+                  {filtered.length > 0 ? <li className = "ListItem"><NavLink to="/chat">My chat</NavLink></li> : <li className = "ListItem"><NavLink to="/chat">My chat (new)</NavLink></li>}
                   <li className = "ListItem" style={{cursor: 'pointer'}} onClick={logoutHandler}>Exit</li>
                 </ul>
               </div>

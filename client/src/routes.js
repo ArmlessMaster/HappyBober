@@ -12,6 +12,7 @@ import { OtherUserAdsPage } from './pages/OtherUserAdsPage/OtherUserAdsPage';
 import { MyAdPage } from './pages/MyAdPage/MyAdPage';
 import { Chat } from './pages'
 import { LoginForm, RegisterForm } from './modules';
+import { Rules } from './pages/Rules/Rules';
 
 export const useRoutes = isAuthenticated => {
     console.log(isAuthenticated)
@@ -33,6 +34,7 @@ export const useRoutes = isAuthenticated => {
             <Route path='/ads/:accountname/:id' exact element={<OtherUserAdsPage />} />
             <Route path='/account/:id' exact element={<AccountPage />} />
             <Route path="/*" element={<Navigate replace to="/mainpage" />} />
+            <Route path='/rules' exact element={<Rules />} />
         </Routes>
     )
 }

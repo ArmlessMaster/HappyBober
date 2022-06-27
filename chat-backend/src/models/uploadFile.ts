@@ -18,7 +18,7 @@ const UploadFileSchema = new Schema(
     ext: String,
     url: String,
     message: { type: Schema.Types.ObjectId, ref: "Message", require: true },
-    user: { type: Schema.Types.ObjectId, ref: "User", require: true },
+    user: { type: Schema.Types.ObjectId, ref: "Account", require: true },
   },
   {
     timestamps: true,
