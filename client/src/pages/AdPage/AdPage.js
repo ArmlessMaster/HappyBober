@@ -19,6 +19,8 @@ export const AdPage = () => {
 
     const [creator, setCreator] = useState(null);
 
+    const [similar, setSimilar] = useState(null);
+
     const getAd = useCallback(async () => {
         try {
             const fetchedAd = await request(`/api/ads/${adId}`, 'GET', null, {
@@ -27,8 +29,12 @@ export const AdPage = () => {
             const fetchedCreator = await request(`/api/account/${fetchedAd.account}`, 'GET', null, {
                 Authorization: `Bearer ${token}`
             });
+            const fetchedSimilar = await request(`/api/ads/similar/${fetchedAd.breed}`, 'GET', null, {
+                Authorization: `Bearer ${token}`
+            });
             setAd(fetchedAd);
             setCreator(fetchedCreator);
+            setSimilar(fetchedSimilar.filter(item => item._id !== fetchedAd._id));
         } catch (e) {
 
         }
@@ -58,7 +64,7 @@ export const AdPage = () => {
 
     return (
         <>
-            {!loading && ad && <AdCard ad={ad} creator={creator} handleFavourite={handleFavourite} />}
+            {!loading && ad && <AdCard ad={ad} creator={creator} handleFavourite={handleFavourite} similar={similar} />}
         </>
     );
 };

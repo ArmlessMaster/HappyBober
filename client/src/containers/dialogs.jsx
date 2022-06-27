@@ -5,7 +5,7 @@ import { Dialogs as BaseDialogs } from '../components';
 import { dialogsActions } from '../redux/actions';
 import socket from '../core/socket'
 
-const Dialogs = ({ fetchDialogs, currentDialogId, items, userId }) => {
+const Dialogs = ({ fetchDialogs, updateReadedStatus, currentDialogId, items, userId }) => {
   const [inputValue, setValue] = useState('');
   const [filtered, setFiltredItems] = useState(Array.from(items));
 
@@ -24,8 +24,9 @@ const Dialogs = ({ fetchDialogs, currentDialogId, items, userId }) => {
 
   useEffect(() => {
     fetchDialogs();
-    socket.on('SERVER:DIALOG_CREATED', fetchDialogs)
-    socket.on('SERVER:NEW_MESSAGE', fetchDialogs)
+    socket.on('SERVER:DIALOG_CREATED', fetchDialogs);
+    socket.on('SERVER:NEW_MESSAGE', fetchDialogs);
+    socket.on('SERVER:MESSAGES_READED', updateReadedStatus);
     return () => {
       socket.removeListener('SERVER:DIALOG_CREATED', fetchDialogs);
       socket.removeListener('SERVER:NEW_MESSAGE', fetchDialogs);

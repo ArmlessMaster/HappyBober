@@ -3,7 +3,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { useHttp } from "../../hooks/http.hook";
 import { RadioButton } from '../../components/RadioButton/RadioButton';
 import "./RewievForm.scss";
-export const RewievForm = ({ receiver, sender, complain, setComplain }) => {
+export const RewievForm = ({ receiver, sender, complain, setComplain, setRewievs, token }) => {
 
     const auth = useContext(AuthContext);
 
@@ -23,8 +23,12 @@ export const RewievForm = ({ receiver, sender, complain, setComplain }) => {
 
     const createRewiev = async () => {
         try {
-            console.log(`text: ${text}\nrating: ${rating}\nreceiver: ${receiver}\nsender: ${sender}`)
+            //console.log(`text: ${text}\nrating: ${rating}\nreceiver: ${receiver}\nsender: ${sender}`)
             await request('/api/rewiev/createrewiev', 'POST', { text, rating, receiver, sender }, { Authorization: `Bearer ${auth.token}` });
+            const fetched = await request(`/api/rewiev/getrewievs/${receiver}`, 'GET', null, {
+                Authorization: `Bearer ${token}`
+            });
+            setRewievs(fetched.sort((a, b) => a.date > b.date ? -1 : 1));
             setComplain(true);
             setRating(1);
             setText('');
@@ -37,7 +41,7 @@ export const RewievForm = ({ receiver, sender, complain, setComplain }) => {
 
 
     if (complain === true) {
-        window.location.reload();
+        //window.location.reload();
         return (<div><h1>Rewiew sended</h1></div>)
 
     }

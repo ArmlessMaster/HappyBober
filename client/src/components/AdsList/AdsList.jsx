@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import './AdsList.scss';
 import { AuthContext } from "../../context/AuthContext";
@@ -12,6 +12,12 @@ export const AdsList = ({ ads, setAds, location }) => {
 
     const { token, accountId } = useContext(AuthContext);
 
+    const [visible, setVisible] = useState(15);
+
+    const showMoreItems = () => {
+        setVisible(prevValue => prevValue + 5);
+    }
+
 
     if (!ads.length) {
         return <p className="center">Ads = 0</p>
@@ -21,7 +27,7 @@ export const AdsList = ({ ads, setAds, location }) => {
             <div className="ads-List_Wrapper">
                 <div className="ads-List">
                     <div className="adsList-flex">
-                        {ads.map((ad, index) => {
+                        {ads.slice(0, visible).map((ad, index) => {
                             return (
                                 
                                 <div className="adsList-element" key={ad._id}>
@@ -79,6 +85,7 @@ export const AdsList = ({ ads, setAds, location }) => {
                         })}
 
                     </div>
+                    <button style={ads.length > 0 && visible >= ads.length ? {display: 'none'} : {display: 'all'}} onClick={showMoreItems}>More</button>
                 </div >
             </div>
             

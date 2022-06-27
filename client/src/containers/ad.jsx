@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Ad as AdBase } from '../components';
 
-const Ad = ({ currentDialogId, user, dialogs }) => {
+const Ad = ({ currentDialogId, dialogs }) => {
   if (!dialogs.length || !currentDialogId || currentDialogId.includes('/chat')) {
     return null;
   }
@@ -12,7 +12,6 @@ const Ad = ({ currentDialogId, user, dialogs }) => {
       ad = item.ad;
     }
   });
-  console.log(ad);
   return (<AdBase picture={ad.picture} price={ad.price} animalName={ad.animalName} id={ad._id} />);
 }
 

@@ -27,7 +27,8 @@ const schema = new Schema({
         type: Date,
         default: new Date()
     },
-    Avatar: { type: String }
+    Avatar: { type: String },
+    achievments: [{ type: Types.ObjectId }]
 }, { timestamps: true });
 
 

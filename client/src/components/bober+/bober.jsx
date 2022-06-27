@@ -2,8 +2,8 @@ import "./bober.scss"
 import image from "../../img/Cat image.png";
 import YellowBtn from '../elements/YellowBtn/Yellowbtn';
 import { motion } from "framer-motion"
-
-
+import { PayPal } from "../PayPal/PayPal";
+import React, {useState} from "react";
 const Animation = {
   offscreen: {
     y: -300
@@ -20,7 +20,11 @@ const Animation = {
 
 
 
-export default function Bober() {
+export default function Bober({account}) {
+
+  const [checkoutOne, setCheckoutOne] = useState(false);
+  const [checkoutTwo, setCheckoutTwo] = useState(false);
+  const [checkoutThree, setCheckoutThree] = useState(false);
   return (
     <div className='bober' id='bober'>
       <div className="left">
@@ -37,9 +41,20 @@ export default function Bober() {
           </p>
         </div>
         <div className="buttons">
-          <YellowBtn info="89₴ for 1 month"/>
+          {/* <YellowBtn info="89₴ for 1 month"/>
           <YellowBtn info="499₴ for 6 month"/>
-          <YellowBtn info="899₴ for 1 year"/>
+          <YellowBtn info="899₴ for 1 year"/> */}
+          {checkoutOne ? (<PayPal term={30} cost={10}/>) : account && !account.isSubscriber ?
+          (<a onClick={() => {setCheckoutOne(true);}}><YellowBtn info="10$ for 1 month"/></a>) : (null)}
+
+          {checkoutTwo ? (<PayPal term={182} cost={60}/>) : account && !account.isSubscriber ?
+          (<a onClick={() => {setCheckoutTwo(true);}}><YellowBtn info="60$ for 6 month"/></a>) : (null)}
+
+          {checkoutThree ? (<PayPal term={365} cost={120}/>) : account && !account.isSubscriber ?
+          (<a onClick={() => {setCheckoutThree(true);}}><YellowBtn info="120$ for 1 year"/></a>) : (null)}
+
+          {account && account.isSubscriber && <div><h1>You already have a subscription</h1></div>}
+
         </div>
       </div>
       <div className="right">
@@ -52,4 +67,3 @@ export default function Bober() {
     </div>
   )
 }
-

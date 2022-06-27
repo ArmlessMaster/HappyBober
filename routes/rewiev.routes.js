@@ -17,6 +17,7 @@ router.post('/createrewiev', auth, async (req, res) => {
         await rewiev.save(function (err) {
             console.log(err);
         });
+        //res.json(rewiev);
         res.status(201).json({ message: 'Rewiev created' });
 
 
@@ -27,7 +28,7 @@ router.post('/createrewiev', auth, async (req, res) => {
 });
 
 
-router.get('/getrewievs/:id', auth, async (req, res) => {
+router.get('/getrewievs/:id', async (req, res) => {
     try {
 
         const receiver = req.params.id;

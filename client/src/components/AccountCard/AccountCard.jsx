@@ -37,8 +37,7 @@ export const AccountCard = ({account}) => {
             const fetched1 = await request(`/api/rewiev/getrewievs/${account._id}`, 'GET', null, {
                 Authorization: `Bearer ${token}`
             });
-
-            setRewievs(fetched1);
+            setRewievs(fetched1.sort((a, b) => a.date > b.date ? -1 : 1));
             setAds(fetched);
             let rat =0;
             for(let i = 0; i< fetched1.length; i++) {
@@ -60,6 +59,12 @@ export const AccountCard = ({account}) => {
     //     });
     //     return {sender1};
     // }
+
+    const [visible, setVisible] = useState(3);
+
+    const showMoreItems = () => {
+        setVisible(prevValue => prevValue + 3);
+    }
 
     return (
         <div className = "AccountCard" style={{marginTop: '4vw'}}>
@@ -103,7 +108,7 @@ export const AccountCard = ({account}) => {
                 <div className="flex-accountCard-btns">                
                     {!(accountId === account._id ) && <button onClick={()=>{setComplain(false); setRewiewActive(true); }} >Add Rewiew</button>}
                 </div>
-                {rewievs.map((rewiev, index) => {
+                {rewievs.slice(0, visible).map((rewiev, index) => {
                
                     return (
                         <div className="rewiew-list">
@@ -111,7 +116,7 @@ export const AccountCard = ({account}) => {
                             <div className="big-flex-accountCard">
                                 <div className="flex-accountCard">
                                     <div className="left">
-                                    <Link to={`/account/${rewiev.sender._id}`}><div className="circle-photo">
+                                        <Link to={`/account/${rewiev.sender._id}`}><div className="circle-photo">
                                             <img src={rewiev.sender.photo}/>
                                         </div></Link>
                                     </div>
@@ -181,15 +186,14 @@ export const AccountCard = ({account}) => {
                         <p className="Rewiws-Element-text">Rewiew description. Rewiew description. Rewiew description. Rewiew description. Rewiew description. Rewiew description.</p>
                     </div>
                 </div> */}
-                <div className="flex-accountCard-btns">                
-                    <YellowBtn info="More"/>
-
+                <div className="flex-accountCard-btns">               
+                    <button style={rewievs.length > 0 && visible >= rewievs.length ? {display: 'none'} : {display: 'all'}} onClick={showMoreItems}>More</button>
                 </div>
             </div>
             {!(accountId === null || accountId ===  account._id) && <button onClick={() => setModalActive(true)}>Report</button>}
             {accountId ===  account._id && <Link to='/myaccount'><button>Edit my profile</button></Link>}
             <Modal active={ modalActive} setActive={setModalActive} children={<Report reportType={'user'} account={account}></Report>}></Modal>
-            <Modal active={rewiewActive} setActive={setRewiewActive} children={<RewievForm complain={complain} setComplain={setComplain} receiver={account._id} sender={accountId}  ></RewievForm>}></Modal>
+            <Modal active={rewiewActive} setActive={setRewiewActive} children={<RewievForm complain={complain} setComplain={setComplain} receiver={account._id} sender={accountId} setRewievs={setRewievs} token={token} ></RewievForm>}></Modal>
         </div>
     )
 }

@@ -16,12 +16,11 @@ export const AdsPage = () => {
             const fetched = await request('/api/ads/getads', 'GET', null, {
                 Authorization: `Bearer ${token}`
             });
-            setAds(fetched);
+            setAds(fetched.sort((a, b) => a.date > b.date ? -1 : 1));
             setTempAds(fetched);
             setType([...new Set(
                 fetched.map(item => item.type.toLowerCase()),
             )]);
-
         } catch (e) {
         }
     }, [token, request]);
@@ -34,7 +33,6 @@ export const AdsPage = () => {
     const [tempAds, setTempAds] = useState([]);
 
     const [type, setType] = useState([]);
-
 
 
 

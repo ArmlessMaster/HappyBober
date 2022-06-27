@@ -60,6 +60,39 @@ router.post('/updatemyacc',
         }
     });
 
+router.post('/subscription',
+    auth, async (req, res) => {
+        try {
+
+
+            const { id, term } = req.body;
+
+            Account.findOne({ _id: id }, function (err, foundObject) {
+                if (err) {
+                    //console.log(err);
+                    res.status(500).send();
+                }
+                else {
+                    foundObject.isSubscriber = true;
+                    foundObject.expirySubscription = ((new Date()).setDate((new Date()).getDate() + term));
+                }
+                foundObject.save(function (err, updatedObject) {
+                    if (err) {
+                        //console.log(err);
+                        res.status(500).send();
+                    }
+                    else {
+                        res.status(201).json({ message: 'Account updated' });
+                    }
+                })
+            })
+
+
+        } catch (e) {
+
+            res.status(500).json({ message: 'Something went wrong, please try again' });
+        }
+    });
 
 
 

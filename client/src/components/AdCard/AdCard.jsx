@@ -5,14 +5,15 @@ import { Modal } from "../modal/Modal";
 import { Report } from "../report/Report";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { useHttp } from "../../hooks/http.hook";
+import { AdsList } from "../AdsList/AdsList";
 
-
-
-
-export const AdCard = ({ ad, handleFavourite, creator  }) => {
+export const AdCard = ({ ad, handleFavourite, creator, similar  }) => {
 
   const [modalActive, setModalActive] = useState(false);
   const { accountId, token } = useContext(AuthContext);
+  const { request, loading } = useHttp();
+
 
   const images = [];
 
@@ -21,6 +22,8 @@ export const AdCard = ({ ad, handleFavourite, creator  }) => {
     images.push({original: image, thumbnail: image});
   })
 
+
+  
 
         const [galleryOpened, setGalleryOpened] = useState(true);
         const toggleGallery = () => setGalleryOpened(!galleryOpened);
@@ -81,7 +84,8 @@ export const AdCard = ({ ad, handleFavourite, creator  }) => {
                     </div>
                     <Link to={`/ads/${creator.firstName}/${ad.account}`}><div className="allAds">All autor ads</div></Link>
                     <div className="adCard-info-bottons">
-                    {!(accountId === creator._id) && <Link to={`/chat/${creator._id}/${creator.fullname}/${ad._id}`}><button className="botton-buy">Buy</button></Link>}
+                    {!(accountId ===  creator._id) && <Link to={`/chat/${creator._id}/${creator.fullname}/${ad._id}`}><button className="botton-buy">Buy</button></Link>}
+                    {(accountId ===  creator._id) && <button className="botton-buy">Buy</button>}
                       <button className="Show-phone-buy">Show Phone</button>
                     </div>
                   </div>
@@ -92,6 +96,54 @@ export const AdCard = ({ ad, handleFavourite, creator  }) => {
             </div>
             <Modal active={ modalActive} setActive={setModalActive} children={<Report reportType={'ad'} ad={ad}></Report>}></Modal>
             {accountId ===  creator._id && <Link to={`/editad/${ad._id}`}><button>Edit</button></Link>}
+
+            <div className="adsList">
+            <h1>Similar Ads</h1>
+            <AdsList ads={similar}></AdsList>
+            {/* <div className="ads-List_Wrapper">
+                <div className="ads-List">
+                    <div className="adsList-flex">
+            {similar.map((similar, index) => {
+              if (similar._id !== ad._id)
+                            return (
+                                
+                                <div className="adsList-element" key={similar._id}>
+                                    <Link to={`/ad/${similar._id}`}>
+                                        <div className="img-container">
+                                            <img src={similar.picture[0]} alt="" />
+                                        </div>
+                                        <div className="adsList-element__flex">
+                                            <div>{similar.animalName}</div>
+                                            <div>{similar.price}$</div>
+                                        </div>
+                                        <div className="ads-List-element-info">
+                                            <span>{similar.gender}</span> / <span>{similar.age}</span> / <span>{similar.breed}</span>
+                                        </div>
+                                    </Link>
+            
+                                    <div className="adsList-element__flex-bottom">
+                                        <div>{similar.location}</div>
+                                        <div>
+                                            {token && <button disabled={loading} onClick={async () => {
+                                                const adId = similar._id;
+                                                try {
+                                                    await request('/api/favourites/addfavourite', 'POST', { adId }, {
+                                                        Authorization: `Bearer ${token}`
+                                                    });
+                                                } catch (e) {
+
+                                                }
+                                            }}>❤</button>}                                        
+                                        </div>                                        
+                                    </div>
+                                </div>
+                            )
+                        })}
+                                            </div>
+                </div >
+            </div>
+             */}
+        </div>
         </div>
     )
 }

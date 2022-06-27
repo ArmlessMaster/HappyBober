@@ -104,4 +104,15 @@ router.post('/updatemyad',
     });
 
 
+router.get('/similar/:breed', async (req, res) => {
+    try {
+        const ads = await Ad.find({ breed: req.params.breed });
+        res.json(ads);
+    } catch (e) {
+
+        res.status(500).json({ message: 'Something went wrong, please try again' });
+    }
+});
+
+
 module.exports = router;

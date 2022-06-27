@@ -6,6 +6,13 @@ const Actions = {
         type: 'DIALOGS:SET_ITEMS',
         payload: items,
     }),
+    updateReadedStatus: ({ userId, dialogId }) => ({
+        type: 'DIALOGS:LAST_MESSAGE_READED_STATUS',
+        payload: {
+          userId,
+          dialogId
+        },
+    }),
     setCurrentDialogId: id => dispatch => {
         socket.emit('DIALOGS:JOIN', id);
         dispatch({

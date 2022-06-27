@@ -50,7 +50,7 @@ const Messages = ({ currentDialogId, fetchMessages, addMessage, items, user, isL
     
     useEffect(() => {
         if (currentDialogId) {messagesRef.current.scrollTo(0, 99999999);}    
-    }, [items]);
+    }, [items, isTyping]);
 
     if (!currentDialogId ) {
         return <Empty description="Open a dialog" />;

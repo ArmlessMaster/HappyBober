@@ -1,5 +1,5 @@
 const initialState = {
-  items: null,
+  items: [],
   isLoading: false,
 };
 
@@ -15,7 +15,17 @@ export default (state = initialState, { type, payload }) => {
           ...state,
           items: payload,
           isLoading: false
-      };
+        };
+      case 'DIALOGS:LAST_MESSAGE_READED_STATUS':
+        return {
+          ...state,
+          items: state.items.map(message => {
+            if (message.dialog._id === payload.dialogId) {
+              message.readed = true;
+            }
+            return message;
+          }),
+        };
       case 'MESSAGES:REMOVE_MESSAGE':
         return {
           ...state,

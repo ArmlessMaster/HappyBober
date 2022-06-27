@@ -25,6 +25,7 @@ export interface IUser extends Document{
     avatar?: string;
     confirm_hash?: string;
     last_seen?: Date;
+    achievments: Array<string>;
 }
 
 const UserSchema = new Schema({
@@ -54,7 +55,8 @@ const UserSchema = new Schema({
         type: Date,
         default: new Date()
     },
-    Avatar: { type: String }
+    Avatar: { type: String },
+    achievments: [{ type: Schema.Types.ObjectId }]
 }, { timestamps: true });
 
 UserSchema.virtual("isOnline").get(function (this: any) {
