@@ -67,7 +67,8 @@ export const Topbar = () => {
                 <li className = "ListItem"><NavLink to={`/account/${auth.accountId}`}>My account</NavLink></li>
                   <li className = "ListItem"><NavLink to="/myaccount">Options</NavLink></li>
                   <li className = "ListItem"><NavLink to="/myads">My Ads</NavLink></li>
-                  <li className = "ListItem"><NavLink to="/createad">Create Ad</NavLink></li>
+                  <li className="ListItem"><NavLink to="/createad">Create Ad</NavLink></li>
+                  <li className = "ListItem"><NavLink to="/chat">My chat (new)</NavLink></li>
                   <li className = "ListItem" style={{cursor: 'pointer'}} onClick={logoutHandler}>Exit</li>
                 </ul>
               </div>

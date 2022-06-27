@@ -2,7 +2,7 @@ import React, { useRef, useContext, useState } from "react";
 import { useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useHttp } from "../../hooks/http.hook";
-export const PayPal = ({ term, cost }) => {
+export const PayPal = ({ term, cost, setText, text }) => {
 
     const { loading, request } = useHttp();
 
@@ -32,7 +32,13 @@ export const PayPal = ({ term, cost }) => {
             },
             onApprove: async (data, actions) => {
                 const order = await actions.order.capture();
-                await request('/api/account/subscription', 'POST', { id, term }, { Authorization: `Bearer ${auth.token}` });
+                console.log(term);
+                if (term) {
+                    await request('/api/account/subscription', 'POST', { id, term }, { Authorization: `Bearer ${auth.token}` });
+                    setText('You already have a subscription');
+                    console.log(text);
+                }
+
                 console.log(order);
             },
             onError: (err) => {

@@ -25,6 +25,7 @@ export default function Bober({account}) {
   const [checkoutOne, setCheckoutOne] = useState(false);
   const [checkoutTwo, setCheckoutTwo] = useState(false);
   const [checkoutThree, setCheckoutThree] = useState(false);
+  const [text, setText] = useState(null);
   return (
     <div className='bober' id='bober'>
       <div className="left">
@@ -44,16 +45,17 @@ export default function Bober({account}) {
           {/* <YellowBtn info="89₴ for 1 month"/>
           <YellowBtn info="499₴ for 6 month"/>
           <YellowBtn info="899₴ for 1 year"/> */}
-          {checkoutOne ? (<PayPal term={30} cost={10}/>) : account && !account.isSubscriber ?
+          {checkoutOne && !text ? (<PayPal term={30} cost={10}  setText={setText} text={text}/>) : account && !account.isSubscriber && !text ?
           (<a onClick={() => {setCheckoutOne(true);}}><YellowBtn info="10$ for 1 month"/></a>) : (null)}
 
-          {checkoutTwo ? (<PayPal term={182} cost={60}/>) : account && !account.isSubscriber ?
+          {checkoutTwo && !text ? (<PayPal term={182} cost={60} setText={setText} text={text}/>) : account && !account.isSubscriber && !text ?
           (<a onClick={() => {setCheckoutTwo(true);}}><YellowBtn info="60$ for 6 month"/></a>) : (null)}
 
-          {checkoutThree ? (<PayPal term={365} cost={120}/>) : account && !account.isSubscriber ?
+          {checkoutThree && !text ? (<PayPal term={365} cost={120}  setText={setText} text={text}/>) : account && !account.isSubscriber && !text ?
           (<a onClick={() => {setCheckoutThree(true);}}><YellowBtn info="120$ for 1 year"/></a>) : (null)}
 
-          {account && account.isSubscriber && <div><h1>You already have a subscription</h1></div>}
+          {text && <div><h1>{text}</h1></div>}
+          {(account && account.isSubscriber) && <div><h1>You already have a subscription</h1></div>}
 
         </div>
       </div>

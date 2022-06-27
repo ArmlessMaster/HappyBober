@@ -39,7 +39,7 @@ useEffect(() => {
       <div className="app">
         <div className="sections">
           <Intro/>
-          <About/>
+          <About account={account}/>
           <Bober account={account}/>
           <Mobile/>
           <Contact/>

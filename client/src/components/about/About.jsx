@@ -2,7 +2,8 @@ import "./about.scss"
 import YellowBtn from '../elements/YellowBtn/Yellowbtn';
 import image from "../../img/About our company plate.jpg";
 import { motion } from "framer-motion";
-
+import { PayPal } from "../PayPal/PayPal";
+import React, {useState} from "react";
 
 const Animation = {
   offscreen: {
@@ -18,7 +19,9 @@ const Animation = {
   }
 };
 
-export default function About() {
+export default function About({account}) {
+  const [checkoutFour, setCheckoutFour] = useState(false);
+
   return (
 
     <div className='about' id="about">
@@ -35,7 +38,8 @@ export default function About() {
           <p> <span className="blue">Our mission</span> is to constantly develop and improve the quality of our product through the introduction of new and necessary functions.</p>
           <p>We value each of our customers, so <span className="pink">high quality</span> service is a priority for us. Love</p>
         </div>
-          <YellowBtn info="Help our project"/>
+        {checkoutFour ? (<PayPal cost={1}/>) : 
+          (<a onClick={() => {setCheckoutFour(true);}}><YellowBtn info="Donate 1$"/></a>) }
       </motion.div>
     </div>
   )

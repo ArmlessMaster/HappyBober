@@ -30,6 +30,7 @@ const Dialogs = ({ fetchDialogs, updateReadedStatus, currentDialogId, items, use
     return () => {
       socket.removeListener('SERVER:DIALOG_CREATED', fetchDialogs);
       socket.removeListener('SERVER:NEW_MESSAGE', fetchDialogs);
+      socket.on('SERVER:MESSAGES_READED', updateReadedStatus);
     }
   }, []);
   
