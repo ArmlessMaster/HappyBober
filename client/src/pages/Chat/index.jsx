@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { Messages, ChatInput, Status, Sidebar, Ad } from "../../containers";
 import { dialogsActions } from '../../redux/actions';
+import socket from '../../core/socket'
 
 import './chat.scss';
 
@@ -18,10 +19,18 @@ function withRouter(Component) {
 }
 
 const Chat = props => {
-  const { setCurrentDialogId, user } = props;
+  const { setCurrentDialogId, user, fetchDialogs, updateReadedStatus } = props;
   useEffect(() => {
      const dialogId = props.router.location.pathname.split('/dialog/').pop();
-     setCurrentDialogId(dialogId);
+    setCurrentDialogId(dialogId);
+    fetchDialogs();
+    socket.on('SERVER:DIALOG_CREATED', fetchDialogs);
+    socket.on('SERVER:NEW_MESSAGE', fetchDialogs);
+    socket.on('SERVER:MESSAGES_READED', updateReadedStatus);
+    return () => {
+      socket.removeListener('SERVER:DIALOG_CREATED', fetchDialogs);
+      socket.removeListener('SERVER:NEW_MESSAGE', fetchDialogs);
+    }
   }, [props.router.location.pathname]);
   
   

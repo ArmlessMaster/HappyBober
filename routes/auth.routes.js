@@ -106,7 +106,7 @@ router.post(
             );
 
 
-            res.json({ token, accountId: account.id });
+            res.json({ token, accountId: account.id, userType: account.userType });
 
         } catch (e) {
             res.status(500).json({ message: 'Something went wrong, please try again' });

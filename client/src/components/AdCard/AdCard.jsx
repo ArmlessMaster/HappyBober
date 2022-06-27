@@ -41,10 +41,11 @@ export const AdCard = ({ ad, handleFavourite, creator, similar  }) => {
               <div className="images">
                 <ImageGallery  items={images} showThumbnails="true" thumbnailPosition='bottom' />
                 <div className="buttons">
-                 {accountId && <p style={{cursor: 'pointer'}} onClick={handleFavourite}><svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                 {accountId && <p className="p-buttons" style={{cursor: 'pointer'}} onClick={handleFavourite}><svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24.9886 8.10049C24.8964 6.37762 24.1669 4.75971 22.9344 3.54478C21.6862 2.31441 20.0573 1.63678 18.3482 1.63678C15.8046 1.63678 13.9611 3.64793 12.9707 4.72846C12.8178 4.89533 12.6386 5.09079 12.5139 5.21005C12.4141 5.10674 12.2788 4.95269 12.1543 4.81103C11.2498 3.78074 9.36745 1.63686 6.65239 1.63686C4.94324 1.63686 3.31451 2.31449 2.06628 3.54487C0.833672 4.75971 0.104059 6.37753 0.0118238 8.10049C-0.0799977 9.82055 0.359936 11.3172 1.43832 12.9536C2.29158 14.2486 4.54133 16.7773 6.90918 19.1032C8.12881 20.3012 9.25133 21.3164 10.1553 22.0392C11.6233 23.2128 12.1856 23.3633 12.5113 23.3633C12.8167 23.3633 13.3942 23.2263 14.8762 22.0425C15.7782 21.3221 16.8968 20.3084 18.1113 19.1111C20.4579 16.7978 22.6995 14.2657 23.5624 12.9533C24.2882 11.8494 25.1062 10.3003 24.9886 8.10049Z" fill="#FFCACA"/>
                   </svg>Add to favorite</p>} 
                   {!(accountId === null || accountId ===  creator._id) && <button  onClick={() => setModalActive(true)}>Report</button>}
+                  {accountId ===  creator._id && <Link to={`/editad/${ad._id}`}><button>Edit</button></Link>}
                 </div>
               </div>
               <div className="animal-info">
@@ -90,7 +91,7 @@ export const AdCard = ({ ad, handleFavourite, creator, similar  }) => {
                     </div>
                     <Link to={`/ads/${creator.firstName}/${ad.account}`}><div className="allAds">All autor ads</div></Link>
                     <div className="adCard-info-bottons">
-                    {!(accountId ===  creator._id) && <Link to={`/chat/${creator._id}/${creator.fullname}/${ad._id}`} onClick={refreshPage}><button className="botton-buy">Buy</button></Link>}
+                {!(accountId === creator._id) && <Link to={`/chat/${creator._id}/${creator.fullname}/${ad._id}`} onClick={refreshPage}><button className="botton-buy">Buy</button></Link>}
                     {(accountId ===  creator._id) && <button className="botton-buy">Buy</button>}
                       <button className="Show-phone-buy">Show Phone</button>
                     </div>
@@ -101,54 +102,13 @@ export const AdCard = ({ ad, handleFavourite, creator, similar  }) => {
                 </div>
             </div>
             <Modal active={ modalActive} setActive={setModalActive} children={<Report reportType={'ad'} ad={ad}></Report>}></Modal>
-            {accountId ===  creator._id && <Link to={`/editad/${ad._id}`}><button>Edit</button></Link>}
 
             <div className="adsList">
-            <h1>Similar Ads</h1>
-            <AdsList ads={similar}></AdsList>
-            {/* <div className="ads-List_Wrapper">
-                <div className="ads-List">
-                    <div className="adsList-flex">
-            {similar.map((similar, index) => {
-              if (similar._id !== ad._id)
-                            return (
-                                
-                                <div className="adsList-element" key={similar._id}>
-                                    <Link to={`/ad/${similar._id}`}>
-                                        <div className="img-container">
-                                            <img src={similar.picture[0]} alt="" />
-                                        </div>
-                                        <div className="adsList-element__flex">
-                                            <div>{similar.animalName}</div>
-                                            <div>{similar.price}$</div>
-                                        </div>
-                                        <div className="ads-List-element-info">
-                                            <span>{similar.gender}</span> / <span>{similar.age}</span> / <span>{similar.breed}</span>
-                                        </div>
-                                    </Link>
-            
-                                    <div className="adsList-element__flex-bottom">
-                                        <div>{similar.location}</div>
-                                        <div>
-                                            {token && <button disabled={loading} onClick={async () => {
-                                                const adId = similar._id;
-                                                try {
-                                                    await request('/api/favourites/addfavourite', 'POST', { adId }, {
-                                                        Authorization: `Bearer ${token}`
-                                                    });
-                                                } catch (e) {
+              <div className="AdCard-similar">
+                <h1>Similar Ads</h1>
+              </div>
 
-                                                }
-                                            }}>❤</button>}                                        
-                                        </div>                                        
-                                    </div>
-                                </div>
-                            )
-                        })}
-                                            </div>
-                </div >
-            </div>
-             */}
+            <AdsList ads={similar}></AdsList>
         </div>
         </div>
     )

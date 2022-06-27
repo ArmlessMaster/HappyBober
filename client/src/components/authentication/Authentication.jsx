@@ -28,7 +28,11 @@ export const Authentication = () => {
     const loginHandler = async () => {
         try {
             const data = await request('/api/auth/login', 'POST', { ...formLogin });
-            auth.login(data.token, data.accountId);
+            auth.login(data.token, data.accountId, data.userType);
+            if (data.userType === 'admin') {
+                window.location.reload();
+            }
+
         } catch (e) {
 
         }

@@ -11,11 +11,19 @@ import { AccountPage } from './pages/AccountPage/AccountPage';
 import { OtherUserAdsPage } from './pages/OtherUserAdsPage/OtherUserAdsPage';
 import { MyAdPage } from './pages/MyAdPage/MyAdPage';
 import { Chat } from './pages'
-import { LoginForm, RegisterForm } from './modules';
 import { Rules } from './pages/Rules/Rules';
 
+//
+import { AdsAdmin } from './pages/AdminPages/AdsAdmin/AdsAdmin'
+import { CreateAdAdmin } from './pages/AdminPages/CreateAdAdmin/CreateAdAdmin'
+import { EditAdAdmin } from './pages/AdminPages/EditAdAdmin/EditAdAdmin'
+//
+
+
+
 export const useRoutes = isAuthenticated => {
-    console.log(isAuthenticated)
+
+
     return (
         <Routes>
             <Route path='/ads' exact element={<AdsPage />} />
@@ -28,7 +36,7 @@ export const useRoutes = isAuthenticated => {
             <Route path='/ads/:accountname/:id' exact element={<OtherUserAdsPage />} />
             <Route path='/account/:id' exact element={<AccountPage />} />
             {isAuthenticated && <Route path='/editad/:id' exact element={<MyAdPage />} />}
-            {isAuthenticated && <Route path='/chat' exact element={<Chat />}/>}
+            {isAuthenticated && <Route path='/chat' exact element={<Chat />} />}
             {isAuthenticated && <Route path="/chat/:userid/:fullname/:adid" element={<Chat />} />}
             {isAuthenticated && <Route path="/dialog/:id" element={<Chat />} />}
             <Route path='/ads/:accountname/:id' exact element={<OtherUserAdsPage />} />
