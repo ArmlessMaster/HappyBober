@@ -111,9 +111,9 @@ export const AccountCard = ({account}) => {
                             <div className="big-flex-accountCard">
                                 <div className="flex-accountCard">
                                     <div className="left">
-                                        <div className="circle-photo">
+                                    <Link to={`/account/${rewiev.sender._id}`}><div className="circle-photo">
                                             <img src={rewiev.sender.photo}/>
-                                        </div>
+                                        </div></Link>
                                     </div>
                                     <div className="right">
                                         <p className="left-big">{rewiev.sender.firstName} {rewiev.sender.lastName}</p>

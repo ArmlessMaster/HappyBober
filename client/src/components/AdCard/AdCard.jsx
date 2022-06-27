@@ -80,9 +80,8 @@ export const AdCard = ({ ad, handleFavourite, creator  }) => {
                       </div>
                     </div>
                     <Link to={`/ads/${creator.firstName}/${ad.account}`}><div className="allAds">All autor ads</div></Link>
-                    <Link to={`/chat/${creator._id}/${creator.fullname}/${ad._id}`}><div className="allAds">Write a message</div></Link>
                     <div className="adCard-info-bottons">
-                      <button className="botton-buy">Buy</button>
+                    {!(accountId === creator._id) && <Link to={`/chat/${creator._id}/${creator.fullname}/${ad._id}`}><button className="botton-buy">Buy</button></Link>}
                       <button className="Show-phone-buy">Show Phone</button>
                     </div>
                   </div>

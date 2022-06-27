@@ -6,12 +6,15 @@ import { Time, IconReaded, Avatar } from "../";
 
 import "./message.scss";
 
-const Message = ({ user, text, date, isMe, readed, attachments, isTyping, setPreviewImage }) => (
+const Message = ({ user, text, createdAt, isMe, readed, attachments, isTyping, setPreviewImage }) => (
     <div className={classNames("message", {"message--isme" : isMe, "message--is-typing" : isTyping,"message--image" : attachments && attachments.length === 1 && !text}) }>
         <div className="message__content">
             <IconReaded isMe={isMe} isReaded={readed} />
             <div className="message__avatar">
                 <Avatar user={ user }/>
+                {createdAt && <span className="message__date">
+                    <Time date={ createdAt }/>
+                    </span>}
             </div>        
             <div className="message__info">
                 {(text || isTyping) && (<div className="message__bubble">
@@ -34,10 +37,6 @@ const Message = ({ user, text, date, isMe, readed, attachments, isTyping, setPre
                         </div>
                         ))}
                     </div>)}
-                
-                {date && <span className="message__date">
-                    <Time date={ date }/>
-                </span>}
             </div>
         </div>
         </div>

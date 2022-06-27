@@ -1,13 +1,3 @@
-.circle-photo {
-  display: inline-block;
-  height: 5vw;
-  width: 5vw;
-  border-radius: 100%;
-  text-align:center;
-  overflow: hidden;
-  margin-left: 1vw;
-}
-
 .AccountCard{
   background-color: #EFEFEF;
   .big-flex-accountCard{
@@ -44,9 +34,11 @@
 }
 
 .circle-photo img{
-  width: 100%;
-  height : 133%;
-  object-fit: contain;
+  width: 5vw;
+  height: 5vw;
+  border-radius: 10vw;
+  margin-left: 1vw;
+  margin-top: 0.3vw;
  }
 
 .AccountCard-Info{
