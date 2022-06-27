@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import formatDistanceToNow from 'date-fns/formatDistanceToNow'
-import { format, isToday, isThisYear, isThisWeek } from 'date-fns'
+import { format, isToday, isThisYear } from 'date-fns'
 
 const getMessageTime = createdAt => {
     if (isToday(new Date(createdAt))) {

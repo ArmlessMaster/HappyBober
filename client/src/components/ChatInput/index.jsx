@@ -31,7 +31,7 @@ const ChatInput = props => {
             >
               <Button type="link" shape="circle" icon={<CameraOutlined />} />
             </UploadField>
-          <Button onClick={sendMessage} type="link" shape="circle" icon={<SendOutlined />} />
+            <Button onClick={sendMessage} disabled={!value} type="link" shape="circle" icon={<SendOutlined />} />
           </div>
         </div>
         {attachments.length > 0 && <div className="chat-input__attachments">

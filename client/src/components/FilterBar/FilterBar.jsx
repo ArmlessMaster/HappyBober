@@ -62,7 +62,7 @@ export const FilterBar = ({ ads, setAds, tempAds, setTempAds, type, setType }) =
     }
 
     return (
-    <div className="Filter-Bar" style={{ marginTop: '4vw' }}>
+    <div className="Filter-Bar" style={{ marginTop: '5vw' }}>
         <div className="Search-Line__flex">
                 <button className="Search-Line-border-button" onClick={toggling}>Filter</button>
                 <input 

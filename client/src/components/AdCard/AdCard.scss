@@ -196,7 +196,7 @@ transform: scale(1);
 
  .adCard-info-bottons{
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   padding-top: 1vw;
   padding-bottom: 1vw;
   button + button{

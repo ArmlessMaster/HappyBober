@@ -78,11 +78,13 @@ export const AccountCard = ({account}) => {
                     <div className="right">
                         <p className="left-big">{account.firstName} {account.lastName}</p>
                         <p className="left-medium">On HappyBober since  {account.registeredAt.substring(0, account.registeredAt.length - 14)}</p>
+                        {!(accountId === null || accountId ===  account._id) && <button onClick={() => setModalActive(true)}>Report</button>}
+                        {accountId ===  account._id && <Link to='/myaccount'><button className="AccountCard-Btn">Edit my profile</button></Link>}
                     </div>   
                 </div>
                 <div className="right-region">
                     <img src={RegionSvg} alt=""/>
-                    <span>{account.region}</span>
+                    <div>{account.region}</div>
                 </div>
             </div>
             
@@ -106,7 +108,7 @@ export const AccountCard = ({account}) => {
             <div className="AccountCard-Info">
                 <p className="AccountCard-Info-Elem__Main">Rewiws:</p>
                 <div className="flex-accountCard-btns">                
-                    {!(accountId === account._id ) && <button onClick={()=>{setComplain(false); setRewiewActive(true); }} >Add Rewiew</button>}
+                    {!(accountId === account._id ) && <button className="AccountCard-Line-full-button" onClick={()=>{setComplain(false); setRewiewActive(true); }} >Add Rewiew</button>}
                 </div>
                 {rewievs.slice(0, visible).map((rewiev, index) => {
                
@@ -132,66 +134,11 @@ export const AccountCard = ({account}) => {
                     </div>
                     )
                 })}
-                {/* <div className="rewiew-list">
-                    <div className="rewiew-element">
-                        <div className="big-flex-accountCard">
-                            <div className="flex-accountCard">
-                                <div className="left">
-                                    <div className="circle-photo">
-                                        <img src={account.photo}/>
-                                    </div>
-                                </div>
-                                <div className="right">
-                                    <p className="left-big">{account.firstName} {account.lastName}</p>
-                                    <p className="left-medium">On HappyBober since  {account.registeredAt.substring(0, account.registeredAt.length - 14)}</p>
-                                </div>   
-                            </div>
-                        </div>
-                        <p className="Rewiws-Element-text">Rewiew description. Rewiew description. Rewiew description. Rewiew description. Rewiew description. Rewiew description.</p>
-                    </div>
-                </div> */}
-                {/* <div className="rewiew-list">
-                    <div className="rewiew-element">
-                        <div className="big-flex-accountCard">
-                            <div className="flex-accountCard">
-                                <div className="left">
-                                    <div className="circle-photo">
-                                        <img src={account.photo}/>
-                                    </div>
-                                </div>
-                                <div className="right">
-                                    <p className="left-big">{account.firstName} {account.lastName}</p>
-                                    <p className="left-medium">On HappyBober since  {account.registeredAt.substring(0, account.registeredAt.length - 14)}</p>
-                                </div>   
-                            </div>
-                        </div>
-                        <p className="Rewiws-Element-text">Rewiew description. Rewiew description. Rewiew description. Rewiew description. Rewiew description. Rewiew description.</p>
-                    </div>
-                </div>
-                <div className="rewiew-list">
-                    <div className="rewiew-element">
-                        <div className="big-flex-accountCard">
-                            <div className="flex-accountCard">
-                                <div className="left">
-                                    <div className="circle-photo">
-                                        <img src={account.photo}/>
-                                    </div>
-                                </div>
-                                <div className="right">
-                                    <p className="left-big">{account.firstName} {account.lastName}</p>
-                                    <p className="left-medium">On HappyBober since  {account.registeredAt.substring(0, account.registeredAt.length - 14)}</p>
-                                </div>   
-                            </div>
-                        </div>
-                        <p className="Rewiws-Element-text">Rewiew description. Rewiew description. Rewiew description. Rewiew description. Rewiew description. Rewiew description.</p>
-                    </div>
-                </div> */}
                 <div className="flex-accountCard-btns">               
-                    <button style={rewievs.length > 0 && visible >= rewievs.length ? {display: 'none'} : {display: 'all'}} onClick={showMoreItems}>More</button>
+                    <button className="AccountCard-Line-border-button" style={rewievs.length > 0 && visible >= rewievs.length ? {display: 'none'} : {display: 'all'}} onClick={showMoreItems}>More</button>
                 </div>
             </div>
-            {!(accountId === null || accountId ===  account._id) && <button onClick={() => setModalActive(true)}>Report</button>}
-            {accountId ===  account._id && <Link to='/myaccount'><button>Edit my profile</button></Link>}
+
             <Modal active={ modalActive} setActive={setModalActive} children={<Report reportType={'user'} account={account}></Report>}></Modal>
             <Modal active={rewiewActive} setActive={setRewiewActive} children={<RewievForm complain={complain} setComplain={setComplain} receiver={account._id} sender={accountId} setRewievs={setRewievs} token={token} ></RewievForm>}></Modal>
         </div>

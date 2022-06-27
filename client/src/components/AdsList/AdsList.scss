@@ -64,19 +64,54 @@
   }
   .adsList-element__flex-bottom{
     display: flex;
-    margin-top: 1.5vw;
     justify-content: space-between;
+  
     margin-right: 0.8vw;
     margin-left: 1.2vw;
     div{
       font-weight: 400;
       font-size: 0.6vw;
+      
     }
-    button{
+    .ad-btn{
+      top: 0;
+      font-size: 0.8vw;
+      line-height: 1.2vw;
+
+      margin-right: 0.7vw;
+
+      background: transparent;
+      border-style: solid;
+      border-color: #ffe032;
+      border-radius: 0.4vw;
+      border-width: 0.13vw;
+      border-color: #b9b9b9;
+    }
+
+    .ad-btn:hover{
+      transition: 0.2s ease-in-out;
+      border-color: #ffe032;;
+    }
+    .heart-btn{
+      padding-bottom: .1vw;
       border: none;
       background-color: transparent;
       color: #FCB7B7;
       font-size: 1.8vw;
+      line-height: 2vw;
+      margin-top: 1.4vw;
+      transition: 0.2s ease-in-out;
+      p{
+
+      }
+    }
+
+    .heart-btn:hover{
+      color: #ff5858;
     }
   }
+}
+
+.adsList-element__flex-left{
+  margin-top: 2vw;
 }

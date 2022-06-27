@@ -8,7 +8,7 @@ import socket from '../core/socket';
 
 const ChatInput = (props) => {
     const { dialogs: {currentDialogId}, attachments, fetchSendMessage, setAttachments, removeAttachment, user } = props;
-    const [value, setValue] = useState("");
+    const [value, setValue] = useState(null);
 
     const sendMessage = () => {
         fetchSendMessage(value.trim(), currentDialogId, attachments.map(file => file.uid))

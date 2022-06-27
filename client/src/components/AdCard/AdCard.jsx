@@ -25,9 +25,15 @@ export const AdCard = ({ ad, handleFavourite, creator, similar  }) => {
 
   
 
-        const [galleryOpened, setGalleryOpened] = useState(true);
-        const toggleGallery = () => setGalleryOpened(!galleryOpened);
+    const [galleryOpened, setGalleryOpened] = useState(true);
+    const toggleGallery = () => setGalleryOpened(!galleryOpened);
 
+    function refreshPage() {
+      setTimeout(()=>{
+          window.location.reload(false);
+      }, 1);
+    }
+  
     return (
         <div className="card">
             <div className="header"></div>
@@ -84,7 +90,7 @@ export const AdCard = ({ ad, handleFavourite, creator, similar  }) => {
                     </div>
                     <Link to={`/ads/${creator.firstName}/${ad.account}`}><div className="allAds">All autor ads</div></Link>
                     <div className="adCard-info-bottons">
-                    {!(accountId ===  creator._id) && <Link to={`/chat/${creator._id}/${creator.fullname}/${ad._id}`}><button className="botton-buy">Buy</button></Link>}
+                    {!(accountId ===  creator._id) && <Link to={`/chat/${creator._id}/${creator.fullname}/${ad._id}`} onClick={refreshPage}><button className="botton-buy">Buy</button></Link>}
                     {(accountId ===  creator._id) && <button className="botton-buy">Buy</button>}
                       <button className="Show-phone-buy">Show Phone</button>
                     </div>

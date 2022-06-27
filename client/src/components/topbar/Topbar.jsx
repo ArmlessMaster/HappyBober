@@ -12,7 +12,7 @@ import { useHttp } from '../../hooks/http.hook';
 
 export const Topbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const toggling = () => { setIsOpen(!isOpen);}
+  const toggling = () => { setIsOpen(!isOpen); }
   const history = useNavigate();
   const auth = useContext(AuthContext);
   const logoutHandler = event => {
@@ -24,14 +24,14 @@ export const Topbar = () => {
   const { token, accountId } = useContext(AuthContext);
   const [modalActive, setModalActive] = useState(false);
   const [filtered, setFiltredItems] = useState(null);
+  const [complain, setComplain] = useState(true);
 
   const fetchDialogs = useCallback(async () => {
     try {
         const fetched = await request('/api/dialogs/dialogs', 'GET', null, {
             Authorization: `Bearer ${token}`
         });
-      setFiltredItems(fetched.filter(dialog => dialog.lastMessage.readed === true && dialog.lastMessage.user._id !== accountId));
-      console.log(filtered)
+      setFiltredItems(fetched.filter(dialog => dialog.lastMessage.readed === false && dialog.lastMessage.user._id !== accountId));
         } catch (e) {
 
         }
@@ -41,9 +41,14 @@ export const Topbar = () => {
       fetchDialogs();
     }, [fetchDialogs]);
   
-  
+  function refreshPage() {
+    setTimeout(()=>{
+        window.location.reload(false);
+    }, 1);
+  }
   
   return (
+
     <div className='topbar'>
     <div className="background"></div>
     <div className="wrapper">
@@ -71,8 +76,6 @@ export const Topbar = () => {
            
           </NavLink> */}         
 
-
-
         </div>
         {auth.isAuthenticated &&<div className ="DropDownHeader" onClick={toggling}> <img className="account-img" src={Account} alt="" /></div>}
 
@@ -80,19 +83,18 @@ export const Topbar = () => {
             <button style={{cursor: 'pointer'}} onClick={() => setModalActive(true)} className="DropDownHeader-Enter">Sign In</button>
           </div>}
           {auth.isAuthenticated && <div className ="DropDownContainer">
-
-            {isOpen && (
-              <div className ="DropDownListContainer">
-                <ul className = "DropDownList">
-                <li className = "ListItem"><NavLink to={`/account/${auth.accountId}`}>My account</NavLink></li>
-                  <li className = "ListItem"><NavLink to="/myaccount">Options</NavLink></li>
-                  <li className = "ListItem"><NavLink to="/myads">My Ads</NavLink></li>
-                  <li className="ListItem"><NavLink to="/createad">Create Ad</NavLink></li>
-                  {filtered.length > 0 ? <li className = "ListItem"><NavLink to="/chat">My chat</NavLink></li> : <li className = "ListItem"><NavLink to="/chat">My chat (new)</NavLink></li>}
-                  <li className = "ListItem" style={{cursor: 'pointer'}} onClick={logoutHandler}>Exit</li>
-                </ul>
-              </div>
-            )}
+              {isOpen && (
+                <div className ="DropDownListContainer">
+                  <ul className = "DropDownList">
+                  <li className = "ListItem"><NavLink to={`/account/${auth.accountId}`}>My account</NavLink></li>
+                    <li className = "ListItem"><NavLink to="/myaccount">Options</NavLink></li>
+                    <li className = "ListItem"><NavLink to="/myads">My Ads</NavLink></li>
+                    <li className="ListItem"><NavLink to="/createad">Create Ad</NavLink></li>
+                    {filtered.length === 0 ? <li className="ListItem"><NavLink to="/chat" onClick={refreshPage}>My chat</NavLink></li> : <li className = "ListItem"><NavLink to="/chat" onClick={refreshPage}>My chat (new)</NavLink></li>}
+                    <li className = "ListItem" style={{cursor: 'pointer'}} onClick={logoutHandler}>Exit</li>
+                  </ul>
+                </div>
+              )}
           </div>}
       </div>
     </div>

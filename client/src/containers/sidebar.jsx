@@ -19,9 +19,9 @@ const SidebarContainer = ({ user }) => {
     
     useEffect(() => {
         if (closeActive) {
-            if (performance.navigation.type === 0) {
+            if (window.location.href.indexOf("%20") > -1) {
                 setVisible(true);
-              }
+            }
         }
     });
 
