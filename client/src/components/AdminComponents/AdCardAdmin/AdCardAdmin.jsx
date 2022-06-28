@@ -1,12 +1,9 @@
 import React, { useState, useContext } from "react";
 import '../../AdCard/AdCard.scss';
 import ImageGallery from 'react-image-gallery';
-import { Modal } from "../../modal/Modal";
-import { Report } from "../../report/Report";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
 import { useHttp } from "../../../hooks/http.hook";
-import { AdsList } from "../../AdsList/AdsList";
 
 export const AdCardAdmin = ({ ad, creator, similar }) => {
 

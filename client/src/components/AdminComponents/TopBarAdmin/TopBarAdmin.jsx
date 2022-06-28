@@ -1,7 +1,7 @@
-import "./TopBarAdmin.scss";
+import "../../topbar/topbar.scss";
 import Logo from "../../../img/Logo.png";
 import Account from "../../../img/Account.svg";
-import React, { useContext, useState, useEffect, useCallback } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
 
@@ -24,9 +24,7 @@ export const TopBarAdmin = () => {
             <div className="background"></div>
             <div className="wrapper">
                 <div className="logo">
-                    <NavLink to="/mainpage">
-                        <img className="logo__img" src={Logo} alt="" />
-                    </NavLink>
+                    <img className="logo__img" src={Logo} alt="" />
                 </div>
                 <ul className="menu-list">
                     <li className="menu-list__item">
@@ -57,7 +55,7 @@ export const TopBarAdmin = () => {
                         {isOpen && (
                             <div className="DropDownListContainer">
                                 <ul className="DropDownList">
-                                    <li className="ListItem"><NavLink to={`/admin/editaccount/${auth.accountId}`}>My account</NavLink></li>
+                                    <li className="ListItem"><NavLink to={`/admin/edit/account/${auth.accountId}`}>My account</NavLink></li>
                                     <li className="ListItem" style={{ cursor: 'pointer' }} onClick={logoutHandler}>Exit</li>
                                 </ul>
                             </div>

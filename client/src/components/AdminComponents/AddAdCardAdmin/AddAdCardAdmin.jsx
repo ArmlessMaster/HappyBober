@@ -1,8 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Modal } from "../modal/Modal";
-import { Report } from "../report/Report";
 import { AuthContext } from "../../context/AuthContext";
-import { Link } from "react-router-dom";
 import { FireBaseUploader } from '../FireBaseUploader/FireBaseUploader';
 import { useHttp } from "../../hooks/http.hook";
 import { storage } from "../../firebase/firebase";
