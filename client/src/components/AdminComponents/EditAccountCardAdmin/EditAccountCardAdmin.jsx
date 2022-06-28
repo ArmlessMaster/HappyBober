@@ -113,7 +113,7 @@ export const EditAccountCardAdmin = ({ account }) => {
                     <img src={preview}></img>
                 </div>
                 <button className="account__input-Button" style={accountData.photo === '' ? { display: 'none' } : { display: 'all' }} onClick={() => {
-                    setAccountData({ ...accountData, photo: '' })
+                    setAccountData({ ...accountData, photo: '' }); setPreview(null);
                 }}>Delete Image</button>
             </div>
             <input className="account__input" value={accountData.firstName}
