@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import './AdsList.scss';
+import { Carousel } from 'antd';
+import '../AdsList/AdsList.scss';
 import { AuthContext } from "../../context/AuthContext";
 import { useHttp } from "../../hooks/http.hook";
 
-export const AdsList = ({ ads, setAds, location }) => {
-
+export const AdsListSlider = ({ ads, setAds, location }) => {
 
     const { request, loading } = useHttp();
 
@@ -21,6 +21,7 @@ export const AdsList = ({ ads, setAds, location }) => {
     if (!ads.length) {
         return <p className="center">Ads = 0</p>
     }
+
     return (
         <div className="adsList">
             {(location === 'myfavouritespage') &&
@@ -36,7 +37,7 @@ export const AdsList = ({ ads, setAds, location }) => {
                     <div className="adsList-flex">
                         {ads.slice(0, visible).map((ad, index) => {
                             return (
-                                
+                                <Carousel autoplay>
                                 <div className="adsList-element" key={ad._id}>
                                     <Link to={`/ad/${ad._id}`}>
                                         <div className="img-container">
@@ -86,6 +87,7 @@ export const AdsList = ({ ads, setAds, location }) => {
                                             </div>                                       
                                     </div>
                                 </div>
+                                </Carousel>
                             )
                         })}
 
@@ -94,9 +96,7 @@ export const AdsList = ({ ads, setAds, location }) => {
                 </div >
             </div>
             
-        </div>
-        
-        
+        </div>   
     )
 
 }
