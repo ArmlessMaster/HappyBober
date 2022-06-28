@@ -41,5 +41,29 @@ router.get('/getrewievs/:id', async (req, res) => {
     }
 });
 
+router.get('/rewievs', async (req, res) => {
+    try {
+
+        const rewievs = await Rewiev.find();
+        res.json(rewievs);
+    } catch (e) {
+
+        res.status(500).json({ message: 'Something went wrong, please try again' });
+    }
+});
+
+router.delete('/remove/:id', auth, async (req, res) => {
+    try {
+
+        const id = req.params.id;
+
+        await Rewiev.deleteOne({ _id: id });
+        res.json({ message: 'Rewiev removed' });
+    } catch (e) {
+
+        res.status(500).json({ message: 'Something went wrong, please try again' });
+    }
+});
+
 
 module.exports = router;

@@ -15,7 +15,8 @@ const UploadFiles = ({ attachments, removeAttachment }) => {
   const [state, setState] = useState({
     previewVisible: false,
     previewImage: "",
-    fileList: attachments
+    fileList: attachments,
+    
   });
 
   useEffect(() => {
@@ -45,6 +46,7 @@ const UploadFiles = ({ attachments, removeAttachment }) => {
         fileList={state.fileList}
         onPreview={handlePreview}
         onChange={handleChange}
+        onRemove={file => removeAttachment(file)}
     >
     </Upload>
     <Modal visible={state.previewVisible} title={state.previewTitle} footer={null} onCancel={handleCancel}>

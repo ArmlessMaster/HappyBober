@@ -55,7 +55,7 @@ export const AdsListAdmin = ({ ads, setAds }) => {
 
                                             }
                                         }}>remove</button>
-                                        <Link to={`/admin/editad/${ad._id}`}><button className="ad-btn">Edit</button></Link>
+                                        <Link to={`/admin/edit/ad/${ad._id}`}><button className="ad-btn">Edit</button></Link>
                                     </div>
                                 </div>
                             )

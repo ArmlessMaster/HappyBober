@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const Ad = require('../models/Ad');
-
+const Report = require('../models/Dialog');
 const router = Router();
 const auth = require('../middleware/auth.middleware');
 

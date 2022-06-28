@@ -35,6 +35,25 @@ router.post('/createreport', auth, async (req, res) => {
     }
 });
 
+router.get('/reports', async (req, res) => {
+    try {
+        const reports = await Report.find();
+        res.json(reports);
+    } catch (e) {
+        res.status(500).json({ message: 'Something went wrong, please try again' });
+    }
+});
+
+router.delete('/delete/:id', auth, async (req, res) => {
+    try {
+        const id = req.params.id;
+        await Report.deleteOne({ _id: id });
+        res.json({ message: 'Report removed' });
+    } catch (e) {
+        res.status(500).json({ message: 'Something went wrong, please try again' });
+    }
+});
+
 
 
 module.exports = router;

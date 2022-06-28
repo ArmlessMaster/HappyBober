@@ -9,6 +9,22 @@ class MessageController{
     constructor(io: socket.Server) {
         this.io = io;
     }
+
+    updateReadStatus = (res: express.Response, userId: string, dialogId: string) => {
+        MessageModel.updateMany({ dialog: dialogId, user: { $ne: userId } }, { $set: { read: true } }, (err: any) => {
+            if (err) {
+                res.status(500).json({
+                    status: "error",
+                    message: err,
+                });
+            } else {
+                this.io.emit("SERVER:MESSAGES_READED", {
+                  userId,
+                  dialogId,
+                });
+            }
+        });
+    }
     
     index = (req: any, res: express.Response) => {
         const dialogId: string = req.query.dialog as string;

@@ -36,6 +36,7 @@ const Messages = ({ currentDialogId, fetchMessages, addMessage, items, user, isL
         } else {
           setBlockHeight(220);
         }
+        console.log(attachments.length);
       }, [attachments]);
 
     useEffect(() => {

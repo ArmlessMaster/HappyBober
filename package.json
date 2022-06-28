@@ -30,6 +30,7 @@
   "devDependencies": {
     "@swc/core": "^1.2.205",
     "@swc/helpers": "^0.4.2",
+    "@types/node": "^18.0.0",
     "concurrently": "^7.2.1",
     "cross-env": "^7.0.3",
     "node-dev": "^7.4.3",

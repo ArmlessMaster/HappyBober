@@ -29,10 +29,26 @@ export const TopBarAdmin = () => {
                     </NavLink>
                 </div>
                 <ul className="menu-list">
-                    <li className="menu-list__item"><div className="menu-list__item-text"><NavLink to="/admin/ads">Ads</NavLink></div></li>
-                    <li className="menu-list__item"><div className="menu-list__item-text"><NavLink to="/admin/users">Users</NavLink></div></li>
-                    <li className="menu-list__item"><div className="menu-list__item-text"><NavLink to="/admin/reports">Reports</NavLink>t</div></li>
-                    <li className="menu-list__item"><div className="menu-list__item-text"><NavLink to="/admin/statistics">Statistics</NavLink></div></li>
+                    <li className="menu-list__item">
+                        <div className="menu-list__item-text">
+                            <NavLink to="/admin/ads">Ads</NavLink>
+                        </div>
+                    </li>
+                    <li className="menu-list__item">
+                        <div className="menu-list__item-text">
+                            <NavLink to="/admin/users">Users</NavLink>
+                        </div>
+                    </li>
+                    <li className="menu-list__item">
+                        <div className="menu-list__item-text">
+                            <NavLink to="/admin/reports">Reports</NavLink>
+                        </div>
+                    </li>
+                    <li className="menu-list__item">
+                        <div className="menu-list__item-text">
+                            <NavLink to="/admin/statistics">Statistic</NavLink>
+                        </div>
+                    </li>
                 </ul>
                 <div className="right">
                     <div className="DropDownHeader" onClick={toggling}> <img className="account-img" src={Account} alt="" /></div>

@@ -6,7 +6,7 @@ import { UserCtrl, DialogCtrl, MessageCtrl, UploadFileCtrl } from "../controller
 import { updateLastSeen, checkAuth } from '../middlewares';
 import { loginValidation, registerValidation } from '../utils/validations';
 
-import uploader from './uploader';
+import uploader from './multer';
 
 export default (app:express.Express, io: socket.Server) =>{
    

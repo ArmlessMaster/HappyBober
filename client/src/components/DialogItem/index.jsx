@@ -45,7 +45,7 @@ const DialogItem = ({ _id, userId, author, partner, isMe, currentDialogId, lastM
           <p>
             { renderLastMessage(lastMessage, userId) }
           </p>
-          {lastMessage.user._id === userId ? <IconReaded isMe={isMe || !isMe} isReaded={lastMessage.readed} /> : lastMessage.readed ? '' : <div className="dialogs__item-info-bottom-count">new</div>}
+          {lastMessage.user._id === userId ? <IconReaded isMe={isMe || !isMe} isReaded={lastMessage.readed} /> : lastMessage.readed || currentDialogId === _id ? '' : <div className="dialogs__item-info-bottom-count">new</div>}
         </div>
       </div>
     </div>

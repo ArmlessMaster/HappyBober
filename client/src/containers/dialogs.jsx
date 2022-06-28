@@ -23,9 +23,9 @@ const Dialogs = ({ fetchDialogs, updateReadedStatus, currentDialogId, items, use
 
   useEffect(() => {
     fetchDialogs();
+    socket.on('SERVER:MESSAGES_READED', updateReadedStatus);
     socket.on('SERVER:DIALOG_CREATED', fetchDialogs);
     socket.on('SERVER:NEW_MESSAGE', fetchDialogs);
-    socket.on('SERVER:MESSAGES_READED', updateReadedStatus);
     return () => {
       socket.removeListener('SERVER:DIALOG_CREATED', fetchDialogs);
       socket.removeListener('SERVER:NEW_MESSAGE', fetchDialogs);
