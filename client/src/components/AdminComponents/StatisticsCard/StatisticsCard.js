@@ -11,7 +11,7 @@ import { useHttp } from "../../../hooks/http.hook";
 import { Loader } from "../../Loader/Loader";
 import { RewievForm } from "../../RewievForm/RewievForm";
 import './StatisticsCard.scss'
-
+import { UserOutlined } from '@ant-design/icons';
 
 export const StatisticsCard = ({ ads, accounts, rewievs, reports }) => {
 
@@ -21,15 +21,13 @@ export const StatisticsCard = ({ ads, accounts, rewievs, reports }) => {
     const numberOfRewievs = rewievs.length;
     const numberOfReports = reports.length;
 
-    //
+    // subscribers
+    const numberOfSubscribers = 0;
+    accounts.forEach((item) => { if (item.isSubscriber) numberOfSubscribers++ })
 
     return (
-        <div style={{ marginTop: '50px' }}>
+        <div style={{ marginTop: '75px', marginBottom: '50px' }}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr  1fr' }}>
-                <h2>Number of ads <strong>{numberOfAds}</strong></h2>
-                <h2>Number of accounts <strong>{numberOfAccounts}</strong></h2>
-                <h2>Number of rewievs <strong>{numberOfRewievs}</strong></h2>
-                <h2>Number of reports <strong>{numberOfReports}</strong></h2>
                 <div className="widget">
                     <div className="left">
                         <span className="title">Ads</span>
@@ -40,14 +38,56 @@ export const StatisticsCard = ({ ads, accounts, rewievs, reports }) => {
                     </div>
                     <div className="right">
                         <div className="percentage positive">
-
-                            123 %
                         </div>
-                        123
+                        <UserOutlined />
+                    </div>
+                </div>
+
+                <div className="widget">
+                    <div className="left">
+                        <span className="title">Accounts</span>
+                        <span className="counter">
+                            {numberOfAccounts}
+                        </span>
+                        <Link to={'/admin/accounts'}><span className="link">See all accounts</span></Link>
+                    </div>
+                    <div className="right">
+                        <div className="percentage positive">
+                        </div>
+                        <UserOutlined />
+                    </div>
+                </div>
+
+                <div className="widget">
+                    <div className="left">
+                        <span className="title">Rewievs</span>
+                        <span className="counter">
+                            {numberOfRewievs}
+                        </span>
+                        <Link to={'/admin/accounts'}><span className="link">See all accounts</span></Link>
+                    </div>
+                    <div className="right">
+                        <div className="percentage positive">
+                        </div>
+                        <UserOutlined />
+                    </div>
+                </div>
+
+                <div className="widget">
+                    <div className="left">
+                        <span className="title">Reports</span>
+                        <span className="counter">
+                            {numberOfReports}
+                        </span>
+                        <Link to={'/admin/reports'}><span className="link">See all reports</span></Link>
+                    </div>
+                    <div className="right">
+                        <div className="percentage positive">
+                        </div>
+
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }
