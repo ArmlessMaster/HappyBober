@@ -36,12 +36,15 @@ export const MyAccountCard = ({ account }) => {
         setAccountData({ ...accountData, [event.target.name]: event.target.value });
     }
 
-    const handleChangePhoto = (e) => {
+    const handleChangePhoto = async (e) => {
         for (let i = 0; i < e.target.files.length; i++) {
             const newImage = e.target.files[i];
             newImage["id"] = Math.random();
             setImages((prevState) => [...prevState, newImage]);
-
+        //
+        let file_preview = await getBase64(newImage);
+        setPreview(file_preview);
+        //
         }
     };
 
@@ -88,12 +91,26 @@ export const MyAccountCard = ({ account }) => {
 
     }
 
+     //
+     const [preview, setPreview] = useState(accountData.photo);
+     const getBase64 = (file) =>
+     new Promise((resolve, reject) => {
+       const reader = new FileReader();
+       reader.readAsDataURL(file);
+   
+       reader.onload = () => resolve(reader.result);
+   
+       reader.onerror = (error) => reject(error);
+     });
+ //
+ 
+
     return (
         <div style={{ marginTop: '5vw', display: "flex", flexDirection: 'column' }}>
             <p className="Main-Account__input-text">Accaunt Setting</p>
             <div className="account__input-flex"> 
                 <div className="account__input-ImgWrapper">
-                    <img src={accountData.photo}></img>
+                    <img src={preview}></img>
                 </div>
                 <button className="account__input-Button" style={accountData.photo === '' ? { display: 'none' } : { display: 'all' }} onClick={() => {
                 setAccountData({ ...accountData, photo: '' })
@@ -171,7 +188,8 @@ export const MyAccountCard = ({ account }) => {
                         region: (account.region ? account.region : ''),
                         description: (account.description ? account.description : ''),
                         website: (account.website ? account.website : '')
-                    })
+                    });
+                    setPreview(account.photo)
                 }} >Cancel</button>
             </div>
         </div>

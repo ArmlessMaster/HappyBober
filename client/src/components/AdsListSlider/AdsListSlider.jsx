@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { Carousel } from 'antd';
 import '../AdsList/AdsList.scss';
 import { AuthContext } from "../../context/AuthContext";
 import { useHttp } from "../../hooks/http.hook";
@@ -37,7 +36,6 @@ export const AdsListSlider = ({ ads, setAds, location }) => {
                     <div className="adsList-flex">
                         {ads.slice(0, visible).map((ad, index) => {
                             return (
-                                <Carousel autoplay>
                                 <div className="adsList-element" key={ad._id}>
                                     <Link to={`/ad/${ad._id}`}>
                                         <div className="img-container">
@@ -87,7 +85,6 @@ export const AdsListSlider = ({ ads, setAds, location }) => {
                                             </div>                                       
                                     </div>
                                 </div>
-                                </Carousel>
                             )
                         })}
 

@@ -38,12 +38,28 @@ export const EditAdCardAdmin = ({ ad }) => {
         setAdData({ ...adData, [event.target.name]: event.target.value });
     }
 
-    const handleChangePhoto = (e) => {
+    //
+    const [preview, setPreview] = useState([]);
+    const getBase64 = (file) =>
+        new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+
+            reader.onload = () => resolve(reader.result);
+
+            reader.onerror = (error) => reject(error);
+        });
+    //
+
+    const handleChangePhoto = async (e) => {
         for (let i = 0; i < e.target.files.length; i++) {
             const newImage = e.target.files[i];
             newImage["id"] = Math.random();
             setImages((prevState) => [...prevState, newImage]);
-
+            //
+            let file_preview = await getBase64(newImage);
+            setPreview((prevState) => [...prevState, file_preview]);
+            //
         }
     };
 
@@ -59,7 +75,7 @@ export const EditAdCardAdmin = ({ ad }) => {
         })
         Promise.all(promises).then(async () => {
             await request('/api/ads/updatemyad', 'POST', { ...adData }, { Authorization: `Bearer ${auth.token}` });
-        })
+        }).then(setImages([])).then(setPreview([]))
     }
 
     async function uploadImageAsPromise(image) {
@@ -173,6 +189,23 @@ export const EditAdCardAdmin = ({ ad }) => {
                                 }}>delete</button>
                             </div>
                         </div>)
+                })}{preview.map(item => {
+                    return (
+                        <div>
+                            <img width={`100px`} height={`100px`} src={`${item}`} />
+                            <button onClick={() => {
+                                let x = 0;
+                                for (let i = 0; i < preview.length; i++) {
+                                    if (preview[i] === item) {
+                                        break;
+                                    }
+                                    x++;
+                                }
+                                setPreview(preview.filter(prev => prev != item));
+                                images.splice(x, 1);
+                            }}>x</button>
+                        </div>
+                    )
                 })}
                 </div>
             </div>
@@ -200,7 +233,9 @@ export const EditAdCardAdmin = ({ ad }) => {
                         topEnd: (ad.topEnd ? ad.topEnd : null),
                         location: (ad.location ? ad.location : ''),
                         account: (ad.account ? ad.account : '')
-                    })
+                    });
+                    setPreview([]);
+                    setImages([]);
                 }} >Cancel</button>
             </div>
 
