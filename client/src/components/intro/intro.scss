@@ -65,36 +65,3 @@ $bg-img: url('../../img/Background.jpg');
       }
   }
 }
-
-.BtnWrapper-intro{
-  position: absolute;
-  height: 5vw;
-  left: 44%;
-  top: 70%;
-}
-
-.Intro-Line-full-button{
-  background: linear-gradient(-45deg, #ffe032, #72c597, #e569fe, #32b4ff);
-  background-size: 800% 400%;
-  padding: 1.5vw 2vw;
-  display: inline-block;
-  border: none;
-  border-radius: 0.4vw;
-  font-size: 1vw;
-  font-weight: 700;
-  transition: all .5s ease-in-out;
-  animation: gradient 10s infinite cubic-bezier(.62, .28, .23, .99) both;
-  transform: scale(1);
-  color: #ffffff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
-}
-
-.Intro-Line-full-button:hover {
-  animation: gradient 3s infinite;
-  transform: scale(1);
- }
- 
- .Intro-Line-full-button:active {
-  animation: gradient 3s infinite;
-  transform: scale(1);
- }

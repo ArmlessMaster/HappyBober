@@ -1,7 +1,7 @@
 import "./intro.scss"
 import background from "../../img/Background.jpg";
 import { motion } from "framer-motion";
-import Yellowbtn from "../elements/YellowBtn/Yellowbtn";
+
 
 export default function Intro() {
   const marqueeVariants = {
@@ -32,9 +32,6 @@ export default function Intro() {
                 Happy Bober. Happy Bober. Happy Bober. Happy Bober. 
               </p>
             </motion.div>
-          </div>
-          <div className="BtnWrapper-intro">
-              <button className="Intro-Line-full-button">Find a tailed friend</button>
           </div>
         </div>
       </div>

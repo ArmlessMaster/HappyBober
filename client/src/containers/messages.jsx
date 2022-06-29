@@ -68,7 +68,7 @@ const Messages = ({ currentDialogId, fetchMessages, addMessage, items, user, isL
             blockHeight={blockHeight}
             isTyping={isTyping}
             partner={
-                user._id !== currentDialogId.partner._id ? currentDialogId.author : currentDialogId.partner
+                user._id === currentDialogId.partner._id ? currentDialogId.author : currentDialogId.partner
             }
         />
     );
