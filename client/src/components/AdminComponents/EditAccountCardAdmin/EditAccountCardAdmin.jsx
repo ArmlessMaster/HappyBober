@@ -112,7 +112,7 @@ export const EditAccountCardAdmin = ({ account }) => {
                 <div className="account__input-ImgWrapper">
                     <img src={preview}></img>
                 </div>
-                <button className="account__input-Button" style={accountData.photo === '' ? { display: 'none' } : { display: 'all' }} onClick={() => {
+                <button className="button-create-delete-ac" style={accountData.photo === '' ? { display: 'none' } : { display: 'all' }} onClick={() => {
                     setAccountData({ ...accountData, photo: '' }); setPreview(null);
                 }}>Delete Image</button>
             </div>
@@ -176,7 +176,7 @@ export const EditAccountCardAdmin = ({ account }) => {
             </div>
             <div className="account__input-flex">
                 <button className="account__input-Button" disabled={loading} onClick={createAdHandler}>Save</button>
-                <button className="account__input-Button" onClick={() => {
+                <button className="account__input-Button-Border" onClick={() => {
                     setAccountData({
                         id: account._id,
                         firstName: (account.firstName ? account.firstName : ''),

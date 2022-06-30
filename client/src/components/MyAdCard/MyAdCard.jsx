@@ -185,19 +185,24 @@ export const MyAdCard = ({ ad }) => {
             <div className="adSetting-Flex">
                 <div className="adSetting-Grid">{(adData.picture).map((img) => {
                     return (
-                    <div>
-                        <img width={'200px'} height={'200px'} src={img} />
+                    <div className="account__input-wrapper">
+                            <div className="account__input-wrapper-center">
+                                <img className="account__input-wrapper-center-img" src={`${img}`}/>
+                            </div>
                         <div>
-                            <button  className="ad__input-Button" onClick={() => {
+                            <button  className="account__input-btn" onClick={() => {
                                 setAdData({ ...adData, picture: adData.picture.filter(image => image !== img) })
-                            }}>delete</button>
+                            }}>Delete</button>
                         </div>
                     </div>)
                 })} {preview.map(item => {
                     return (
-                        <div>
-                            <img width={`100px`} height={`100px`} src={`${item}`}/>
-                            <button onClick={() => {
+                        
+                        <div className="account__input-wrapper">
+                            <div className="account__input-wrapper-center">
+                                <img className="account__input-wrapper-center-img" src={`${item}`}/>
+                            </div>
+                            <button className="account__input-btn" onClick={() => {
                                 let x = 0;
                                 for (let i = 0; i < preview.length; i++) {
                                     if (preview[i] === item) {
@@ -207,7 +212,7 @@ export const MyAdCard = ({ ad }) => {
                                 }
                                 setPreview(preview.filter(prev => prev != item));
                                 images.splice(x, 1);
-                            }}>x</button>
+                            }}>Delete</button>
                         </div>
                     )
                 })}
@@ -221,7 +226,7 @@ export const MyAdCard = ({ ad }) => {
 
             <div className="account__input-flex">
                 <button className="ad__input-Button" disabled={loading} onClick={createAdHandler}>Save</button>
-                <button className="ad__input-Button"  onClick={() => {
+                <button className="account__input-Button-Border"  onClick={() => {
                     setAdData({
                         id: ad._id,
                         type: (ad.type ? ad.type : ''),

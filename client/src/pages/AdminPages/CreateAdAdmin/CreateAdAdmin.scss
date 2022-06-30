@@ -57,24 +57,32 @@
     align-items: center;
     margin: 1vw auto 5vw auto;
   }
+
   
-  .createAdPage-button{
-      align-items: center;
-    margin: 1vw auto 5vw auto;
-    margin-left: 50%;
-    margin-right: 50%;
-      border: .3vw solid #D7AE5C;
-      padding: 1.2vw 1.5vw;
-      font-weight: bold;
-  
-      background: linear-gradient(to right, #00000000 50%, #D7AE5C 50%) left;
-      background-size: 220%;
-      transition: .2s ease-in-out;
-      font-size: 1vw;
-  }
-  
-  
-  .createAdPage-button:hover{
-      background-position: right;
-  }
-  
+  .createAdPage-button {
+    margin: 1vw 50% 5vw 50%;
+    background: linear-gradient(-45deg, #ff4b96, #9f69fe, #33e4d2, #fd6ff1);
+    background-size: 800% 400%;
+    padding: 1em 2em;
+    display: inline-block;
+    border: none;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 700;
+    color: white;
+    transition: all .5s ease-in-out;
+    animation: gradient 10s infinite cubic-bezier(.62, .28, .23, .99) both;
+    margin-bottom: 1vw;
+    margin-top: 1vw;
+   }
+   
+   .createAdPage-button:hover {
+    animation: gradient 3s infinite;
+    transform: scale(1.05);
+   }
+   
+   .createAdPage-button:active {
+    animation: gradient 3s infinite;
+    transform: scale(0.8);
+   }
+   

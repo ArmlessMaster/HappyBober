@@ -70,8 +70,8 @@ export const AccountsListAdmin = ({ accounts, setAccounts }) => {
                                     </div>
                                 </div>
                                 <p className="Rewiws-Element-text">{account.firstName} {account.lastName}</p>
-                                <div style={{ display: 'flex' }}>
-                                    <button onClick={async () => {
+                                <div style={{ display: 'flex'}}>
+                                    <button className="Element-text-buttons" onClick={async () => {
                                         try {
                                             await request(`/api/account/delete/${account._id}`, 'DELETE', null, {
                                                 Authorization: `Bearer ${token}`

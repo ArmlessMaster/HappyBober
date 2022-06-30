@@ -4,7 +4,6 @@ import { FireBaseUploader } from '../../FireBaseUploader/FireBaseUploader';
 import { useHttp } from "../../../hooks/http.hook";
 import { storage } from "../../../firebase/firebase";
 import { RadioButton } from "../../RadioButton/RadioButton";
-import "./EditAdCardAdmin.scss"
 
 
 
@@ -181,19 +180,24 @@ export const EditAdCardAdmin = ({ ad }) => {
             <div className="adSetting-Flex">
                 <div className="adSetting-Grid">{(adData.picture).map((img) => {
                     return (
-                        <div>
-                            <img width={'200px'} height={'200px'} src={img} />
-                            <div>
-                                <button className="ad__input-Button" onClick={() => {
-                                    setAdData({ ...adData, picture: adData.picture.filter(image => image !== img) })
-                                }}>delete</button>
+                    <div className="account__input-wrapper">
+                            <div className="account__input-wrapper-center">
+                                <img className="account__input-wrapper-center-img" src={`${img}`}/>
                             </div>
-                        </div>)
-                })}{preview.map(item => {
-                    return (
                         <div>
-                            <img width={`100px`} height={`100px`} src={`${item}`} />
-                            <button onClick={() => {
+                            <button  className="account__input-btn" onClick={() => {
+                                setAdData({ ...adData, picture: adData.picture.filter(image => image !== img) })
+                            }}>Delete</button>
+                        </div>  
+                    </div>)
+                })} {preview.map(item => {
+                    return (
+                        
+                        <div className="account__input-wrapper">
+                            <div className="account__input-wrapper-center">
+                                <img className="account__input-wrapper-center-img" src={`${item}`}/>
+                            </div>
+                            <button className="account__input-btn" onClick={() => {
                                 let x = 0;
                                 for (let i = 0; i < preview.length; i++) {
                                     if (preview[i] === item) {
@@ -203,7 +207,7 @@ export const EditAdCardAdmin = ({ ad }) => {
                                 }
                                 setPreview(preview.filter(prev => prev != item));
                                 images.splice(x, 1);
-                            }}>x</button>
+                            }}>Delete</button>
                         </div>
                     )
                 })}

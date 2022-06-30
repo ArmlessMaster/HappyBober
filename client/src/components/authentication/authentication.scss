@@ -5,7 +5,7 @@
     .item{
       margin-left: 2vw;
       div{
-        margin-top: 40px;
+        margin-top: 2.3vw;
         .input-login{
           color: #3a3a3a;
           display: block;
@@ -28,29 +28,35 @@
       img{
         width: 25vw;
         margin-left: 1vw;
-        margin-top: 2vw;
+        margin-top: 4vw;
       }
       
     }
     .sign-up__button{
-      align-items: center;
-      margin: auto auto;
-      border: .2vw solid #D7AE5C;
-      padding: 0.5vw 1.5vw;
-      font-weight: bold;
-    
-      background: linear-gradient(to right, #00000000 50%, #D7AE5C 50%) left;
-      background-size: 200%;
-      transition: .2s ease-in-out;
-      font-size: 1vw;
+      background: linear-gradient(-45deg, #ffe032, #f3d965, #fecf69, #f1ff32);
+      background-size: 800% 400%;
+      padding: 1vw 2vw;
+      display: inline-block;
+      border: none;
+      border-radius: 0.4vw;
+      font-size: 0.9vw;
+      font-weight: 700;
+      transition: all .5s ease-in-out;
+      animation: gradient 10s infinite cubic-bezier(.62, .28, .23, .99) both;
+      transform: scale(1);
+      margin-bottom: 1vw;
     }
     
-    
-    .sign-up__button:hover{
-      background-position: right;
-    }
-    
-  
+    .sign-up__button:hover {
+      animation: gradient 3s infinite;
+      transform: scale(1);
+     }
+     
+     .sign-up__button:active {
+      animation: gradient 3s infinite;
+      transform: scale(1);
+     }
+
     .display-buttons{
       button{
         margin-right: 16vw;

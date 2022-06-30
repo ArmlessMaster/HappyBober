@@ -17,8 +17,8 @@ export const StatisticsCard = ({ ads, accounts, rewievs, reports }) => {
     accounts.forEach((item) => { if (item.isSubscriber) numberOfSubscribers++ })
 
     return (
-        <div style={{ marginTop: '75px', marginBottom: '50px' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr  1fr' }}>
+        <div style={{ marginTop: '5vw', marginBottom: '5vw'}}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr' }}>
                 <div className="widget">
                     <div className="left">
                         <span className="title">Ads</span>

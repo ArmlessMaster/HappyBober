@@ -5,7 +5,6 @@ import { RadioButton } from '../../components/RadioButton/RadioButton';
 import { FireBaseUploader } from '../../components/FireBaseUploader/FireBaseUploader';
 import { storage } from '../../firebase/firebase';
 import './CreateAdPage.scss';
-import YellowBtn from '../../components/elements/YellowBtn/Yellowbtn';
 
 export const CreateAdPage = () => {
 
@@ -111,26 +110,32 @@ export const CreateAdPage = () => {
                 <div className="left">
                     <FireBaseUploader handleChange={handleChange} isMultiple={true}>
                     </FireBaseUploader>
-                    {preview.map(item => {
-                    return (
-                        <div>
-                            <img width={`100px`} height={`100px`} src={`${item}`}/>
-                            <button onClick={() => {
-                                let x = 0;
-                                for (let i = 0; i < preview.length; i++) {
-                                    if (preview[i] === item) {
-                                        break;
-                                    }
-                                    x++;
-                                }
-                                setPreview(preview.filter(prev => prev != item));
-                                images.splice(x, 1);
-                            }}>x</button>
-                        </div>
-                    )
-                })}
-                </div>
+                    <div className='create-left-grid'>
+                        {preview.map(item => {
 
+                        return (
+                            <div className='imgs-wrapper'>
+                                <div  className='imgs-wrapper-flex'>
+                                    <img src={`${item}`}/>
+                                </div>
+                                <div className='imgs-wrapper-flex'>
+                                    <div className='button-create-wrapper'><button className='button-create-delete' onClick={() => {
+                                        let x = 0;
+                                        for (let i = 0; i < preview.length; i++) {
+                                            if (preview[i] === item) {
+                                                break;
+                                            }
+                                            x++;
+                                        }
+                                        setPreview(preview.filter(prev => prev != item));
+                                        images.splice(x, 1);
+                                    }}>X</button></div>
+                                </div>
+                            </div>
+                            )
+                        })}
+                    </div>
+                </div>
 
                 <div className="right">
                     <div >

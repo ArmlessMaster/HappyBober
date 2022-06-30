@@ -7,8 +7,10 @@ import About from "../../components/about/About"
 import Bober from "../../components/bober+/bober"
 import Contact from "../../components/contact/Contact";
 import { AdsList } from "../../components/AdsList/AdsList";
-import { AdsListSlider } from "../../components/AdsListSlider/AdsListSlider";
+import Yellowbtn from "../../components/elements/YellowBtn/Yellowbtn";
+
 import "./MainPage.scss";
+
 import "../../App.scss"
 
 export const MainPage = () => {
@@ -57,8 +59,13 @@ const fetchAds = useCallback(async () => {
       <div className="app">
         <div className="sections">
           <Intro />
-          <AdsListSlider ads={ads}/>
+          <div className="Btn-Flex">          
+            <p className="MainPage-BigText">New ads special for You</p>
+          </div>
           <AdsList ads={ads} />
+          <div className="Btn-Flex">          
+            <Yellowbtn info="More"/>
+          </div>
           <About account={account}/>
           <Bober account={account}/>
           <Mobile/>

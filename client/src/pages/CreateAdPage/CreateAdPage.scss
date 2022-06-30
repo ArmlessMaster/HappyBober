@@ -58,22 +58,77 @@
   margin: 1vw auto 5vw auto;
 }
 
-.createAdPage-button{
-	align-items: center;
-  margin: 1vw auto 5vw auto;
-  margin-left: 50%;
-  margin-right: 50%;
-	border: .3vw solid #D7AE5C;
-	padding: 1.2vw 1.5vw;
-	font-weight: bold;
 
-	background: linear-gradient(to right, #00000000 50%, #D7AE5C 50%) left;
-	background-size: 220%;
-	transition: .2s ease-in-out;
-	font-size: 1vw;
+.createAdPage-button {
+  background: linear-gradient(-45deg, #ff4b96, #9f69fe, #33e4d2, #fd6ff1);
+  background-size: 800% 400%;
+  padding: 1em 2em;
+  display: inline-block;
+  border: none;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  color: white;
+  transition: all .5s ease-in-out;
+  animation: gradient 10s infinite cubic-bezier(.62, .28, .23, .99) both;
+  margin-bottom: 1vw;
+  margin-top: 1vw;
+ }
+ 
+ .createAdPage-button:hover {
+  animation: gradient 3s infinite;
+  transform: scale(1.05);
+ }
+ 
+ .createAdPage-button:active {
+  animation: gradient 3s infinite;
+  transform: scale(0.8);
+ }
+ 
+
+
+.create-left-grid{
+  display: grid;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+  grid-template-columns: 10vw 10vw 10vw;
+  
 }
 
+.button-create-wrapper{
+  display: flex;
 
-.createAdPage-button:hover{
-	background-position: right;
+}
+
+.button-create-delete{
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+  color: black;
+  padding: 0.05vw 1vw;
+  background: #f1f1f1;
+  border-style: solid;
+  border-color: #868686;
+  border-radius: 0.2vw;
+  border-width: 0.1vw;
+  font-size: 0.9vw;
+  font-weight: 700;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15)
+}
+.button-create-delete:hover{
+  background: #dbdbdb;
+}
+.imgs-wrapper{
+
+}
+
+.imgs-wrapper-flex{
+  display: flex;
+  justify-content: center;
+  img{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 0.4vw;
+    height: 8vw;
+    width: 8vw;
+  }
+
 }

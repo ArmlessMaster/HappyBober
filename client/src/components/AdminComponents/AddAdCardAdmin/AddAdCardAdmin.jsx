@@ -4,8 +4,6 @@ import { FireBaseUploader } from '../FireBaseUploader/FireBaseUploader';
 import { useHttp } from "../../hooks/http.hook";
 import { storage } from "../../firebase/firebase";
 import { RadioButton } from "../RadioButton/RadioButton";
-import "./AddAdCardAdmin.scss"
-
 
 
 
