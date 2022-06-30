@@ -12,6 +12,7 @@ export const AdCard = ({ ad, handleFavourite, creator, similar  }) => {
 
   const [modalActive, setModalActive] = useState(false);
   const { accountId, token } = useContext(AuthContext);
+  const [phone, setPhone] = useState('Show phone');
   const { request, loading } = useHttp();
 
 
@@ -91,9 +92,9 @@ export const AdCard = ({ ad, handleFavourite, creator, similar  }) => {
                     </div>
                     <Link to={`/ads/${creator.firstName}/${ad.account}`}><div className="allAds">All autor ads</div></Link>
                     <div className="adCard-info-bottons">
-                {!(accountId === creator._id) && <Link to={`/chat/${creator._id}/${creator.fullname}/${ad._id}`} onClick={refreshPage}><button className="botton-buy">Buy</button></Link>}
+                    {!(accountId === creator._id) && <Link to={`/chat/${creator._id}/${creator.fullname}/${ad._id}`} onClick={refreshPage}><button className="botton-buy">Buy</button></Link>}
                     {(accountId ===  creator._id) && <button className="botton-buy">Buy</button>}
-                      <button className="Show-phone-buy">Show Phone</button>
+                      <button className="Show-phone-buy" onClick={()=>{setPhone(creator.phone)}}>{phone}</button>
                     </div>
                   </div>
                   <div className="location-card">

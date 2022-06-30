@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useHttp } from "../../hooks/http.hook";
 import "./authentication.scss"
-import YellowBtn from '../elements/YellowBtn/Yellowbtn';
+import { openNotification } from '../../utils/helper';
 import Image from '../../img/Dog and rat vector.svg'
 import Logo from '../../img/logo1.svg'
 export const Authentication = () => {
@@ -32,9 +32,9 @@ export const Authentication = () => {
             if (data.userType === 'admin') {
                 window.location.reload();
             }
-
+            openNotification({ text: 'Authentication', type: 'success' });
         } catch (e) {
-
+            openNotification({ text: 'Error authentication', type: 'error' });
         }
     }
 
@@ -42,8 +42,9 @@ export const Authentication = () => {
         try {
             const data = await request('/api/auth/register', 'POST', { ...formRegister });
             console.log(data);
+            openNotification({ text: 'Registration', type: 'success' });
         } catch (e) {
-
+            openNotification({ text: 'Error registration', type: 'error' });
         }
     }
 

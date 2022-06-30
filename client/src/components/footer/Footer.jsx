@@ -1,6 +1,5 @@
+import { NavLink } from "react-router-dom";
 import "./footer.scss"
-
-
 
 export const Footer = () => {
   return (
@@ -23,10 +22,10 @@ export const Footer = () => {
         <p  className="center-text">Aesthetically and Masculinity</p>
         <p className="text-bold">Happy Bober</p>
         <ul className="menu-list">
-          <li>Contact</li>
-          <li>Privacy</li>
-          <li>Dimensions</li>
-          <li>Сooperation</li>
+          <li onClick={() => {window.scrollTo({ top: 4500, behavior: "smooth"})}}><NavLink to="/mainpage">Contact</NavLink></li>
+          <li onClick={() => {window.scrollTo({ top: 0, behavior: "smooth" })}}><NavLink to="/rules">Rules</NavLink></li>
+          <li onClick={() => {window.scrollTo({ top: 0, behavior: "smooth" })}}><NavLink to="/teampage">About</NavLink></li>
+          <li onClick={() => {window.scrollTo({top: 2500, behavior: "smooth"})}}><NavLink to="/mainpage">Bilibober+</NavLink></li>
         </ul>
         <p className="text-low">Create by Bilibober Co. 2022</p>
       </div>

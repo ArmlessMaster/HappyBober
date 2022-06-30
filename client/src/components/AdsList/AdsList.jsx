@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import './AdsList.scss';
 import { AuthContext } from "../../context/AuthContext";
 import { useHttp } from "../../hooks/http.hook";
+import { openNotification } from '../../utils/helper';
 
 export const AdsList = ({ ads, setAds, location }) => {
 
@@ -54,12 +55,28 @@ export const AdsList = ({ ads, setAds, location }) => {
                                     <div className="adsList-element__flex-bottom">
                                         <div className="adsList-element__flex-left">{ad.location}</div>
                                         <div className="adsList-element__flex-right">                                      
-                                            {(location === 'myadspage') && <button className="ad-btn" disabled={loading} onClick={async () => {
+                                        
+
+                                                {token && <button className="heart-btn" disabled={loading} onClick={async () => {
+                                                    const adId = ad._id;
+                                                    try {
+                                                        await request('/api/favourites/addfavourite', 'POST', { adId }, {
+                                                            Authorization: `Bearer ${token}`
+                                                        });
+                                                        openNotification({ text: 'Favourite added', type: 'success' });
+                                                    } catch (e) {
+
+                                                    }}}><p>❤</p></button>}  
+                                            </div>                                       
+                                    </div>
+                                    <div className="flex-admins-buttons">
+                                    {(location === 'myadspage') && <button className="ad-btn" disabled={loading} onClick={async () => {
                                                     try {
                                                         await request(`/api/ads/adremove/${ad._id}`, 'DELETE', null, {
                                                             Authorization: `Bearer ${token}`
                                                         });
                                                         setAds(ads.filter(item => item._id !== ad._id))
+                                                        openNotification({ text: 'Favourite removed', type: 'success' });
                                                     } catch (e) {
 
                                                     }
@@ -73,24 +90,15 @@ export const AdsList = ({ ads, setAds, location }) => {
 
                                                     }}}>Remove</button>}
                                                 {(location === 'myadspage') && <Link to={`/editad/${ad._id}`}><button className="ad-btn" >Edit</button></Link>}  
-
-                                                {token && <button className="heart-btn" disabled={loading} onClick={async () => {
-                                                    const adId = ad._id;
-                                                    try {
-                                                        await request('/api/favourites/addfavourite', 'POST', { adId }, {
-                                                            Authorization: `Bearer ${token}`
-                                                        });
-                                                    } catch (e) {
-
-                                                    }}}><p>❤</p></button>}  
-                                            </div>                                       
                                     </div>
                                 </div>
                             )
                         })}
 
                     </div>
-                    <button style={ads.length > 0 && visible >= ads.length ? {display: 'none'} : {display: 'all'}} onClick={showMoreItems}>More</button>
+                    <div className="flex-admins-buttons">
+                        <button className="Ad-Line-border-button" style={ads.length > 0 && visible >= ads.length ? {display: 'none'} : {display: 'all'}} onClick={showMoreItems}>More</button>
+                    </div>
                 </div >
             </div>
             

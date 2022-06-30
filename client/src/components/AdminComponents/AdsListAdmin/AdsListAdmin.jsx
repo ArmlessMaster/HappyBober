@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import '../../AdsList/AdsList.scss';
 import { AuthContext } from "../../../context/AuthContext";
 import { useHttp } from "../../../hooks/http.hook";
-import Select from 'react-select';
+import { openNotification } from '../../../utils/helper';
 
 export const AdsListAdmin = ({ ads, setAds }) => {
 
@@ -36,7 +36,7 @@ export const AdsListAdmin = ({ ads, setAds }) => {
                                     </div>
                                     <div className="adsList-element__flex">
                                         <div>{ad.animalName}</div>
-                                        <div>{ad.price}$</div>
+                                        {ad.price === 0 ? <div>free</div> : <div>{ad.price}₴</div>}
                                     </div>
                                     <div className="ads-List-element-info">
                                         <span>{ad.gender}</span> / <span>{ad.age}</span> / <span>{ad.breed}</span>
@@ -50,6 +50,7 @@ export const AdsListAdmin = ({ ads, setAds }) => {
                                                 await request(`/api/ads/adremove/${ad._id}`, 'DELETE', null, {
                                                     Authorization: `Bearer ${token}`
                                                 });
+                                                openNotification({ text: 'Favourite removed', type: 'success' });
                                                 setAds(ads.filter(item => item._id !== ad._id))
                                             } catch (e) {
 

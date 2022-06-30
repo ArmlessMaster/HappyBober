@@ -24,6 +24,7 @@
     background-color: #FFFFFF;
     margin-top: 1.5vw;
     margin-bottom: 1.5vw;
+    margin-left: 1.4vw;
     border-radius: 1vw;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     transition: .2s ease-in-out;
@@ -57,15 +58,21 @@
   .ads-List-element-info{
     font-weight: 700;
     font-size: 0.8vw;
+    height: 2vw;
     margin-left: 1.2vw;
     margin-top: 1vw;
+    margin-right: 1.2vw;
     text-transform: uppercase;
     color: #5E5E5E;
+
+    span{
+      text-overflow: ellipsis;
+    }
   }
   .adsList-element__flex-bottom{
     display: flex;
     justify-content: space-between;
-  
+    height: 1.5vw;
     margin-right: 0.8vw;
     margin-left: 1.2vw;
     div{
@@ -73,25 +80,7 @@
       font-size: 0.6vw;
       
     }
-    .ad-btn{
-      top: 0;
-      font-size: 0.8vw;
-      line-height: 1.2vw;
-      margin-top: 1.4vw;
-      margin-right: 0.7vw;
-
-      background: transparent;
-      border-style: solid;
-      border-color: #ffe032;
-      border-radius: 0.4vw;
-      border-width: 0.13vw;
-      border-color: #b9b9b9;
-    }
-
-    .ad-btn:hover{
-      transition: 0.2s ease-in-out;
-      border-color: #ffe032;;
-    }
+ 
     .heart-btn{
       padding-bottom: .1vw;
       border: none;
@@ -113,5 +102,56 @@
 }
 
 .adsList-element__flex-left{
-  margin-top: 2vw;
+  margin-top: 0.5vw;
+}
+.adsList-element__flex-right{
+
+}
+
+.flex-admins-buttons{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1vw;
+  button + a{
+    margin-left: 0.3vw;
+  }
+  .ad-btn{
+    top: 0;
+    font-size: 0.8vw;
+    line-height: 1.2vw;
+
+    background: transparent;
+    border-style: solid;
+    border-color: #ffe032;
+    border-radius: 0.4vw;
+    border-width: 0.13vw;
+    border-color: #b9b9b9;
+  }
+
+  .ad-btn:hover{
+    transition: 0.2s ease-in-out;
+    border-color: #ffe032;;
+  }
+}
+
+.Ad-Line-border-button{
+  color: black;
+  padding: 1vw 2vw;
+  background: transparent;
+  border-style: solid;
+  border-color: #ffe032;
+  border-radius: 0.4vw;
+  font-size: 0.9vw;
+  font-weight: 700;
+  transition: all .5s ease-in-out;
+  
+  transform: scale(1);
+}
+
+.Ad-Line-border-button:hover {
+transform: scale(1);
+}
+
+.Ad-Line-border-button:active {
+transform: scale(0.9);
 }

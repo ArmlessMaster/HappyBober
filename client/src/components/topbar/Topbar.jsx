@@ -1,6 +1,5 @@
 import "./topbar.scss";
 import Logo from "../../img/Logo.png";
-import OpenLanguage from "../../img/Open language.svg";
 import Account from "../../img/Account.svg";
 import Favorite from "../../img/Favorite.svg";
 import React, { useContext, useState, useEffect, useCallback } from "react";
@@ -9,6 +8,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { Modal } from "../modal/Modal";
 import { Authentication } from "../../components/authentication/Authentication";
 import { useHttp } from '../../hooks/http.hook';
+import { openNotification } from '../../utils/helper';
 
 export const Topbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,6 +19,7 @@ export const Topbar = () => {
       event.preventDefault();
       auth.logout();
       history('/');
+      openNotification({ text: 'You got out', type: 'info' });
   }
   const { loading, request } = useHttp();
   const { token, accountId } = useContext(AuthContext);
@@ -58,11 +59,11 @@ export const Topbar = () => {
         </NavLink>
       </div>
       <ul className="menu-list">
-        <li className="menu-list__item"><div className="menu-list__item-text">Contact</div></li>
+          <li className="menu-list__item"><div className="menu-list__item-text" onClick={() => {window.scrollTo({top: 4500, behavior: "smooth"})}}><NavLink to="/mainpage">Contact</NavLink></div></li>
         <li className="menu-list__item"><div className="menu-list__item-text"><NavLink to="/rules">Rules</NavLink></div></li> 
-        <li className="menu-list__item"><div className="menu-list__item-text">About</div></li>
+        <li className="menu-list__item"><div className="menu-list__item-text"><NavLink to="/teampage">About</NavLink></div></li>
         <li className="menu-list__item"><div className="menu-list__item-text"><NavLink to="/ads">Shop</NavLink></div></li>
-        <li className="menu-list__item"><div className="menu-list__item-text">Bilibober+</div></li>
+        <li className="menu-list__item"><div className="menu-list__item-text" onClick={() => {window.scrollTo({top: 2500, behavior: "smooth"})}}><NavLink to="/mainpage">Bilibober+</NavLink></div></li>
       </ul>
       <div className="right">
           <div className="favorite-button right-elem">

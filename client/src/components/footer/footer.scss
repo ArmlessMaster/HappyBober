@@ -28,29 +28,33 @@
     font-family: 'Montserrat';
     .center-text{
       font-weight: 400;
-      font-size: 36px;
-      margin-top: 20px;
+      font-size: 1.7vw;
+      margin-top: 1vw;
     }
     .text-bold{           
       font-weight: 600;
-      font-size: 32px;
-      margin-top: 10px;
+      font-size: 2vw;
+      margin-top: 0.5vw;
     }
     .menu-list{
-      margin-top: 20px;
+      font-size: 1vw;
+      margin-top: 1vw;
       justify-content: center;
       display: flex;
       li + li{
-        margin-left: 20px;
+        margin-left: 1vw;
       } 
     }
     .text-low{
       color: #9C9C9C;
-      margin-top: 20px;
+      margin-top: 1vw;
       font-style: normal;
       font-weight: 300;
-      font-size: 20px;
-      margin-bottom: 20px;
+      font-size: 1vw;
+      margin-bottom: 1vw;
     }
+  }
+  ul{
+    padding: 0;
   }
 }

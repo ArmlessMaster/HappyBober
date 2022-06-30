@@ -45,7 +45,6 @@ const App = props => {
     getAccount()
   }, [getAccount]);
 
-
   //
   if (!ready) {
     return <Loader />
@@ -59,10 +58,10 @@ const App = props => {
           {(type === 'admin') && <TopBarAdmin />}
           {(type === 'admin') && <div>{adminroutes}</div>}
           {!(type === 'admin') && <Topbar />}
-          {!(type === 'admin') && <div>{routes}</div>}
+          {!(type === 'admin') && <div className='Main-Wrapper'>{routes}</div>}
+          <Footer></Footer>
         </BrowserRouter>
       </AuthContext.Provider>
-      <Footer></Footer>
     </>
 
   );

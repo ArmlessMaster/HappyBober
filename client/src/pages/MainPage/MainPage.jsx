@@ -8,6 +8,7 @@ import Bober from "../../components/bober+/bober"
 import Contact from "../../components/contact/Contact";
 import { AdsList } from "../../components/AdsList/AdsList";
 import Yellowbtn from "../../components/elements/YellowBtn/Yellowbtn";
+import { NavLink } from "react-router-dom";
 
 import "./MainPage.scss";
 
@@ -64,7 +65,7 @@ const fetchAds = useCallback(async () => {
           </div>
           <AdsList ads={ads} />
           <div className="Btn-Flex">          
-            <Yellowbtn info="More"/>
+            <NavLink to="/ads"><Yellowbtn info="More"/></NavLink>
           </div>
           <About account={account}/>
           <Bober account={account}/>

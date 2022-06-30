@@ -140,7 +140,7 @@ export const AccountCard = ({account}) => {
             </div>
 
             <Modal active={ modalActive} setActive={setModalActive} children={<Report reportType={'user'} account={account}></Report>}></Modal>
-            <Modal active={rewiewActive} setActive={setRewiewActive} children={<RewievForm complain={complain} setComplain={setComplain} receiver={account._id} sender={accountId} setRewievs={setRewievs} token={token} ></RewievForm>}></Modal>
+            <Modal active={rewiewActive} setActive={setRewiewActive} children={<RewievForm complain={complain} setComplain={setComplain} receiver={account._id} sender={accountId} setRewievs={setRewievs} token={token} setRewiewActive={setRewiewActive}></RewievForm>}></Modal>
         </div>
     )
 }

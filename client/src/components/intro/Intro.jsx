@@ -1,7 +1,7 @@
 import "./intro.scss"
 import background from "../../img/Background.jpg";
 import { motion } from "framer-motion";
-import Yellowbtn from "../elements/YellowBtn/Yellowbtn";
+import { NavLink } from "react-router-dom";
 
 export default function Intro() {
   const marqueeVariants = {
@@ -34,7 +34,7 @@ export default function Intro() {
             </motion.div>
           </div>
           <div className="BtnWrapper-intro">
-              <button className="Intro-Line-full-button">Find a tailed friend</button>
+            <NavLink to="/ads"><button className="Intro-Line-full-button">Find a tailed friend</button></NavLink>
           </div>
         </div>
       </div>

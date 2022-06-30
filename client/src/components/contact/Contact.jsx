@@ -3,6 +3,7 @@ import satelite from "../../img/satellite.png";
 import paper from "../../img/contact.png";
 import smile from "../../img/cold-smile.png";
 import shadow from "../../img/shadow.png";
+import { openNotification } from '../../utils/helper';
 import { useAnimation, motion } from "framer-motion";
 import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
@@ -15,9 +16,11 @@ export default function Contact() {
   
     emailjs.sendForm('service_12k2nih', 'template_cyvn7fa', form.current, 'nFV8YI8koVrkudt2J')
       .then((result) => {
-          console.log(result.text);
+        console.log(result.text);
+        openNotification({ text: 'Message sent', type: 'success' });
       }, (error) => {
-          console.log(error.text);
+        console.log(error.text);
+        openNotification({ text: 'Message not sent', type: 'error' });
       });
       e.target.reset()
     };

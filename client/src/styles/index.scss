@@ -5,6 +5,15 @@
 
 body {
   background-color: #F8F8F8;
+  &::-webkit-scrollbar{
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb{
+    background-color: #a09e9e;
+    border: 2px solid #f7f8f9;
+    border-radius: 50px;
+  }
 }
 
 body, html, #root, .wrapper {

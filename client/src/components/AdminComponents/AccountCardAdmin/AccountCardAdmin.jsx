@@ -4,7 +4,7 @@ import { Report } from "../../report/Report";
 import { AuthContext } from "../../../context/AuthContext";
 import "../../AccountCard/AccountCard.scss";
 import RegionSvg from "../../../img/RegionSvg.svg";
-import YellowBtn from '../../elements/YellowBtn/Yellowbtn';
+import { openNotification } from '../../../utils/helper';
 import { Link } from "react-router-dom";
 import { AdsListAdmin } from '../../../components/AdminComponents/AdsListAdmin/AdsListAdmin'
 import { useHttp } from "../../../hooks/http.hook";
@@ -100,6 +100,7 @@ export const AccountCardAdmin = ({ account }) => {
                     await request(`/api/account/adremove/${account._id}`, 'DELETE', null, {
                         Authorization: `Bearer ${token}`
                     });
+                    openNotification({ text: 'Account removed', type: 'success' });
                 } catch (e) {
 
                 }
@@ -127,6 +128,7 @@ export const AccountCardAdmin = ({ account }) => {
                                             Authorization: `Bearer ${token}`
                                         });
                                         setRewievs(rewievs.filter(item => item._id !== rewiev._id))
+                                        openNotification({ text: 'Review removed', type: 'success' });
                                     } catch (e) {
 
                                     }

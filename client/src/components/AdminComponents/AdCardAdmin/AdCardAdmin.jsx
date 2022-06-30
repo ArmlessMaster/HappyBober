@@ -3,6 +3,7 @@ import '../../AdCard/AdCard.scss';
 import ImageGallery from 'react-image-gallery';
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
+import { openNotification } from '../../../utils/helper';
 import { useHttp } from "../../../hooks/http.hook";
 
 export const AdCardAdmin = ({ ad, creator, similar }) => {
@@ -40,7 +41,7 @@ export const AdCardAdmin = ({ ad, creator, similar }) => {
                 </div>
                 <div className="animal-info">
                     <div className="animal_name">{ad.animalName}</div>
-                    <div className="animal_price">{ad.price}₴</div>
+                    {ad.price === 0 ? <div className="animal_price">FREE</div> : <div className="animal_price">{ad.price}₴</div>}
                     <div className="animal-info-list">
                         <div className="info__var">
                             <div className="type__var  list-elem">Type of animal:</div>
@@ -66,6 +67,7 @@ export const AdCardAdmin = ({ ad, creator, similar }) => {
                             await request(`/api/ads/adremove/${ad._id}`, 'DELETE', null, {
                                 Authorization: `Bearer ${token}`
                             });
+                            openNotification({ text: 'Ad removed', type: 'success' });
                         } catch (e) {
 
                         }

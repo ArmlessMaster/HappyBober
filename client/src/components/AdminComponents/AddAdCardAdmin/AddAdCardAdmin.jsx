@@ -4,7 +4,7 @@ import { FireBaseUploader } from '../FireBaseUploader/FireBaseUploader';
 import { useHttp } from "../../hooks/http.hook";
 import { storage } from "../../firebase/firebase";
 import { RadioButton } from "../RadioButton/RadioButton";
-
+import { openNotification } from '../../../utils/helper';
 
 
 export const AddAdCardAdmin = ({ ad }) => {
@@ -198,7 +198,7 @@ export const AddAdCardAdmin = ({ ad }) => {
                         topEnd: (ad.topEnd ? ad.topEnd : null),
                         location: (ad.location ? ad.location : ''),
                         account: (ad.account ? ad.account : '')
-                    })
+                    });openNotification({ text: 'Ad not updated', type: 'warning' });
                 }} >Cancel</button>
             </div>
 

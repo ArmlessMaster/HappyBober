@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import "../../AccountCard/AccountCard.scss";
 import { useHttp } from "../../../hooks/http.hook";
 import { AuthContext } from "../../../context/AuthContext";
+import { openNotification } from '../../../utils/helper';
 import { Link } from "react-router-dom";
 
 
@@ -77,6 +78,7 @@ export const AccountsListAdmin = ({ accounts, setAccounts }) => {
                                                 Authorization: `Bearer ${token}`
                                             });
                                             setCurrent(current.filter(item => item._id !== account._id));
+                                            openNotification({ text: 'Account removed', type: 'success' });
                                         } catch (e) {
                                         }
                                     }}>Remove</button>

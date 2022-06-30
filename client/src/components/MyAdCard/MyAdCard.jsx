@@ -1,8 +1,6 @@
 import React, { useState, useContext } from "react";
-import { Modal } from "../modal/Modal";
-import { Report } from "../report/Report";
 import { AuthContext } from "../../context/AuthContext";
-import { Link } from "react-router-dom";
+import { openNotification } from '../../utils/helper';
 import { FireBaseUploader } from '../FireBaseUploader/FireBaseUploader';
 import { useHttp } from "../../hooks/http.hook";
 import { storage } from "../../firebase/firebase";
@@ -79,7 +77,7 @@ export const MyAdCard = ({ ad }) => {
         })
         Promise.all(promises).then(async () => {
             await request('/api/ads/updatemyad', 'POST', { ...adData }, { Authorization: `Bearer ${auth.token}` });
-        }).then(setImages([]) ).then(setPreview([]))
+        }).then(setImages([])).then(setPreview([])).then(() => {openNotification({ text: 'Ad updated', type: 'success' });});
     }
 
     async function uploadImageAsPromise(image) {
@@ -246,6 +244,7 @@ export const MyAdCard = ({ ad }) => {
                     });
                     setPreview([]);
                     setImages([]);
+                    openNotification({ text: 'Ad not updated', type: 'warning' });
                 }} >Cancel</button>
             </div>
 

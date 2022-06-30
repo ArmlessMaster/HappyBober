@@ -4,7 +4,7 @@ import { FireBaseUploader } from '../../FireBaseUploader/FireBaseUploader';
 import { useHttp } from "../../../hooks/http.hook";
 import { storage } from "../../../firebase/firebase";
 import { RadioButton } from "../../RadioButton/RadioButton";
-
+import { openNotification } from '../../../utils/helper';
 
 
 
@@ -74,7 +74,7 @@ export const EditAdCardAdmin = ({ ad }) => {
         })
         Promise.all(promises).then(async () => {
             await request('/api/ads/updatemyad', 'POST', { ...adData }, { Authorization: `Bearer ${auth.token}` });
-        }).then(setImages([])).then(setPreview([]))
+        }).then(setImages([])).then(setPreview([])).then(() => {openNotification({ text: 'Ad updated', type: 'success' });});
     }
 
     async function uploadImageAsPromise(image) {

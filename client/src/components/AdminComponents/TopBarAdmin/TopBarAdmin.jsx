@@ -4,6 +4,7 @@ import Account from "../../../img/Account.svg";
 import React, { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
+import { openNotification } from '../../../utils/helper';
 
 export const TopBarAdmin = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -15,6 +16,7 @@ export const TopBarAdmin = () => {
         auth.logout();
         history('/');
         window.location.reload();
+        openNotification({ text: 'You got out', type: 'info' });
     }
 
 

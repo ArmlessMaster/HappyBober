@@ -3,6 +3,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { FireBaseUploader } from '../FireBaseUploader/FireBaseUploader'
 import { useHttp } from "../../hooks/http.hook";
 import { storage } from "../../firebase/firebase";
+import { openNotification } from '../../utils/helper';
 import "./MyAccountCard.scss";
 
 export const MyAccountCard = ({ account }) => {
@@ -60,7 +61,9 @@ export const MyAccountCard = ({ account }) => {
         })
         Promise.all(promises).then(async () => {
             await request('/api/account/updatemyacc', 'POST', { ...accountData }, { Authorization: `Bearer ${auth.token}` });
-        })
+        }).then(() => {
+            openNotification({ text: 'Data updated', type: 'success' });
+        });
     }
 
 
@@ -107,7 +110,7 @@ export const MyAccountCard = ({ account }) => {
 
     return (
         <div style={{ marginTop: '5vw', display: "flex", flexDirection: 'column' }}>
-            <p className="Main-Account__input-text">Accaunt Setting</p>
+            <p className="Main-Account__input-text">Account Setting</p>
             <div className="account__input-flex"> 
                 <div className="account__input-ImgWrapper">
                     <img src={preview}></img>
@@ -189,7 +192,8 @@ export const MyAccountCard = ({ account }) => {
                         description: (account.description ? account.description : ''),
                         website: (account.website ? account.website : '')
                     });
-                    setPreview(account.photo)
+                    setPreview(account.photo);
+                    openNotification({ text: 'Data resumed', type: 'warning' });
                 }} >Cancel</button>
             </div>
         </div>

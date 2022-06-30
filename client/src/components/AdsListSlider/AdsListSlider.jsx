@@ -43,7 +43,7 @@ export const AdsListSlider = ({ ads, setAds, location }) => {
                                         </div>
                                         <div className="adsList-element__flex">
                                             <div>{ad.animalName}</div>
-                                            <div>{ad.price}$</div>
+                                            {ad.price === 0 ? <div>free</div> : <div>{ad.price}₴</div>}
                                         </div>
                                         <div className="ads-List-element-info">
                                             <span>{ad.gender}</span> / <span>{ad.age}</span> / <span>{ad.breed}</span>

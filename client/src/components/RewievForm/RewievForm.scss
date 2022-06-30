@@ -4,10 +4,13 @@ $color: slategray;
 @mixin set-star($border: $color, $fill: transparent) {
   background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='#{$fill}' stroke='#{$border}' stroke-width='38' d='M259.216 29.942L330.27 173.92l158.89 23.087L374.185 309.08l27.145 158.23-142.114-74.698-142.112 74.698 27.146-158.23L29.274 197.007l158.89-23.088z' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
-
+.stars{
+  padding-bottom: 0.3vw;
+}
 .stars input {
   position: absolute;
   clip: rect(0,0,0,0);
+
 }
 
 .stars label {
@@ -27,4 +30,36 @@ $color: slategray;
 .stars input:nth-child(4):checked ~ label:nth-of-type(-n + 4),
 .stars input:nth-child(5):checked ~ label:nth-of-type(-n + 5) {
   @include set-star($color, $color);
+}
+
+.flex-center{
+  display: flex;
+  justify-content: center;
+}
+
+.rev-btn{
+  top: 0;
+  font-size: 0.8vw;
+  line-height: 1.2vw;
+
+  background: transparent;
+  border-style: solid;
+  border-radius: 0.4vw;
+  border-width: 0.13vw;
+  border-color: #b9b9b9;
+}
+
+.rev-btn:hover{
+  transition: 0.2s ease-in-out;
+  border-color: #ffe032;;
+}
+
+.rev-text{
+  border-width: 0.13vw;
+  border-color: #b9b9b9;
+  border-radius: 0.4vw;
+}
+.review-center{
+  text-align: center;
+  
 }

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from '../../context/AuthContext';
 import { useHttp } from "../../hooks/http.hook";
-import { RadioButton } from '../../components/RadioButton/RadioButton';
+import { openNotification } from '../../utils/helper';
 import "./RewievForm.scss";
 export const RewievForm = ({ receiver, sender, complain, setComplain, setRewievs, token }) => {
 
@@ -32,6 +32,7 @@ export const RewievForm = ({ receiver, sender, complain, setComplain, setRewievs
             setComplain(true);
             setRating(1);
             setText('');
+            openNotification({ text: 'Rewiew sended', type: 'success' });
         } catch (e) {
 
         }
@@ -48,19 +49,21 @@ export const RewievForm = ({ receiver, sender, complain, setComplain, setRewievs
 
     return (
         <div>
-
-            <div class="stars">
-                <input type="radio" id="star1" name="rating" value="1" onChange={radioChangeHandler} />
-                <input type="radio" id="star2" name="rating" value="2" onChange={radioChangeHandler} />
-                <input type="radio" id="star3" name="rating" value="3" onChange={radioChangeHandler} />
-                <input type="radio" id="star4" name="rating" value="4" onChange={radioChangeHandler} />
-                <input type="radio" id="star5" name="rating" value="5" onChange={radioChangeHandler} />
-
-                <label for="star1" aria-label="Banana">1 star</label><label for="star2">2 stars</label><label for="star3">3 stars</label><label for="star4">4 stars</label><label for="star5">5 stars</label>
+            <p className="review-center">Review</p>
+            <div className="flex-center">
+                <div class="stars">
+                    <input type="radio" id="star1" name="rating" value="1" onChange={radioChangeHandler} />
+                    <input type="radio" id="star2" name="rating" value="2" onChange={radioChangeHandler} />
+                    <input type="radio" id="star3" name="rating" value="3" onChange={radioChangeHandler} />
+                    <input type="radio" id="star4" name="rating" value="4" onChange={radioChangeHandler} />
+                    <input type="radio" id="star5" name="rating" value="5" onChange={radioChangeHandler} />
+                    <label for="star1" aria-label="Banana">1 star</label><label for="star2">2 stars</label><label for="star3">3 stars</label><label for="star4">4 stars</label><label for="star5">5 stars</label>
+                </div>
             </div>
 
-            <textarea onChange={textChangeHandler} value={text}></textarea>
-            <button onClick={createRewiev} disabled={loading}>Complain</button>
+
+            <textarea className="rev-text" onChange={textChangeHandler} value={text} placeholder="Leave a review" ></textarea>
+            <div className="flex-center"> <button className="rev-btn" onClick={createRewiev} disabled={loading}>Complain</button></div>
         </div>
     );
 

@@ -3,7 +3,7 @@ import "../../AccountCard/AccountCard.scss";
 import { useHttp } from "../../../hooks/http.hook";
 import { AuthContext } from "../../../context/AuthContext";
 import { Link } from "react-router-dom";
-
+import { openNotification } from '../../../utils/helper';
 
 export const ReportsListAdmin = ({ reports, setReports }) => {
 
@@ -75,6 +75,7 @@ export const ReportsListAdmin = ({ reports, setReports }) => {
                                             await request(`/api/report/delete/${report._id}`, 'DELETE', null, {
                                                 Authorization: `Bearer ${token}`
                                             });
+                                            openNotification({ text: 'Report removed', type: 'success' });
                                             setCurrent(current.filter(item => item._id !== report._id));
                                         } catch (e) {
                                         }

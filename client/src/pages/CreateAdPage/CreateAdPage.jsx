@@ -4,6 +4,7 @@ import { useHttp } from "../../hooks/http.hook";
 import { RadioButton } from '../../components/RadioButton/RadioButton';
 import { FireBaseUploader } from '../../components/FireBaseUploader/FireBaseUploader';
 import { storage } from '../../firebase/firebase';
+import { openNotification } from '../../utils/helper';
 import './CreateAdPage.scss';
 
 export const CreateAdPage = () => {
@@ -16,7 +17,7 @@ export const CreateAdPage = () => {
     const [gender, setGender] = React.useState('');
 
     const [form, setForm] = useState({
-        type: '', gender: '', color: '', information: '', age: 0, breed: '', price: 0, animalName: '', picture: [], location: ''
+        type: '', gender: '', color: '', information: '', age: '', breed: '', price: '', animalName: '', picture: [], location: ''
     });
 
     const { loading, request } = useHttp();
@@ -70,7 +71,7 @@ export const CreateAdPage = () => {
         }).then(() => {setForm({
             type: '', gender: '', color: '', information: '', age: 0, breed: '', price: 0, animalName: '', picture: [], location: ''
         })
-    setGender(''); setUrls([]); setImages([]); setImages([]); setPreview([])})
+            setGender(''); setUrls([]); setImages([]); setImages([]); setPreview([]);openNotification({ text: 'Ad created', type: 'success' });})
     }
 
     async function uploadImageAsPromise(image) {
@@ -104,7 +105,7 @@ export const CreateAdPage = () => {
 
 
     return (
-        <div style={{ marginTop: '4vw' }}>
+        <div className='CreateAdPage' style={{ marginTop: '4vw' }}>
             <p className='ManeLabel-CreateAd'>CREATE AD</p>
             <div className="create-flex">
                 <div className="left">
