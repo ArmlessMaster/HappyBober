@@ -220,7 +220,7 @@ export const EditAdCardAdmin = ({ ad }) => {
 
             <div className="account__input-flex">
                 <button className="ad__input-Button" disabled={loading} onClick={createAdHandler}>Save</button>
-                <button className="ad__input-Button" onClick={() => {
+                <button className="account__input-Button-Border" onClick={() => {
                     setAdData({
                         id: ad._id,
                         type: (ad.type ? ad.type : ''),

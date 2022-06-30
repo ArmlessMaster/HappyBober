@@ -43,28 +43,29 @@ export const AdsListAdmin = ({ ads, setAds }) => {
                                         <span>{ad.gender}</span> / <span>{ad.age}</span> / <span>{ad.breed}</span>
                                     </div>
 
-                                    <div className="adsList-element__flex-bottom">
-                                        <div className="adsList-element__flex-left">{ad.location}</div>
+                                    <div className="flex-admins-buttons">
+                                    {<button className="ad-btn" disabled={loading} onClick={async () => {
+                                                    try {
+                                                        await request(`/api/ads/adremove/${ad._id}`, 'DELETE', null, {
+                                                            Authorization: `Bearer ${token}`
+                                                        });
+                                                        setAds(ads.filter(item => item._id !== ad._id))
+                                                        openNotification({ text: 'Ad removed', type: 'success' });
+                                                    } catch (e) {
 
-                                        <button disabled={loading} className="ad-btn" onClick={async () => {
-                                            try {
-                                                await request(`/api/ads/adremove/${ad._id}`, 'DELETE', null, {
-                                                    Authorization: `Bearer ${token}`
-                                                });
-                                                setAds(ads.filter(item => item._id !== ad._id));
-                                                openNotification({ text: 'Favourite removed', type: 'success' });
-                                            } catch (e) {
+                                                    }
+                                                }}>Remove</button>}
 
-                                            }
-                                        }}>remove</button>
-                                        <Link to={`/admin/edit/ad/${ad._id}`}><button className="ad-btn">Edit</button></Link>
+                                                {<Link to={`/admin/edit/ad/${ad._id}`}><button className="ad-btn" >Edit</button></Link>}  
                                     </div>
                                 </div>
                             )
                         })}
 
                     </div>
-                    <button style={ads.length > 0 && visible >= ads.length ? { display: 'none' } : { display: 'all' }} onClick={showMoreItems}>More</button>
+                    <div className="Ad-List-Center">
+                        <button className="Ad-Line-border-button" style={ads.length > 0 && visible >= ads.length ? {display: 'none'} : {display: 'all'}} onClick={showMoreItems}>More</button>
+                    </div>
                 </div >
             </div>
 

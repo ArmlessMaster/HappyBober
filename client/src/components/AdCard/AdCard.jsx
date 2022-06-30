@@ -12,7 +12,7 @@ export const AdCard = ({ ad, handleFavourite, creator, similar  }) => {
 
   const [modalActive, setModalActive] = useState(false);
   const { accountId, token } = useContext(AuthContext);
-  const [phone, setPhone] = useState('Show phone');
+  const [phone, setPhone] = useState('Phone');
   const { request, loading } = useHttp();
 
 

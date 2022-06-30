@@ -5,6 +5,7 @@ import { AdCard } from "../../components/AdCard/AdCard"
 import { Loader } from "../../components/Loader/Loader";
 import { AuthContext } from "../../context/AuthContext";
 import { useHttp } from "../../hooks/http.hook";
+import { openNotification } from '../../utils/helper';
 
 
 export const AdPage = () => {
@@ -50,7 +51,7 @@ export const AdPage = () => {
             await request('/api/favourites/addfavourite', 'POST', { accountId, adId }, {
                 Authorization: `Bearer ${token}`
             });
-
+            openNotification({ text: 'Add to favourites', type: 'success' });
         } catch (e) {
 
         }

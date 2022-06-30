@@ -3,13 +3,13 @@ import "firebase/compat/storage";
 
 
 const firebaseConfig = {
-    apiKey: process.env.REACT_APP_API_KEY,
-    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-    databaseURL: process.env.REACT_APP_DATABASE_URL,
-    projectId: process.env.REACT_APP_PROJECT_ID,
-    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_MESSAGEING_SENDER_ID,
-    appId: process.env.REACT_APP_APP_ID
+    apiKey: "AIzaSyA6M8JkBAHbYoIz_SwtLbLYr_C2aVQrMxk",
+    authDomain: "happybober-23252.firebaseapp.com",
+    databaseURL: "gs://happybober-23252.appspot.com",
+    projectId: "happybober-23252",
+    storageBucket: "happybober-23252.appspot.com",
+    messagingSenderId: "41616306483",
+    appId: "1:41616306483:web:48d2bb25e07e9c777d8e46"
 };
 
 firebase.initializeApp(firebaseConfig);

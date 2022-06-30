@@ -25,7 +25,7 @@ export const AdsList = ({ ads, setAds, location }) => {
         return <div className="center">
                     <div className="Rules">
                         <div className= "Rules-Main-Screen">
-                        <p>Ads loading...</p>
+                        <p>NO ADS YET</p>
                 </div> 
             </div> 
         </div>

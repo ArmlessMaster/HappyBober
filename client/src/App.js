@@ -56,7 +56,7 @@ const App = props => {
       }}>
         <BrowserRouter>
           {(type === 'admin') && <TopBarAdmin />}
-          {(type === 'admin') && <div>{adminroutes}</div>}
+          {(type === 'admin') && <div className='Main-Wrapper'>{adminroutes}</div>}
           {!(type === 'admin') && <Topbar />}
           {!(type === 'admin') && <div className='Main-Wrapper'>{routes}</div>}
           <Footer></Footer>
