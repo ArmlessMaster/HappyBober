@@ -155,3 +155,8 @@ transform: scale(1);
 .Ad-Line-border-button:active {
 transform: scale(0.9);
 }
+.Ad-List-Center{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1vw;
+}

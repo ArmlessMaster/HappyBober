@@ -3,8 +3,8 @@ import { AuthContext } from "../../../context/AuthContext";
 import { FireBaseUploader } from '../../FireBaseUploader/FireBaseUploader'
 import { useHttp } from "../../../hooks/http.hook";
 import { storage } from "../../../firebase/firebase";
-import { openNotification } from '../../../utils/helper';
 import "../../../components/MyAccountCard/MyAccountCard.scss";
+import { openNotification } from '../../../utils/helper';
 
 export const EditAccountCardAdmin = ({ account }) => {
 
@@ -110,7 +110,7 @@ export const EditAccountCardAdmin = ({ account }) => {
 
     return (
         <div style={{ marginTop: '5vw', display: "flex", flexDirection: 'column' }}>
-            <p className="Main-Account__input-text">Account Setting</p>
+            <p className="Main-Account__input-text">Accaunt Setting</p>
             <div className="account__input-flex">
                 <div className="account__input-ImgWrapper">
                     <img src={preview}></img>

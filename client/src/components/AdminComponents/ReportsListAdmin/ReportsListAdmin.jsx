@@ -3,6 +3,7 @@ import "../../AccountCard/AccountCard.scss";
 import { useHttp } from "../../../hooks/http.hook";
 import { AuthContext } from "../../../context/AuthContext";
 import { Link } from "react-router-dom";
+import "./ReportListAdmin.scss"
 import { openNotification } from '../../../utils/helper';
 
 export const ReportsListAdmin = ({ reports, setReports }) => {
@@ -34,7 +35,7 @@ export const ReportsListAdmin = ({ reports, setReports }) => {
     }
 
     return (
-        <div style={{ marginTop: '100px' }}>
+        <div style={{ paddingTop: '4vw' }}>
 
             <div className="Search-Line__flex">
                 <input
@@ -75,8 +76,8 @@ export const ReportsListAdmin = ({ reports, setReports }) => {
                                             await request(`/api/report/delete/${report._id}`, 'DELETE', null, {
                                                 Authorization: `Bearer ${token}`
                                             });
-                                            openNotification({ text: 'Report removed', type: 'success' });
                                             setCurrent(current.filter(item => item._id !== report._id));
+                                            openNotification({ text: 'Report removed', type: 'success' });
                                         } catch (e) {
                                         }
                                     }}>Remove</button>

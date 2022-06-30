@@ -12,6 +12,10 @@ export const StatisticsCard = ({ ads, accounts, rewievs, reports }) => {
     const numberOfRewievs = rewievs.length;
     const numberOfReports = reports.length;
 
+    // subscribers
+    const numberOfSubscribers = 0;
+    accounts.forEach((item) => { if (item.isSubscriber) numberOfSubscribers++ })
+
     return (
         <div style={{ marginTop: '5vw', marginBottom: '5vw'}}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr' }}>

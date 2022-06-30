@@ -115,7 +115,7 @@ export const EditAdCardAdmin = ({ ad }) => {
 
 
     return (
-        <div style={{ marginTop: '100px', display: "flex", flexDirection: 'column' }}>
+        <div style={{  paddingTop: '4vw', display: "flex", flexDirection: 'column' }}>
             <p className="Main-Account__input-text">Ad Setting</p>
             <input className="ad__input" value={adData.type}
                 placeholder="type"

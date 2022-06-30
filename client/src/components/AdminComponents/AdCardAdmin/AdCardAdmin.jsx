@@ -3,8 +3,8 @@ import '../../AdCard/AdCard.scss';
 import ImageGallery from 'react-image-gallery';
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
-import { openNotification } from '../../../utils/helper';
 import { useHttp } from "../../../hooks/http.hook";
+import { openNotification } from '../../../utils/helper';
 
 export const AdCardAdmin = ({ ad, creator, similar }) => {
 
@@ -41,7 +41,7 @@ export const AdCardAdmin = ({ ad, creator, similar }) => {
                 </div>
                 <div className="animal-info">
                     <div className="animal_name">{ad.animalName}</div>
-                    {ad.price === 0 ? <div className="animal_price">FREE</div> : <div className="animal_price">{ad.price}₴</div>}
+                    <div className="animal_price">{ad.price}₴</div>
                     <div className="animal-info-list">
                         <div className="info__var">
                             <div className="type__var  list-elem">Type of animal:</div>

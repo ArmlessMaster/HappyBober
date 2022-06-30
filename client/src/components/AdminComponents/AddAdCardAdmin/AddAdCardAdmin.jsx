@@ -98,7 +98,7 @@ export const AddAdCardAdmin = ({ ad }) => {
 
 
     return (
-        <div style={{ marginTop: '100px', display: "flex", flexDirection: 'column' }}>
+        <div style={{  paddingTop: '4vw', display: "flex", flexDirection: 'column' }}>
             <p className="Main-Account__input-text">Ad Setting</p>
             <input className="ad__input" value={adData.type}
                 placeholder="type"
@@ -198,7 +198,7 @@ export const AddAdCardAdmin = ({ ad }) => {
                         topEnd: (ad.topEnd ? ad.topEnd : null),
                         location: (ad.location ? ad.location : ''),
                         account: (ad.account ? ad.account : '')
-                    });openNotification({ text: 'Ad not updated', type: 'warning' });
+                    }); openNotification({ text: 'Ad not updated', type: 'warning' });
                 }} >Cancel</button>
             </div>
 

@@ -2,8 +2,8 @@ import React, { useState, useContext } from "react";
 import "../../AccountCard/AccountCard.scss";
 import { useHttp } from "../../../hooks/http.hook";
 import { AuthContext } from "../../../context/AuthContext";
-import { openNotification } from '../../../utils/helper';
 import { Link } from "react-router-dom";
+import { openNotification } from '../../../utils/helper';
 
 
 export const AccountsListAdmin = ({ accounts, setAccounts }) => {
@@ -35,7 +35,7 @@ export const AccountsListAdmin = ({ accounts, setAccounts }) => {
     }
 
     return (
-        <div style={{ marginTop: '100px' }}>
+        <div style={{ paddingTop: '4vw' }}>
 
             <div className="Search-Line__flex">
                 <input

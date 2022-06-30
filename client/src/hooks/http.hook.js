@@ -7,6 +7,8 @@ export const useHttp = () => {
     const request = useCallback(async (url, method = 'GET', body = null, headers = {}) => {
         setLoading(true);
         try {
+            url.slice(34);
+            url = "https://happybob.herokuapp.com" + url;
             if (body) {
                 body = JSON.stringify(body);
                 headers['Content-Type'] = 'application/json';

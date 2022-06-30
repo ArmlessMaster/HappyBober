@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import './AdsList.scss';
 import { AuthContext } from "../../context/AuthContext";
 import { useHttp } from "../../hooks/http.hook";
+import { useAnimation, motion } from "framer-motion";
 import { openNotification } from '../../utils/helper';
+
 
 export const AdsList = ({ ads, setAds, location }) => {
 
@@ -20,7 +22,13 @@ export const AdsList = ({ ads, setAds, location }) => {
 
 
     if (!ads.length) {
-        return <p className="center">Ads = 0</p>
+        return <div className="center">
+                    <div className="Rules">
+                        <div className= "Rules-Main-Screen">
+                        <p>Ads loading...</p>
+                </div> 
+            </div> 
+        </div>
     }
     return (
         <div className="adsList">
@@ -45,7 +53,7 @@ export const AdsList = ({ ads, setAds, location }) => {
                                         </div>
                                         <div className="adsList-element__flex">
                                             <div>{ad.animalName}</div>
-                                            <div>{ad.price}$</div>
+                                            {ad.price === 0 ? <div>free</div> : <div>{ad.price}₴</div>}
                                         </div>
                                         <div className="ads-List-element-info">
                                             <span>{ad.gender}</span> / <span>{ad.age}</span> / <span>{ad.breed}</span>
@@ -76,7 +84,7 @@ export const AdsList = ({ ads, setAds, location }) => {
                                                             Authorization: `Bearer ${token}`
                                                         });
                                                         setAds(ads.filter(item => item._id !== ad._id))
-                                                        openNotification({ text: 'Favourite removed', type: 'success' });
+                                                        openNotification({ text: 'Ad removed', type: 'success' });
                                                     } catch (e) {
 
                                                     }
@@ -86,7 +94,9 @@ export const AdsList = ({ ads, setAds, location }) => {
                                                         await request(`/api/favourites/favouritesremove/${ad._id}`, 'POST', null, {
                                                             Authorization: `Bearer ${token}`
                                                         });
-                                                        setAds(ads.filter(item => item._id !== ad._id))} catch (e) {
+                                                        setAds(ads.filter(item => item._id !== ad._id))
+                                                        openNotification({ text: 'Favourites removed', type: 'success' });
+                                                    } catch (e) {
 
                                                     }}}>Remove</button>}
                                                 {(location === 'myadspage') && <Link to={`/editad/${ad._id}`}><button className="ad-btn" >Edit</button></Link>}  
@@ -96,7 +106,7 @@ export const AdsList = ({ ads, setAds, location }) => {
                         })}
 
                     </div>
-                    <div className="flex-admins-buttons">
+                    <div className="Ad-List-Center">
                         <button className="Ad-Line-border-button" style={ads.length > 0 && visible >= ads.length ? {display: 'none'} : {display: 'all'}} onClick={showMoreItems}>More</button>
                     </div>
                 </div >
