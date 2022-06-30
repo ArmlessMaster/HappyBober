@@ -37,12 +37,13 @@ export const Authentication = () => {
             openNotification({ text: 'Error authentication', type: 'error' });
         }
     }
-
     const registerHandler = async () => {
         try {
             const data = await request('/api/auth/register', 'POST', { ...formRegister });
-            console.log(data);
             openNotification({ text: 'Registration', type: 'success' });
+            if (data) {
+                setRouter('login'); setPointerEventsRegister('none'); setPointerEventsLogin('all');
+            }
         } catch (e) {
             openNotification({ text: 'Error registration', type: 'error' });
         }
