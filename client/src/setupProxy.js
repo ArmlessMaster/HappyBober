@@ -4,35 +4,35 @@ module.exports = function (app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'http://localhost:5000',
+      target: 'https://happybob.herokuapp.com/',
       changeOrigin: true,
     })
   );
   app.use(
     '/user',
     createProxyMiddleware({
-      target: 'http://localhost:3003/',
+      target: 'https://happybobchat.herokuapp.com/',
       changeOrigin: true,
     })
   );
   app.use(
     '/dialogs',
     createProxyMiddleware({
-      target: 'http://localhost:3003/',
+      target: 'https://happybobchat.herokuapp.com/',
       changeOrigin: true,
     })
   );
   app.use(
     '/messages',
     createProxyMiddleware({
-      target: 'http://localhost:3003/',
+      target: 'https://happybobchat.herokuapp.com/',
       changeOrigin: true,
     })
   );
   app.use(
     '/files',
     createProxyMiddleware({
-      target: 'http://localhost:3003/',
+      target: 'https://happybobchat.herokuapp.com/',
       changeOrigin: true,
     })
   );
